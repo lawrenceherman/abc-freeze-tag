@@ -23,8 +23,13 @@ class GameViewController: UIViewController {
         cameraNode.camera = SCNCamera()
         scene.rootNode.addChildNode(cameraNode)
         
+        
+        
         // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 50)
+        cameraNode.position = SCNVector3(x: 0, y: 5, z: 100)
+//
+        let cameraVector = SCNVector3(x: 3, y: 0, z:0)
+        cameraNode.eulerAngles = cameraVector
 //
         // create and add a light to the scene
         let lightNode = SCNNode()
@@ -33,6 +38,19 @@ class GameViewController: UIViewController {
         lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
         scene.rootNode.addChildNode(lightNode)
         
+        let floor = SCNFloor()
+        let floorMaterial = SCNMaterial()
+        
+        
+        floor.material(named: <#T##String#>)
+        
+        let floorNode = SCNNode(geometry: floor)
+        
+        
+        
+        
+        scene.rootNode.addChildNode(floorNode)
+        
         // create and add an ambient light to the scene
         let ambientLightNode = SCNNode()
         ambientLightNode.light = SCNLight()
@@ -40,7 +58,7 @@ class GameViewController: UIViewController {
         ambientLightNode.light!.color = UIColor.darkGray
         scene.rootNode.addChildNode(ambientLightNode)
         
-//        scene.background.contents = UIImage(named: "playground1")
+//        scene.background.contents = UIImage(named: "playground2")
         
         scene.background.contents = UIColor.blue
         
@@ -48,7 +66,7 @@ class GameViewController: UIViewController {
         let letterA = SCNText(string: "A", extrusionDepth: 2.0)
         letterA.font = UIFont.init(name: "Ariel", size: 12.0)
         let letterANode = SCNNode(geometry: letterA)
-        letterANode.position = SCNVector3(x: 0, y: 0, z: 0)
+        letterANode.position = SCNVector3(x: 0, y: -3, z: 0)
         scene.rootNode.addChildNode(letterANode)
         
         let letterB = SCNText(string: "B", extrusionDepth: 2.0)
@@ -70,8 +88,12 @@ class GameViewController: UIViewController {
         // retrieve the ship node
 //        let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
         
+        let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 90.0, duration: 2.0)
+        
         // animate the 3d object
-//        ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
+        letterANode.runAction(runForward)
+        
+        
         
         // retrieve the SCNView
         let scnView = self.view as! SCNView
@@ -84,7 +106,7 @@ class GameViewController: UIViewController {
         scnView.scene = scene
         
         // allows the user to manipulate the camera
-        scnView.allowsCameraControl = false 
+        scnView.allowsCameraControl = true
         
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
