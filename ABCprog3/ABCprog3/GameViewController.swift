@@ -40,23 +40,25 @@ class GameViewController: UIViewController {
         ambientLightNode.light!.color = UIColor.darkGray
         scene.rootNode.addChildNode(ambientLightNode)
         
-        scene.background.contents = UIImage(named: "playground1")
+//        scene.background.contents = UIImage(named: "playground1")
+        
+        scene.background.contents = UIColor.blue
         
 
         let letterA = SCNText(string: "A", extrusionDepth: 2.0)
-        letterA.font = UIFont.boldSystemFont(ofSize: 12.0)
+        letterA.font = UIFont.init(name: "Ariel", size: 12.0)
         let letterANode = SCNNode(geometry: letterA)
         letterANode.position = SCNVector3(x: 0, y: 0, z: 0)
         scene.rootNode.addChildNode(letterANode)
         
         let letterB = SCNText(string: "B", extrusionDepth: 2.0)
-        letterB.font = UIFont.boldSystemFont(ofSize: 12.0)
+        letterB.font = UIFont.init(name: "Ariel", size: 12.0)
         let letterBNode = SCNNode(geometry: letterB)
         letterBNode.position = SCNVector3(x: 10, y: 0, z: 0)
         scene.rootNode.addChildNode(letterBNode)
         
         let letterC = SCNText(string: "C", extrusionDepth: 2.0)
-        letterC.font = UIFont.boldSystemFont(ofSize: 12.0)
+        letterC.font = UIFont.init(name: "Ariel", size: 12.0)
         let letterCNode = SCNNode(geometry: letterC)
         letterCNode.position = SCNVector3(x: 20, y: 0, z: 0)
         scene.rootNode.addChildNode(letterCNode)
