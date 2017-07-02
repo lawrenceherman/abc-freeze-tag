@@ -24,135 +24,158 @@ class GameViewController: UIViewController {
         scene.rootNode.addChildNode(cameraNode)
         
         
+        let radians = degreesToRadians(degrees: -10.0)
+        
+        let eulerVector = SCNVector3Make(radians, 0, 0)
+        cameraNode.eulerAngles = eulerVector
         
         // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 5, z: 100)
+        cameraNode.position = SCNVector3(x: 50, y: 5, z: 100)
+        
 //
-        let cameraVector = SCNVector3(x: 3, y: 0, z:0)
-        cameraNode.eulerAngles = cameraVector
-//
+        
+        let x = cameraNode.rotation
+        let y = cameraNode.orientation
+        let z = cameraNode.eulerAngles
+//        let i = cameraNode.position
+//        let j = cameraNode.transform
+//        let k = cameraNode.scale
+        
+        print("rotation \(x) \n\n")
+        print("orientation \(y) \n\n")
+        print("eulerangle \(z) \n\n")
+//        print("position \(i) \n\n")
+//        print("transform \(j) \n\n")
+//        print("scale \(k) \n\n")
+        
+        
         // create and add a light to the scene
         let lightNode = SCNNode()
         lightNode.light = SCNLight()
         lightNode.light!.type = .omni
-        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
+        lightNode.position = SCNVector3(x: 0, y: 30, z: 10)
         scene.rootNode.addChildNode(lightNode)
         
+        let directionalLight = SCNNode()
+        directionalLight.light = SCNLight()
+        directionalLight.light!.type = .directional
+        directionalLight.position = SCNVector3(x: 9, y: 10, z: 100)
+        scene.rootNode.addChildNode(directionalLight)
+        
+        
         let floor = SCNFloor()
-        let floorMaterial = SCNMaterial()
         
         
-        floor.material(named: <#T##String#>)
+        
+        let grass1 = SCNMaterial()
+        grass1.diffuse.contents = UIImage(named: "grass1")
+        
+        floor.reflectivity = 0
+        
+        
+        floor.firstMaterial = grass1
+        
+        
         
         let floorNode = SCNNode(geometry: floor)
         
-        
-        
-        
         scene.rootNode.addChildNode(floorNode)
+        
+        
         
         // create and add an ambient light to the scene
         let ambientLightNode = SCNNode()
         ambientLightNode.light = SCNLight()
         ambientLightNode.light!.type = .ambient
-        ambientLightNode.light!.color = UIColor.darkGray
+//        ambientLightNode.light!.color = UIColor.darkGray
         scene.rootNode.addChildNode(ambientLightNode)
+        
         
 //        scene.background.contents = UIImage(named: "playground2")
         
-        scene.background.contents = UIColor.blue
         
 
         let letterA = SCNText(string: "A", extrusionDepth: 2.0)
         letterA.font = UIFont.init(name: "Ariel", size: 12.0)
         let letterANode = SCNNode(geometry: letterA)
-        letterANode.position = SCNVector3(x: 0, y: -3, z: 0)
+        letterANode.position = SCNVector3(x: 0, y: -3, z: 20)
         scene.rootNode.addChildNode(letterANode)
         
         let letterB = SCNText(string: "B", extrusionDepth: 2.0)
         letterB.font = UIFont.init(name: "Ariel", size: 12.0)
+        letterB.flatness = 0
         let letterBNode = SCNNode(geometry: letterB)
-        letterBNode.position = SCNVector3(x: 10, y: 0, z: 0)
+        letterBNode.position = SCNVector3(x: 10, y: -3, z: 20)
         scene.rootNode.addChildNode(letterBNode)
         
         let letterC = SCNText(string: "C", extrusionDepth: 2.0)
         letterC.font = UIFont.init(name: "Ariel", size: 12.0)
+        letterC.flatness = 0
         let letterCNode = SCNNode(geometry: letterC)
-        letterCNode.position = SCNVector3(x: 20, y: 0, z: 0)
+        letterCNode.position = SCNVector3(x: 20, y: -3, z: 20)
         scene.rootNode.addChildNode(letterCNode)
 
       
       
         
         
-        // retrieve the ship node
-//        let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
         
         let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 90.0, duration: 2.0)
+        let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -90.0, duration: 2.0)
+        let runRight = SCNAction.moveBy(x: 100.00, y: 0, z: 0, duration: 1.0)
+        
+        let actionArray = [runForward, runRight, runBackward]
+        
+        let sequence = SCNAction.sequence(actionArray)
+        
+        
         
         // animate the 3d object
-        letterANode.runAction(runForward)
+//        letterANode.runAction(runBackward)
         
         
         
         // retrieve the SCNView
         let scnView = self.view as! SCNView
         
-//        let backGround = UIImage(named: "playground1")!
-//        let backGroundImageView = UIImageView(image: backGround)
-//        scnView.addSubview(backGroundImageView)
+        
+        
+        
         
         // set the scene to the view
         scnView.scene = scene
         
         // allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
+        scnView.allowsCameraControl = false
         
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
         
         // configure the view
-//        scnView.backgroundColor = UIColor.black
+        scnView.backgroundColor = UIColor.blue
+        
+        
+        
+        letterANode.runAction(sequence)
+//        letterANode.runAction(runForward)
+//        letterANode.runAction(runBackward)
+        
         
         // add a tap gesture recognizer
 //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
 //        scnView.addGestureRecognizer(tapGesture)
     }
     
-//    func handleTap(_ gestureRecognize: UIGestureRecognizer) {
-//        // retrieve the SCNView
-//        let scnView = self.view as! SCNView
-//        
-//        // check what nodes are tapped
-//        let p = gestureRecognize.location(in: scnView)
-//        let hitResults = scnView.hitTest(p, options: [:])
-//        // check that we clicked on at least one object
-//        if hitResults.count > 0 {
-//            // retrieved the first clicked object
-//            let result: AnyObject = hitResults[0]
-//            
-//            // get its material
-//            let material = result.node!.geometry!.firstMaterial!
-//            
-//            // highlight it
-//            SCNTransaction.begin()
-//            SCNTransaction.animationDuration = 0.5
-//            
-//            // on completion - unhighlight
-//            SCNTransaction.completionBlock = {
-//                SCNTransaction.begin()
-//                SCNTransaction.animationDuration = 0.5
-//                
-//                material.emission.contents = UIColor.black
-//                
-//                SCNTransaction.commit()
-//            }
-//            
-//            material.emission.contents = UIColor.red
-//            
-//            SCNTransaction.commit()
-//        }
-//    }
+    func degreesToRadians(degrees: Float) -> Float {
+        return degrees * Float.pi / 180
+    }
+    
+    func radiansToDegress(radians: Float) -> Float {
+        return radians * 180 / Float.pi
+    }
+    
+    
+    
     
     override var shouldAutorotate: Bool {
         return true
