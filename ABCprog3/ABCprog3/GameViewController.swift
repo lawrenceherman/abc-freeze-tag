@@ -20,17 +20,22 @@ class GameViewController: UIViewController {
         
         // create and add a camera to the scene
         let cameraNode = SCNNode()
+        
         cameraNode.camera = SCNCamera()
         scene.rootNode.addChildNode(cameraNode)
         
+//        cameraNode.camera?.yFov = 50
+        cameraNode.camera?.xFov = 80
         
-        let radians = degreesToRadians(degrees: -10.0)
+        
+        let radians = degreesToRadians(degrees: -14.0)
         
         let eulerVector = SCNVector3Make(radians, 0, 0)
         cameraNode.eulerAngles = eulerVector
         
         // place the camera
-        cameraNode.position = SCNVector3(x: 50, y: 5, z: 100)
+        cameraNode.position = SCNVector3(x: 140, y: 20, z: 180)
+        cameraNode.camera?.zFar = 200
         
 //
         
@@ -68,16 +73,19 @@ class GameViewController: UIViewController {
         
         
         let grass1 = SCNMaterial()
-        grass1.diffuse.contents = UIImage(named: "grass1")
+        grass1.diffuse.contents = UIImage(named: "grass2")
+        grass1.diffuse.wrapS = .repeat
+        grass1.diffuse.wrapT = .repeat
+        
         
         floor.reflectivity = 0
-        
-        
         floor.firstMaterial = grass1
         
         
-        
         let floorNode = SCNNode(geometry: floor)
+        
+//        floorNode.scale.x = 3
+//        floorNode.scale.y = 3
         
         scene.rootNode.addChildNode(floorNode)
         
@@ -96,42 +104,74 @@ class GameViewController: UIViewController {
         
 
         let letterA = SCNText(string: "A", extrusionDepth: 2.0)
-        letterA.font = UIFont.init(name: "Ariel", size: 12.0)
+        
+        let size = CGFloat(36.0)
+        letterA.font = UIFont.init(name: "Arial", size: size)
+        print(letterA.font)
         let letterANode = SCNNode(geometry: letterA)
-        letterANode.position = SCNVector3(x: 0, y: -3, z: 20)
+        letterANode.position = SCNVector3(x: 100, y: 0, z: 120)
         scene.rootNode.addChildNode(letterANode)
         
         let letterB = SCNText(string: "B", extrusionDepth: 2.0)
-        letterB.font = UIFont.init(name: "Ariel", size: 12.0)
+        letterB.font = UIFont.init(name: "Arial", size: 12.0)
         letterB.flatness = 0
         let letterBNode = SCNNode(geometry: letterB)
-        letterBNode.position = SCNVector3(x: 10, y: -3, z: 20)
+        letterB.firstMaterial?.diffuse.contents = UIColor.blue
+        letterBNode.position = SCNVector3(x: 30, y: 0, z: 0)
         scene.rootNode.addChildNode(letterBNode)
         
         let letterC = SCNText(string: "C", extrusionDepth: 2.0)
-        letterC.font = UIFont.init(name: "Ariel", size: 12.0)
+        letterC.font = UIFont.init(name: "Arial", size: 36.0)
         letterC.flatness = 0
+        letterC.firstMaterial?.diffuse.contents = UIColor.red
         let letterCNode = SCNNode(geometry: letterC)
-        letterCNode.position = SCNVector3(x: 20, y: -3, z: 20)
+        letterCNode.position = SCNVector3(x: 100, y: 0, z: 120)
         scene.rootNode.addChildNode(letterCNode)
+        
+        
 
-      
-      
+//        class Letter: SCNText {
+//
+//            var startingPosition: SCNVector3 = SCNVector3(x: 0, y: 0, z: 0)
+//            var currentPostition: SCNVector3 = SCNVector3(x: 0, y: 0, z: 0)
+//
+//            init(letter: String, startingPosition: SCNVector3) {
+//
+//                self.startingPosition = startingPosition
+//
+////                super.init()
+//                super.init()
+//                self.string = letter
+//                self.extrusionDepth = 1.0
+//                self.font = UIFont.init(name: "Ariel", size: 20.0)
+//                self.flatness = 0
+//
+//            }
+//
+//            required init?(coder aDecoder: NSCoder) {
+//                fatalError("init(coder:) has not been implemented")
+//            }
+//
+//        }
+//
+//        let letterD = Letter(letter: "D", startingPosition: SCNVector3(x: 50, y: 0, z: 120))
+//
         
         
         
-        let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 90.0, duration: 2.0)
+        let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 185, duration: 2.0)
         let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -90.0, duration: 2.0)
         let runRight = SCNAction.moveBy(x: 100.00, y: 0, z: 0, duration: 1.0)
+        let runLeft = SCNAction.move(by: SCNVector3(x: -100, y:0, z:0), duration: 1.0)
         
-        let actionArray = [runForward, runRight, runBackward]
+        let actionArray = [runForward, runRight]
         
         let sequence = SCNAction.sequence(actionArray)
         
         
         
         // animate the 3d object
-//        letterANode.runAction(runBackward)
+        //        letterANode.runAction(runBackward)
         
         
         
@@ -152,18 +192,35 @@ class GameViewController: UIViewController {
         scnView.showsStatistics = true
         
         // configure the view
-        scnView.backgroundColor = UIColor.blue
+       scnView.backgroundColor = UIColor.lightGray
+        
+        let gameView = UIView()
+        
+        
+        let testCGRect = CGRect(x: 100, y: 100, width: 100, height: 100)
+        let testLabel = UILabel(frame: testCGRect)
+        
+        testLabel.font = UIFont(name: "Ariel", size: 36.0)
+        testLabel.text = "hello"
+        gameView.addSubview(testLabel)
         
         
         
-        letterANode.runAction(sequence)
-//        letterANode.runAction(runForward)
-//        letterANode.runAction(runBackward)
+        scnView.addSubview(gameView)
+        
+        
+        
+        
+        
+//        letterANode.runAction(sequence)
+        //     letterANode.runAction(sequence)
+        //        letterANode.runAction(runForward)
+        //        letterANode.runAction(runBackward)
         
         
         // add a tap gesture recognizer
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-//        scnView.addGestureRecognizer(tapGesture)
+        //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        //        scnView.addGestureRecognizer(tapGesture)
     }
     
     func degreesToRadians(degrees: Float) -> Float {
@@ -197,5 +254,5 @@ class GameViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-
+    
 }
