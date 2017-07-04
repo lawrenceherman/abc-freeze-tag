@@ -22,6 +22,8 @@ class GameViewController: UIViewController {
     pNodeHome, qNodeHome, rNodeHome, sNodeHome, tNodeHome, uNodeHome, vNodeHome, wNodeHome,
     xNodeHome, yNodeHome, zNodeHome: SCNNode!
     
+    var aNodePlay, bNodePlay, cNodePlay: SCNNode!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,21 +39,12 @@ class GameViewController: UIViewController {
         
         
         
-//        letterAHome.position = SCNVector3(0, 50, 0)
-//        scene.rootNode.addChildNode(letterAHome)
-//        let letterAPlay = SCNNode(geometry: letterA)
-//        letterAPlay.position = SCNVector3(100, 0, 150)
-//        scene.rootNode.addChildNode(letterAPlay)
-////
-//        let letterBHome = SCNNode(geometry: letterB)
-//        letterBHome.position = SCNVector3(270, 50, 0)
-//        scene.rootNode.addChildNode(letterBHome)
         
         let scnView = self.view as! SCNView
         scnView.scene = scene
         scnView.allowsCameraControl = false
         scnView.showsStatistics = true
-        scnView.backgroundColor = UIColor.lightGray
+        scnView.backgroundColor = UIColor.white
         
         let gameView = UIView()
         
@@ -63,14 +56,35 @@ class GameViewController: UIViewController {
         testLabel.text = "hello"
         gameView.addSubview(testLabel)
         
-        
-        
         scnView.addSubview(gameView)
+        
+                let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 185, duration: 2.0)
+                let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -90.0, duration: 2.0)
+                let runRight = SCNAction.moveBy(x: 260.00, y: 0, z: 0, duration: 2.0)
+                let runLeft = SCNAction.move(by: SCNVector3(x: -100, y:0, z:0), duration: 1.0)
+        bNodePlay.runAction(runRight)
+        aNodePlay.runAction(runRight)
+        cNodePlay.runAction(runRight)
+        
+//                let actionArray = [runForward, runRight]
+//                let sequence = SCNAction.sequence(actionArray)
         
         
     }
     
     func loadNodePlay() {
+        
+        aNodePlay = SCNNode(geometry: aGeo)
+        aNodePlay.position = SCNVector3(0, 0, 175)
+        scene.rootNode.addChildNode(aNodePlay)
+        
+        bNodePlay = SCNNode(geometry: bGeo)
+        bNodePlay.position = SCNVector3(0, 0, 70)
+        scene.rootNode.addChildNode(bNodePlay)
+        
+        cNodePlay = SCNNode(geometry: cGeo)
+        cNodePlay.position = SCNVector3(0, 0, 120)
+        scene.rootNode.addChildNode(cNodePlay)
         
         
         
@@ -83,40 +97,108 @@ class GameViewController: UIViewController {
     func loadNodeHome() {
         
         aNodeHome = SCNNode(geometry: aGeo)
-        aNodeHome.position = SCNVector3(0, 40, 0)
+        aNodeHome.position = SCNVector3(0, 50, 0)
         scene.rootNode.addChildNode(aNodeHome)
         
         bNodeHome = SCNNode(geometry: bGeo)
-        bNodeHome.position = SCNVector3(20, 40, 0)
+        bNodeHome.position = SCNVector3(20, 50, 0)
         scene.rootNode.addChildNode(bNodeHome)
         
         cNodeHome = SCNNode(geometry: cGeo)
-        cNodeHome.position = SCNVector3(40, 40, 0)
+        cNodeHome.position = SCNVector3(40, 50, 0)
         scene.rootNode.addChildNode(cNodeHome)
         
         dNodeHome = SCNNode(geometry: dGeo)
+        dNodeHome.position = SCNVector3(60, 50, 0)
+        scene.rootNode.addChildNode(dNodeHome)
+        
         eNodeHome = SCNNode(geometry: eGeo)
+        eNodeHome.position = SCNVector3(80, 50, 0)
+        scene.rootNode.addChildNode(eNodeHome)
+        
         fNodeHome = SCNNode(geometry: fGeo)
+        fNodeHome.position = SCNVector3(100, 50, 0)
+        scene.rootNode.addChildNode(fNodeHome)
+        
         gNodeHome = SCNNode(geometry: gGeo)
+        gNodeHome.position = SCNVector3(120, 50, 0)
+        scene.rootNode.addChildNode(gNodeHome)
+        
         hNodeHome = SCNNode(geometry: hGeo)
+        hNodeHome.position = SCNVector3(140, 50, 0)
+        scene.rootNode.addChildNode(hNodeHome)
+        
         iNodeHome = SCNNode(geometry: iGeo)
+        iNodeHome.position = SCNVector3(160, 50, 0)
+        scene.rootNode.addChildNode(iNodeHome)
+        
         jNodeHome = SCNNode(geometry: jGeo)
+        jNodeHome.position = SCNVector3(180, 50, 0)
+        scene.rootNode.addChildNode(jNodeHome)
+        
         kNodeHome = SCNNode(geometry: kGeo)
+        kNodeHome.position = SCNVector3(200, 50, 0)
+        scene.rootNode.addChildNode(kNodeHome)
+        
         lNodeHome = SCNNode(geometry: lGeo)
+        lNodeHome.position = SCNVector3(220, 50, 0)
+        scene.rootNode.addChildNode(lNodeHome)
+        
         mNodeHome = SCNNode(geometry: mGeo)
+        mNodeHome.position = SCNVector3(240, 50, 0)
+        scene.rootNode.addChildNode(mNodeHome)
+        
         nNodeHome = SCNNode(geometry: nGeo)
+        nNodeHome.position = SCNVector3(0, 20, 0)
+        scene.rootNode.addChildNode(nNodeHome)
+        
         oNodeHome = SCNNode(geometry: oGeo)
+        oNodeHome.position = SCNVector3(20, 20, 0)
+        scene.rootNode.addChildNode(oNodeHome)
+        
         pNodeHome = SCNNode(geometry: pGeo)
+        pNodeHome.position = SCNVector3(40, 20, 0)
+        scene.rootNode.addChildNode(pNodeHome)
+        
         qNodeHome = SCNNode(geometry: qGeo)
+        qNodeHome.position = SCNVector3(60, 20, 0)
+        scene.rootNode.addChildNode(qNodeHome)
+        
         rNodeHome = SCNNode(geometry: rGeo)
+        rNodeHome.position = SCNVector3(80, 20, 0)
+        scene.rootNode.addChildNode(rNodeHome)
+        
         sNodeHome = SCNNode(geometry: sGeo)
+        sNodeHome.position = SCNVector3(100, 20, 0)
+        scene.rootNode.addChildNode(sNodeHome)
+        
         tNodeHome = SCNNode(geometry: tGeo)
+        tNodeHome.position = SCNVector3(120, 20, 0)
+        scene.rootNode.addChildNode(tNodeHome)
+        
         uNodeHome = SCNNode(geometry: uGeo)
+        uNodeHome.position = SCNVector3(140, 20, 0)
+        scene.rootNode.addChildNode(uNodeHome)
+        
         vNodeHome = SCNNode(geometry: vGeo)
+        vNodeHome.position = SCNVector3(160, 20, 0)
+        scene.rootNode.addChildNode(vNodeHome)
+        
         wNodeHome = SCNNode(geometry: wGeo)
+        wNodeHome.position = SCNVector3(180, 20, 0)
+        scene.rootNode.addChildNode(wNodeHome)
+        
         xNodeHome = SCNNode(geometry: xGeo)
+        xNodeHome.position = SCNVector3(200, 20, 0)
+        scene.rootNode.addChildNode(xNodeHome)
+        
         yNodeHome = SCNNode(geometry: yGeo)
+        yNodeHome.position = SCNVector3(220, 20, 0)
+        scene.rootNode.addChildNode(yNodeHome)
+        
         zNodeHome = SCNNode(geometry: zGeo)
+        zNodeHome.position = SCNVector3(240, 20, 0)
+        scene.rootNode.addChildNode(zNodeHome)
         
     }
     
@@ -136,7 +218,7 @@ class GameViewController: UIViewController {
         lGeo = Letter(letter: "L")
         mGeo = Letter(letter: "M")
         nGeo = Letter(letter: "N")
-        nGeo = Letter(letter: "O")
+        oGeo = Letter(letter: "O")
         pGeo = Letter(letter: "P")
         qGeo = Letter(letter: "Q")
         rGeo = Letter(letter: "R")
@@ -170,10 +252,10 @@ class GameViewController: UIViewController {
         cameraNode.camera = SCNCamera()
         scene.rootNode.addChildNode(cameraNode)
         cameraNode.camera?.xFov = 80
-        let radians = degreesToRadians(degrees: -15)
+        let radians = degreesToRadians(degrees: -16)
         let eulerVector = SCNVector3Make(radians, 0, 0)
         cameraNode.eulerAngles = eulerVector
-        cameraNode.position = SCNVector3(x: 140, y: 15, z: 190)
+        cameraNode.position = SCNVector3(x: 140, y: 18, z: 190)
         cameraNode.camera?.zFar = 200
         
         let lightNode = SCNNode()
@@ -202,7 +284,7 @@ class GameViewController: UIViewController {
             super.init()
             self.string = letter
             self.extrusionDepth = 2.0
-            self.font = UIFont.init(name: "Arial", size: 16.0)
+            self.font = UIFont.init(name: "Arial", size: 18.0)
             self.flatness = 0
             
             switch letter {
@@ -251,14 +333,7 @@ class GameViewController: UIViewController {
 //    }
     
     
-    //        let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 185, duration: 2.0)
-    //        let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -90.0, duration: 2.0)
-    //        let runRight = SCNAction.moveBy(x: 100.00, y: 0, z: 0, duration: 1.0)
-    //        let runLeft = SCNAction.move(by: SCNVector3(x: -100, y:0, z:0), duration: 1.0)
-    //
-    //        let actionArray = [runForward, runRight]
-    //
-    //        let sequence = SCNAction.sequence(actionArray)
+    
     
     //        letterANode.runAction(sequence)
     //     letterANode.runAction(sequence)
