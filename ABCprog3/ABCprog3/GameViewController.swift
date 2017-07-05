@@ -13,6 +13,10 @@ import SceneKit
 class GameViewController: UIViewController {
     
     let scene = SCNScene()
+    var gameView = UIView()
+    var startLabel: UILabel!
+    var scnView: SCNView!
+    
     var aGeo, bGeo, cGeo, dGeo, eGeo, fGeo, gGeo, hGeo, iGeo,
     jGeo, kGeo, lGeo, mGeo, nGeo, oGeo, pGeo, qGeo, rGeo, sGeo,
     tGeo, uGeo, vGeo, wGeo, xGeo, yGeo, zGeo: Letter!
@@ -24,6 +28,7 @@ class GameViewController: UIViewController {
     
     var aNodePlay, bNodePlay, cNodePlay: SCNNode!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,58 +38,78 @@ class GameViewController: UIViewController {
         loadNodeHome()
         loadNodePlay()
         
-        
-        
-        
-        
-        
-        
-        
-        let scnView = self.view as! SCNView
+        scnView = self.view as! SCNView
         scnView.scene = scene
-        scnView.allowsCameraControl = false
+        scnView.allowsCameraControl = true
         scnView.showsStatistics = true
         scnView.backgroundColor = UIColor.white
+        scnView.autoenablesDefaultLighting = true
         
-        let gameView = UIView()
+        loadGameView()
         
         
-        let testCGRect = CGRect(x: 100, y: 100, width: 100, height: 100)
-        let testLabel = UILabel(frame: testCGRect)
         
-        testLabel.font = UIFont(name: "Ariel", size: 36.0)
-        testLabel.text = "hello"
-        gameView.addSubview(testLabel)
         
-        scnView.addSubview(gameView)
         
-                let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 185, duration: 2.0)
-                let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -90.0, duration: 2.0)
-                let runRight = SCNAction.moveBy(x: 260.00, y: 0, z: 0, duration: 2.0)
-                let runLeft = SCNAction.move(by: SCNVector3(x: -100, y:0, z:0), duration: 1.0)
-        bNodePlay.runAction(runRight)
-        aNodePlay.runAction(runRight)
-        cNodePlay.runAction(runRight)
         
-//                let actionArray = [runForward, runRight]
-//                let sequence = SCNAction.sequence(actionArray)
         
+        
+        
+        
+//        let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 185, duration: 2.0)
+//        let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -90.0, duration: 2.0)
+        let runRight = SCNAction.moveBy(x: 100.00, y: 0, z: 0, duration: 2.0)
+        let runLeft = SCNAction.moveBy(x: -200.00, y: 0, z: 0, duration: 2.0)
+        let wait = SCNAction.wait(duration: 1.0)
+//        let reverseRight = SCNAction.reversed(runRight)
+        
+        
+        let presentLetter = SCNAction.move(to: SCNVector3(133, 3, 170), duration: 0.5)
+        let moveToHome = SCNAction.move(to: SCNVector3(17, 50, 0), duration: 1.0)
+//
+//        let testActionRun = SCNAction.run { (<#SCNNode#>) in
+//            <#code#>
+//        }
+//
+//        let testCustomAction = SCNAction.customAction(duration: TimeInterval) { (<#SCNNode#>, <#CGFloat#>) in
+//            <#code#>
+//        }
+//        bNodePlay.runAction(runRight, forKey: "runRightKey")
+//        bNodePlay.runAction(runLeft)
+        let testZAction = SCNAction.moveBy(x: 0, y: 0, z: 100, duration: 1.0)
+        let testZAction2 = SCNAction.moveBy(x: 0, y: 0, z: -100, duration: 1.0)
+        
+        let zSequenceArray = [testZAction, testZAction2]
+        let zSequence = SCNAction.sequence(zSequenceArray)
+        let zRepeat = SCNAction.repeatForever(zSequence)
+        
+        aNodePlay.runAction(zRepeat)
+//        let actionArray = [presentLetter, wait, moveToHome]
+//        let sequence = SCNAction.sequence(actionArray)
+//        bNodePlay.runAction(sequence)
+        
+// possibly use runAction with completion block to return to game
+        
+        print(bNodePlay.actionKeys)
         
     }
+    
+    
+    
     
     func loadNodePlay() {
         
         aNodePlay = SCNNode(geometry: aGeo)
-        aNodePlay.position = SCNVector3(0, 0, 175)
+        aNodePlay.position = SCNVector3(140, 0, 0)
         scene.rootNode.addChildNode(aNodePlay)
         
         bNodePlay = SCNNode(geometry: bGeo)
-        bNodePlay.position = SCNVector3(0, 0, 70)
+        bNodePlay.position = SCNVector3(140, 0, 150)
         scene.rootNode.addChildNode(bNodePlay)
         
-        cNodePlay = SCNNode(geometry: cGeo)
-        cNodePlay.position = SCNVector3(0, 0, 120)
-        scene.rootNode.addChildNode(cNodePlay)
+//        cNodePlay = SCNNode(geometry: cGeo)
+//        cNodePlay.position = SCNVector3(133, 3, 170)
+//        scene.rootNode.addChildNode(cNodePlay)
         
         
         
@@ -101,51 +126,51 @@ class GameViewController: UIViewController {
         scene.rootNode.addChildNode(aNodeHome)
         
         bNodeHome = SCNNode(geometry: bGeo)
-        bNodeHome.position = SCNVector3(20, 50, 0)
+        bNodeHome.position = SCNVector3(17, 50, 0)
         scene.rootNode.addChildNode(bNodeHome)
         
         cNodeHome = SCNNode(geometry: cGeo)
-        cNodeHome.position = SCNVector3(40, 50, 0)
+        cNodeHome.position = SCNVector3(34, 50, 0)
         scene.rootNode.addChildNode(cNodeHome)
         
         dNodeHome = SCNNode(geometry: dGeo)
-        dNodeHome.position = SCNVector3(60, 50, 0)
+        dNodeHome.position = SCNVector3(51, 50, 0)
         scene.rootNode.addChildNode(dNodeHome)
         
         eNodeHome = SCNNode(geometry: eGeo)
-        eNodeHome.position = SCNVector3(80, 50, 0)
+        eNodeHome.position = SCNVector3(68, 50, 0)
         scene.rootNode.addChildNode(eNodeHome)
         
         fNodeHome = SCNNode(geometry: fGeo)
-        fNodeHome.position = SCNVector3(100, 50, 0)
+        fNodeHome.position = SCNVector3(85, 50, 0)
         scene.rootNode.addChildNode(fNodeHome)
         
         gNodeHome = SCNNode(geometry: gGeo)
-        gNodeHome.position = SCNVector3(120, 50, 0)
+        gNodeHome.position = SCNVector3(102, 50, 0)
         scene.rootNode.addChildNode(gNodeHome)
         
         hNodeHome = SCNNode(geometry: hGeo)
-        hNodeHome.position = SCNVector3(140, 50, 0)
+        hNodeHome.position = SCNVector3(119, 50, 0)
         scene.rootNode.addChildNode(hNodeHome)
         
         iNodeHome = SCNNode(geometry: iGeo)
-        iNodeHome.position = SCNVector3(160, 50, 0)
+        iNodeHome.position = SCNVector3(136, 50, 0)
         scene.rootNode.addChildNode(iNodeHome)
         
         jNodeHome = SCNNode(geometry: jGeo)
-        jNodeHome.position = SCNVector3(180, 50, 0)
+        jNodeHome.position = SCNVector3(153, 50, 0)
         scene.rootNode.addChildNode(jNodeHome)
         
         kNodeHome = SCNNode(geometry: kGeo)
-        kNodeHome.position = SCNVector3(200, 50, 0)
+        kNodeHome.position = SCNVector3(170, 50, 0)
         scene.rootNode.addChildNode(kNodeHome)
         
         lNodeHome = SCNNode(geometry: lGeo)
-        lNodeHome.position = SCNVector3(220, 50, 0)
+        lNodeHome.position = SCNVector3(187, 50, 0)
         scene.rootNode.addChildNode(lNodeHome)
         
         mNodeHome = SCNNode(geometry: mGeo)
-        mNodeHome.position = SCNVector3(240, 50, 0)
+        mNodeHome.position = SCNVector3(204, 50, 0)
         scene.rootNode.addChildNode(mNodeHome)
         
         nNodeHome = SCNNode(geometry: nGeo)
@@ -277,6 +302,44 @@ class GameViewController: UIViewController {
         scene.rootNode.addChildNode(ambientLightNode)
         
     }
+    
+    func loadGameView () {
+        
+        scnView.addSubview(gameView)
+        
+        gameView.translatesAutoresizingMaskIntoConstraints = false
+        gameView.trailingAnchor.constraint(equalTo: scnView.trailingAnchor).isActive = true
+        gameView.leadingAnchor.constraint(equalTo: scnView.leadingAnchor).isActive = true
+        gameView.topAnchor.constraint(equalTo: scnView.topAnchor).isActive = true
+        gameView.bottomAnchor.constraint(equalTo: scnView.bottomAnchor).isActive = true
+        
+        let testCGRect = CGRect(x: 100, y: 100, width: 100, height: 100)
+        startLabel = UILabel(frame: testCGRect)
+        startLabel.font = UIFont(name: "Arial", size: 50.0)
+        startLabel.text = "START"
+        startLabel.layer.masksToBounds = true
+        startLabel.layer.cornerRadius = 20
+        startLabel.layer.backgroundColor = UIColor.green.cgColor
+        gameView.addSubview(startLabel)
+        
+        startLabel.translatesAutoresizingMaskIntoConstraints = false
+        startLabel.trailingAnchor.constraint(equalTo: gameView.trailingAnchor, constant: -75).isActive = true
+        startLabel.topAnchor.constraint(equalTo: gameView.topAnchor, constant: 50).isActive = true
+        
+        startLabel.isUserInteractionEnabled = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction(_:)))
+        
+        startLabel.addGestureRecognizer(tap)
+        
+    }
+    
+    @objc func tapFunction(_ sender:UITapGestureRecognizer) {
+        print("tap working")
+        scnView.stop(startLabel)
+    }
+    
+    
     
     class Letter: SCNText {
         
