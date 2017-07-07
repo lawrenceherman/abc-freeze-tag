@@ -16,6 +16,8 @@ class GameViewController: UIViewController {
     var gameView = UIView()
     var startLabel: UILabel!
     var scnView: SCNView!
+    //    var moveLeft = SCNAction.moveBy(x: -20.0, y: 0, z: 0, duration: 2.0)
+    //    var moveRight = SCNAction.moveBy(x: 20.0, y: 0, z: 0, duration: 2.0)
     
     var aGeo, bGeo, cGeo, dGeo, eGeo, fGeo, gGeo, hGeo, iGeo,
     jGeo, kGeo, lGeo, mGeo, nGeo, oGeo, pGeo, qGeo, rGeo, sGeo,
@@ -56,39 +58,123 @@ class GameViewController: UIViewController {
         
         
         
-//        let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 185, duration: 2.0)
-//        let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -90.0, duration: 2.0)
-        let runRight = SCNAction.moveBy(x: 100.00, y: 0, z: 0, duration: 2.0)
-        let runLeft = SCNAction.moveBy(x: -200.00, y: 0, z: 0, duration: 2.0)
+        let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 20, duration: 0.25)
+        let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -20.0, duration: 0.25)
+        let runRight = SCNAction.moveBy(x: 20.00, y: 0, z: 0, duration: 0.25)
+        let runLeft = SCNAction.moveBy(x: -20.00, y: 0, z: 0, duration: 0.25 )
         let wait = SCNAction.wait(duration: 1.0)
-//        let reverseRight = SCNAction.reversed(runRight)
         
         
         let presentLetter = SCNAction.move(to: SCNVector3(133, 3, 170), duration: 0.5)
         let moveToHome = SCNAction.move(to: SCNVector3(17, 50, 0), duration: 1.0)
-//
-//        let testActionRun = SCNAction.run { (<#SCNNode#>) in
-//            <#code#>
-//        }
-//
-//        let testCustomAction = SCNAction.customAction(duration: TimeInterval) { (<#SCNNode#>, <#CGFloat#>) in
-//            <#code#>
-//        }
-//        bNodePlay.runAction(runRight, forKey: "runRightKey")
-//        bNodePlay.runAction(runLeft)
+        //
+        
+        ////
+        //        let testCustomAction = SCNAction.customAction(duration: 4.0) { (node, time) in
+        //            if time < 2.0 {
+        //            node.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+        //            } else {
+        //            node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+        //            }
+        //            node.runAction(<#T##action: SCNAction##SCNAction#>, completionHandler: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+        //        }
+        //        bNodePlay.runAction(runRight, forKey: "runRightKey")
+        //        bNodePlay.runAction(runLeft)
         let testZAction = SCNAction.moveBy(x: 0, y: 0, z: 100, duration: 1.0)
-        let testZAction2 = SCNAction.moveBy(x: 0, y: 0, z: -100, duration: 1.0)
+        //        let testZAction2 = SCNAction.moveBy(x: 0, y: 0, z: -100, duration: 1.0)
         
-        let zSequenceArray = [testZAction, testZAction2]
-        let zSequence = SCNAction.sequence(zSequenceArray)
-        let zRepeat = SCNAction.repeatForever(zSequence)
+        //        let zSequenceArray = [testZAction, testZAction2]
+        //        let zSequence = SCNAction.sequence(zSequenceArray)
+        //        let zRepeat = SCNAction.repeatForever(zSequence)
         
-        aNodePlay.runAction(zRepeat)
-//        let actionArray = [presentLetter, wait, moveToHome]
-//        let sequence = SCNAction.sequence(actionArray)
-//        bNodePlay.runAction(sequence)
         
-// possibly use runAction with completion block to return to game
+        
+        //        aNodePlay.runAction(testCustomAction)
+        
+        
+        
+        
+        func runWild(node: SCNNode) {
+            
+            let x = arc4random_uniform(2)
+            
+            print(x)
+            if x == 0 {
+                if node.position.x > 240 {
+                    node.runAction(runLeft, completionHandler: {
+                        runWild(node: node)
+                    })
+                } else if node.position.x < 30 {
+                    node.runAction(runRight, completionHandler: {
+                        runWild(node: node)
+                    })
+                } else {
+                    let i = arc4random_uniform(2)
+                    
+                    //                    print(i)
+                    
+                    if i == 0 {
+                        node.runAction(runLeft, completionHandler: {
+                            runWild(node: node)
+                        })
+                    }
+                    
+                    if i == 1 {
+                        node.runAction(runRight, completionHandler: {
+                            runWild(node: node)
+                        })
+                    }
+                }
+            }
+            
+            if x == 1 {
+                if node.position.z < 80 {
+                    node.runAction(runForward, completionHandler: {
+                        runWild(node: node)
+                    })
+                } else if node.position.z > 175 {
+                    node.runAction(runBackward, completionHandler: {
+                        runWild(node: node)
+                    })
+                } else {
+                    let i = arc4random_uniform(2)
+                    
+                    if i == 0 {
+                        node.runAction(runForward, completionHandler: {
+                            runWild(node: node)
+                        })
+                    }
+                    
+                    if i == 1 {
+                        node.runAction(runBackward, completionHandler: {
+                            runWild(node: node)
+                        })
+                    }
+                }
+                
+                
+            }
+        }
+        
+        runWild(node: aNodePlay)
+        //        aNodePlay.runAction(testZAction) {
+        //
+        //
+        //            if self.aNodePlay.position.x == 0 {
+        //                self.aNodePlay.runAction(runRight)
+        //
+        //
+        //            }
+        //
+        //
+        //
+        //        }
+        
+        //        let actionArray = [presentLetter, wait, moveToHome]
+        //        let sequence = SCNAction.sequence(actionArray)
+        //        bNodePlay.runAction(sequence)
+        
+        // possibly use runAction with completion block to return to game
         
         print(bNodePlay.actionKeys)
         
@@ -107,9 +193,9 @@ class GameViewController: UIViewController {
         bNodePlay.position = SCNVector3(140, 0, 150)
         scene.rootNode.addChildNode(bNodePlay)
         
-//        cNodePlay = SCNNode(geometry: cGeo)
-//        cNodePlay.position = SCNVector3(133, 3, 170)
-//        scene.rootNode.addChildNode(cNodePlay)
+        //        cNodePlay = SCNNode(geometry: cGeo)
+        //        cNodePlay.position = SCNVector3(133, 3, 170)
+        //        scene.rootNode.addChildNode(cNodePlay)
         
         
         
@@ -387,13 +473,13 @@ class GameViewController: UIViewController {
     
     
     
-//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-//        if UIDevice.current.userInterfaceIdiom == .pad {
-//            return .allButUpsideDown
-//        } else {
-//            return .all
-//        }
-//    }
+    //    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    //        if UIDevice.current.userInterfaceIdiom == .pad {
+    //            return .allButUpsideDown
+    //        } else {
+    //            return .all
+    //        }
+    //    }
     
     
     
