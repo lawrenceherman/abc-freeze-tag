@@ -157,26 +157,50 @@ class GameViewController: UIViewController {
         }
         
         runWild(node: aNodePlay)
-        //        aNodePlay.runAction(testZAction) {
-        //
-        //
-        //            if self.aNodePlay.position.x == 0 {
-        //                self.aNodePlay.runAction(runRight)
-        //
-        //
-        //            }
-        //
-        //
-        //
-        //        }
+        
         
         //        let actionArray = [presentLetter, wait, moveToHome]
         //        let sequence = SCNAction.sequence(actionArray)
         //        bNodePlay.runAction(sequence)
         
-        // possibly use runAction with completion block to return to game
         
         print(bNodePlay.actionKeys)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        scnView.addGestureRecognizer(tapGesture)
+        
+        
+    }
+    
+    @objc func handleTap(_ gestureRecognizer: UITapGestureRecognizer) {
+        print("tap working")
+        
+        let p = gestureRecognizer.location(in: scnView)
+        
+        let hitResults = scnView.hitTest(p, options: [:])
+        
+        if hitResults.count > 0 {
+            
+            let result = hitResults[0]
+            
+            let material = result.node.geometry!.firstMaterial!
+            
+            SCNTransaction.begin()
+            SCNTransaction.animationDuration = 0.5
+            
+            SCNTransaction.completionBlock = {
+                SCNTransaction.begin()
+                SCNTransaction.animationDuration = 0.5
+                
+                material.emission.contents = UIColor.black
+                SCNTransaction.commit()s
+                
+            }
+            
+            material.emission.contents = UIColor.red
+            SCNTransaction.commit()
+            
+        }
         
     }
     
@@ -414,16 +438,13 @@ class GameViewController: UIViewController {
         
         startLabel.isUserInteractionEnabled = true
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction(_:)))
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction(_:)))
         
-        startLabel.addGestureRecognizer(tap)
+//        startLabel.addGestureRecognizer(tap)
         
     }
     
-    @objc func tapFunction(_ sender:UITapGestureRecognizer) {
-        print("tap working")
-        scnView.stop(startLabel)
-    }
+    
     
     
     
@@ -491,8 +512,5 @@ class GameViewController: UIViewController {
     
     
     // add a tap gesture recognizer
-    //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-    //        scnView.addGestureRecognizer(tapGesture)
-    
     
 }
