@@ -19,11 +19,16 @@ class GameViewController: UIViewController {
     //    var moveLeft = SCNAction.moveBy(x: -20.0, y: 0, z: 0, duration: 2.0)
     //    var moveRight = SCNAction.moveBy(x: 20.0, y: 0, z: 0, duration: 2.0)
     
+    
+
+    
     var aGeo, bGeo, cGeo, dGeo, eGeo, fGeo, gGeo, hGeo, iGeo,
     jGeo, kGeo, lGeo, mGeo, nGeo, oGeo, pGeo, qGeo, rGeo, sGeo,
     tGeo, uGeo, vGeo, wGeo, xGeo, yGeo, zGeo: Letter!
     
-    var aNodeHome, bNodeHome, cNodeHome, dNodeHome, eNodeHome, fNodeHome, gNodeHome,
+    var aNodeHome: LetterNode!
+    
+    var  bNodeHome, cNodeHome, dNodeHome, eNodeHome, fNodeHome, gNodeHome,
     hNodeHome, iNodeHome, jNodeHome, kNodeHome, lNodeHome, mNodeHome, nNodeHome, oNodeHome,
     pNodeHome, qNodeHome, rNodeHome, sNodeHome, tNodeHome, uNodeHome, vNodeHome, wNodeHome,
     xNodeHome, yNodeHome, zNodeHome: SCNNode!
@@ -42,10 +47,10 @@ class GameViewController: UIViewController {
         
         scnView = self.view as! SCNView
         scnView.scene = scene
-        scnView.allowsCameraControl = true
+        scnView.allowsCameraControl = false
         scnView.showsStatistics = true
-        scnView.backgroundColor = UIColor.white
-        scnView.autoenablesDefaultLighting = true
+        scnView.backgroundColor = UIColor.blue
+        scnView.autoenablesDefaultLighting = false
         
         loadGameView()
         
@@ -83,8 +88,7 @@ class GameViewController: UIViewController {
         let testZAction = SCNAction.moveBy(x: 0, y: 0, z: 100, duration: 1.0)
         //        let testZAction2 = SCNAction.moveBy(x: 0, y: 0, z: -100, duration: 1.0)
         
-        //        let zSequenceArray = [testZAction, testZAction2]
-        //        let zSequence = SCNAction.sequence(zSequenceArray)
+       
         //        let zRepeat = SCNAction.repeatForever(zSequence)
         
         
@@ -94,34 +98,30 @@ class GameViewController: UIViewController {
         
         
         
-        func runWild(node: SCNNode) {
+        func runWild(_ node: SCNNode) {
             
             let x = arc4random_uniform(2)
             
-            print(x)
             if x == 0 {
                 if node.position.x > 240 {
                     node.runAction(runLeft, completionHandler: {
-                        runWild(node: node)
+                        runWild(node)
                     })
                 } else if node.position.x < 30 {
                     node.runAction(runRight, completionHandler: {
-                        runWild(node: node)
+                        runWild(node)
                     })
                 } else {
                     let i = arc4random_uniform(2)
-                    
-                    //                    print(i)
-                    
                     if i == 0 {
                         node.runAction(runLeft, completionHandler: {
-                            runWild(node: node)
+                            runWild(node)
                         })
                     }
                     
                     if i == 1 {
                         node.runAction(runRight, completionHandler: {
-                            runWild(node: node)
+                            runWild(node)
                         })
                     }
                 }
@@ -130,24 +130,24 @@ class GameViewController: UIViewController {
             if x == 1 {
                 if node.position.z < 80 {
                     node.runAction(runForward, completionHandler: {
-                        runWild(node: node)
+                        runWild(node)
                     })
                 } else if node.position.z > 175 {
                     node.runAction(runBackward, completionHandler: {
-                        runWild(node: node)
+                        runWild(node)
                     })
                 } else {
                     let i = arc4random_uniform(2)
                     
                     if i == 0 {
                         node.runAction(runForward, completionHandler: {
-                            runWild(node: node)
+                            runWild(node)
                         })
                     }
                     
                     if i == 1 {
                         node.runAction(runBackward, completionHandler: {
-                            runWild(node: node)
+                            runWild(node)
                         })
                     }
                 }
@@ -156,7 +156,7 @@ class GameViewController: UIViewController {
             }
         }
         
-        runWild(node: aNodePlay)
+        runWild(aNodePlay)
         
         
         //        let actionArray = [presentLetter, wait, moveToHome]
@@ -179,33 +179,36 @@ class GameViewController: UIViewController {
         
         let hitResults = scnView.hitTest(p, options: [:])
         
-        if hitResults.count > 0 {
+        if let tappedNode = hitResults.first?.node {
+                tappedNode.geometry?.firstMaterial?.diffuse.contents = UIColor.black
             
-            let result = hitResults[0]
-            
-            let material = result.node.geometry!.firstMaterial!
-            
-            SCNTransaction.begin()
-            SCNTransaction.animationDuration = 0.5
-            
-            SCNTransaction.completionBlock = {
-                SCNTransaction.begin()
-                SCNTransaction.animationDuration = 0.5
-                
-                material.emission.contents = UIColor.black
-                SCNTransaction.commit()s
-                
-            }
-            
-            material.emission.contents = UIColor.red
-            SCNTransaction.commit()
             
         }
         
+//        if hitResults.count > 0 {
+//
+//            let result = hitResults[0]
+//
+//            let material = result.node.geometry!.firstMaterial!
+//
+//            SCNTransaction.begin()
+//            SCNTransaction.animationDuration = 0.5
+//
+//            SCNTransaction.completionBlock = {
+//                SCNTransaction.begin()
+//                SCNTransaction.animationDuration = 0.5
+//
+//                material.emission.contents = UIColor.black
+//                SCNTransaction.commit()
+//
+//            }
+//
+//            material.emission.contents = UIColor.red
+//            SCNTransaction.commit()
+//
+//        }
+        
     }
-    
-    
-    
     
     func loadNodePlay() {
         
@@ -217,25 +220,19 @@ class GameViewController: UIViewController {
         bNodePlay.position = SCNVector3(140, 0, 150)
         scene.rootNode.addChildNode(bNodePlay)
         
-        //        cNodePlay = SCNNode(geometry: cGeo)
-        //        cNodePlay.position = SCNVector3(133, 3, 170)
-        //        scene.rootNode.addChildNode(cNodePlay)
-        
-        
-        
-        
-        
-        
-        
     }
     
     func loadNodeHome() {
         
-        aNodeHome = SCNNode(geometry: aGeo)
+        aNodeHome = LetterNode(geometry: aGeo, frozen: true)
+        
+        
+//        aNodeHome = SCNNode(geometry: aGeo)
         aNodeHome.position = SCNVector3(0, 50, 0)
         scene.rootNode.addChildNode(aNodeHome)
         
         bNodeHome = SCNNode(geometry: bGeo)
+
         bNodeHome.position = SCNVector3(17, 50, 0)
         scene.rootNode.addChildNode(bNodeHome)
         
@@ -396,20 +393,20 @@ class GameViewController: UIViewController {
         let lightNode = SCNNode()
         lightNode.light = SCNLight()
         lightNode.light!.type = .omni
-        lightNode.position = SCNVector3(x: 0, y: 30, z: 10)
+        lightNode.position = SCNVector3(x: 140, y: 100, z: 200)
         scene.rootNode.addChildNode(lightNode)
         
-        let directionalLight = SCNNode()
-        directionalLight.light = SCNLight()
-        directionalLight.light!.type = .directional
-        directionalLight.position = SCNVector3(x: 9, y: 10, z: 100)
-        scene.rootNode.addChildNode(directionalLight)
+//        let directionalLight = SCNNode()
+//        directionalLight.light = SCNLight()
+//        directionalLight.light!.type = .directional
+//        directionalLight.position = SCNVector3(x: 9, y: 10, z: 100)
+//        scene.rootNode.addChildNode(directionalLight)
         
-        let ambientLightNode = SCNNode()
-        ambientLightNode.light = SCNLight()
-        ambientLightNode.light!.type = .ambient
-        // ambientLightNode.light!.color = UIColor.darkGray
-        scene.rootNode.addChildNode(ambientLightNode)
+//        let ambientLightNode = SCNNode()
+//        ambientLightNode.light = SCNLight()
+//        ambientLightNode.light!.type = .ambient
+//        // ambientLightNode.light!.color = UIColor.darkGray
+//        scene.rootNode.addChildNode(ambientLightNode)
         
     }
     
@@ -444,43 +441,6 @@ class GameViewController: UIViewController {
         
     }
     
-    
-    
-    
-    
-    class Letter: SCNText {
-        
-        init(letter: String) {
-            super.init()
-            self.string = letter
-            self.extrusionDepth = 2.0
-            self.font = UIFont.init(name: "Arial", size: 18.0)
-            self.flatness = 0
-            
-            switch letter {
-            case "F", "D", "K", "P", "T", "Y":
-                self.firstMaterial?.diffuse.contents = UIColor.red
-            case "B", "G", "L", "Q", "V":
-                self.firstMaterial?.diffuse.contents = UIColor.blue
-            case "C", "H", "M", "R", "W", "Z":
-                self.firstMaterial?.diffuse.contents = UIColor.yellow
-            case "A", "E", "I", "O", "U":
-                self.firstMaterial?.diffuse.contents = UIColor.green
-            case "J", "N", "S", "X":
-                self.firstMaterial?.diffuse.contents = UIColor.orange
-            default:
-                self.firstMaterial?.diffuse.contents = UIColor.red
-            }
-        }
-        
-        required init?(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-        
-    }
-    
-    
-    
     func degreesToRadians(degrees: Float) -> Float {
         return degrees * Float.pi / 180
     }
@@ -488,11 +448,6 @@ class GameViewController: UIViewController {
     func radiansToDegress(radians: Float) -> Float {
         return radians * 180 / Float.pi
     }
-    
-    
-    
-    
-    
     
     //    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
     //        if UIDevice.current.userInterfaceIdiom == .pad {
@@ -504,13 +459,5 @@ class GameViewController: UIViewController {
     
     
     
-    
-    //        letterANode.runAction(sequence)
-    //     letterANode.runAction(sequence)
-    //        letterANode.runAction(runForward)
-    //        letterANode.runAction(runBackward)
-    
-    
-    // add a tap gesture recognizer
     
 }
