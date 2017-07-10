@@ -16,8 +16,8 @@ class GameViewController: UIViewController {
     var gameView = UIView()
     var startLabel: UILabel!
     var scnView: SCNView!
-    //    var moveLeft = SCNAction.moveBy(x: -20.0, y: 0, z: 0, duration: 2.0)
-    //    var moveRight = SCNAction.moveBy(x: 20.0, y: 0, z: 0, duration: 2.0)
+    var moveLeft = SCNAction.moveBy(x: -20.0, y: 0, z: 0, duration: 2.0)
+    var moveRight = SCNAction.moveBy(x: 20.0, y: 0, z: 0, duration: 2.0)
     
     
 
@@ -26,14 +26,14 @@ class GameViewController: UIViewController {
     jGeo, kGeo, lGeo, mGeo, nGeo, oGeo, pGeo, qGeo, rGeo, sGeo,
     tGeo, uGeo, vGeo, wGeo, xGeo, yGeo, zGeo: Letter!
     
-    var aNodeHome: LetterNode!
     
-    var  bNodeHome, cNodeHome, dNodeHome, eNodeHome, fNodeHome, gNodeHome,
-    hNodeHome, iNodeHome, jNodeHome, kNodeHome, lNodeHome, mNodeHome, nNodeHome, oNodeHome,
-    pNodeHome, qNodeHome, rNodeHome, sNodeHome, tNodeHome, uNodeHome, vNodeHome, wNodeHome,
-    xNodeHome, yNodeHome, zNodeHome: SCNNode!
     
-    var aNodePlay, bNodePlay, cNodePlay: SCNNode!
+    var  aNodeFrozen, bNodeFrozen, cNodeFrozen, dNodeFrozen, eNodeFrozen, fNodeFrozen, gNodeFrozen,
+    hNodeFrozen, iNodeFrozen, jNodeFrozen, kNodeFrozen, lNodeFrozen, mNodeFrozen, nNodeFrozen, oNodeFrozen,
+    pNodeFrozen, qNodeFrozen, rNodeFrozen, sNodeFrozen, tNodeFrozen, uNodeFrozen, vNodeFrozen, wNodeFrozen,
+    xNodeFrozen, yNodeFrozen, zNodeFrozen: LetterNode!
+    
+    var aNodeFree, bNodeFree, cNodeFree: LetterNode!
     
     
     override func viewDidLoad() {
@@ -42,8 +42,8 @@ class GameViewController: UIViewController {
         cameraAndLights()
         environment()
         loadGeometry()
-        loadNodeHome()
-        loadNodePlay()
+        loadNodesFrozen()
+        loadNodesFree()
         
         scnView = self.view as! SCNView
         scnView.scene = scene
@@ -54,24 +54,12 @@ class GameViewController: UIViewController {
         
         loadGameView()
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
         let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 20, duration: 0.25)
         let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -20.0, duration: 0.25)
         let runRight = SCNAction.moveBy(x: 20.00, y: 0, z: 0, duration: 0.25)
         let runLeft = SCNAction.moveBy(x: -20.00, y: 0, z: 0, duration: 0.25 )
-        let wait = SCNAction.wait(duration: 1.0)
         
         
-        let presentLetter = SCNAction.move(to: SCNVector3(133, 3, 170), duration: 0.5)
-        let moveToHome = SCNAction.move(to: SCNVector3(17, 50, 0), duration: 1.0)
         //
         
         ////
@@ -98,7 +86,9 @@ class GameViewController: UIViewController {
         
         
         
-        func runWild(_ node: SCNNode) {
+        func runWild(_ node: LetterNode) {
+            
+            if node.hitTapped == false  {
             
             let x = arc4random_uniform(2)
             
@@ -154,17 +144,18 @@ class GameViewController: UIViewController {
                 
                 
             }
+            }
         }
         
-        runWild(aNodePlay)
+        runWild(aNodeFree)
+        runWild(bNodeFree)
+        runWild(cNodeFree)
         
         
-        //        let actionArray = [presentLetter, wait, moveToHome]
-        //        let sequence = SCNAction.sequence(actionArray)
-        //        bNodePlay.runAction(sequence)
         
         
-        print(bNodePlay.actionKeys)
+        
+//        print(bNodePlay.actionKeys)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
@@ -175,12 +166,31 @@ class GameViewController: UIViewController {
     @objc func handleTap(_ gestureRecognizer: UITapGestureRecognizer) {
         print("tap working")
         
-        let p = gestureRecognizer.location(in: scnView)
+        let tapCG = gestureRecognizer.location(in: scnView)
         
-        let hitResults = scnView.hitTest(p, options: [:])
+        let hitResults = scnView.hitTest(tapCG, options: [:])
         
-        if let tappedNode = hitResults.first?.node {
-                tappedNode.geometry?.firstMaterial?.diffuse.contents = UIColor.black
+        
+        if let tappedNode = hitResults.first?.node as? LetterNode {
+            
+            
+            if tappedNode.frozenPosition != nil {
+                tappedNode.hitTapped = true
+//                tappedNode.geometry?.firstMaterial?.diffuse.contents = UIColor.black
+                let wait = SCNAction.wait(duration: 1.0)
+                let presentLetter = SCNAction.move(to: SCNVector3(133, 3, 170), duration: 0.5)
+                let moveToHome = SCNAction.move(to: tappedNode.frozenPosition!, duration: 1.0)
+                let actionArray = [presentLetter, wait, moveToHome]
+                let sequence = SCNAction.sequence(actionArray)
+                tappedNode.runAction(sequence)
+                
+                
+            }
+            
+        }
+        
+        
+                
             
             
         }
@@ -208,129 +218,134 @@ class GameViewController: UIViewController {
 //
 //        }
         
+    
+    
+    func loadNodesFree() {
+        
+        // TODO: create function to randomly generate starting position
+        
+        aNodeFree = LetterNode(geometry: aGeo, frozen: false)
+        aNodeFree.position = SCNVector3(140, 0, 80)
+        aNodeFree.frozenPosition = aNodeFrozen.position
+        scene.rootNode.addChildNode(aNodeFree)
+        
+        bNodeFree = LetterNode(geometry: bGeo, frozen: false)
+        bNodeFree.position = SCNVector3(140, 0, 150)
+        bNodeFree.frozenPosition = bNodeFrozen.position
+        scene.rootNode.addChildNode(bNodeFree)
+        
+        cNodeFree = LetterNode(geometry: cGeo, frozen: false)
+        cNodeFree.position = SCNVector3(50, 0, 120)
+        cNodeFree.frozenPosition = cNodeFrozen.position
+        scene.rootNode.addChildNode(cNodeFree)
+        
     }
     
-    func loadNodePlay() {
+    func loadNodesFrozen() {
         
-        aNodePlay = SCNNode(geometry: aGeo)
-        aNodePlay.position = SCNVector3(140, 0, 0)
-        scene.rootNode.addChildNode(aNodePlay)
+        aNodeFrozen = LetterNode(geometry: aGeo, frozen: true)
+        aNodeFrozen.position = SCNVector3(0, 50, 0)
+        scene.rootNode.addChildNode(aNodeFrozen)
         
-        bNodePlay = SCNNode(geometry: bGeo)
-        bNodePlay.position = SCNVector3(140, 0, 150)
-        scene.rootNode.addChildNode(bNodePlay)
+        bNodeFrozen = LetterNode(geometry: bGeo, frozen: true)
+        bNodeFrozen.position = SCNVector3(17, 50, 0)
+        scene.rootNode.addChildNode(bNodeFrozen)
         
-    }
-    
-    func loadNodeHome() {
+        cNodeFrozen = LetterNode(geometry: cGeo, frozen: true)
+        cNodeFrozen.position = SCNVector3(34, 50, 0)
+        scene.rootNode.addChildNode(cNodeFrozen)
         
-        aNodeHome = LetterNode(geometry: aGeo, frozen: true)
+        dNodeFrozen = LetterNode(geometry: dGeo, frozen: true)
+        dNodeFrozen.position = SCNVector3(51, 50, 0)
+        scene.rootNode.addChildNode(dNodeFrozen)
         
+        eNodeFrozen = LetterNode(geometry: eGeo, frozen: true)
+        eNodeFrozen.position = SCNVector3(68, 50, 0)
+        scene.rootNode.addChildNode(eNodeFrozen)
         
-//        aNodeHome = SCNNode(geometry: aGeo)
-        aNodeHome.position = SCNVector3(0, 50, 0)
-        scene.rootNode.addChildNode(aNodeHome)
+        fNodeFrozen = LetterNode(geometry: fGeo, frozen: true)
+        fNodeFrozen.position = SCNVector3(85, 50, 0)
+        scene.rootNode.addChildNode(fNodeFrozen)
         
-        bNodeHome = SCNNode(geometry: bGeo)
-
-        bNodeHome.position = SCNVector3(17, 50, 0)
-        scene.rootNode.addChildNode(bNodeHome)
+        gNodeFrozen = LetterNode(geometry: gGeo, frozen: true)
+        gNodeFrozen.position = SCNVector3(102, 50, 0)
+        scene.rootNode.addChildNode(gNodeFrozen)
         
-        cNodeHome = SCNNode(geometry: cGeo)
-        cNodeHome.position = SCNVector3(34, 50, 0)
-        scene.rootNode.addChildNode(cNodeHome)
+        hNodeFrozen = LetterNode(geometry: hGeo, frozen: true)
+        hNodeFrozen.position = SCNVector3(119, 50, 0)
+        scene.rootNode.addChildNode(hNodeFrozen)
         
-        dNodeHome = SCNNode(geometry: dGeo)
-        dNodeHome.position = SCNVector3(51, 50, 0)
-        scene.rootNode.addChildNode(dNodeHome)
+        iNodeFrozen = LetterNode(geometry: iGeo, frozen: true)
+        iNodeFrozen.position = SCNVector3(136, 50, 0)
+        scene.rootNode.addChildNode(iNodeFrozen)
         
-        eNodeHome = SCNNode(geometry: eGeo)
-        eNodeHome.position = SCNVector3(68, 50, 0)
-        scene.rootNode.addChildNode(eNodeHome)
+        jNodeFrozen = LetterNode(geometry: jGeo, frozen: true)
+        jNodeFrozen.position = SCNVector3(153, 50, 0)
+        scene.rootNode.addChildNode(jNodeFrozen)
         
-        fNodeHome = SCNNode(geometry: fGeo)
-        fNodeHome.position = SCNVector3(85, 50, 0)
-        scene.rootNode.addChildNode(fNodeHome)
+        kNodeFrozen = LetterNode(geometry: kGeo, frozen: true)
+        kNodeFrozen.position = SCNVector3(170, 50, 0)
+        scene.rootNode.addChildNode(kNodeFrozen)
         
-        gNodeHome = SCNNode(geometry: gGeo)
-        gNodeHome.position = SCNVector3(102, 50, 0)
-        scene.rootNode.addChildNode(gNodeHome)
+        lNodeFrozen = LetterNode(geometry: lGeo, frozen: true)
+        lNodeFrozen.position = SCNVector3(187, 50, 0)
+        scene.rootNode.addChildNode(lNodeFrozen)
         
-        hNodeHome = SCNNode(geometry: hGeo)
-        hNodeHome.position = SCNVector3(119, 50, 0)
-        scene.rootNode.addChildNode(hNodeHome)
+        mNodeFrozen = LetterNode(geometry: mGeo, frozen: true)
+        mNodeFrozen.position = SCNVector3(204, 50, 0)
+        scene.rootNode.addChildNode(mNodeFrozen)
         
-        iNodeHome = SCNNode(geometry: iGeo)
-        iNodeHome.position = SCNVector3(136, 50, 0)
-        scene.rootNode.addChildNode(iNodeHome)
+        nNodeFrozen = LetterNode(geometry: nGeo, frozen: true)
+        nNodeFrozen.position = SCNVector3(0, 20, 0)
+        scene.rootNode.addChildNode(nNodeFrozen)
         
-        jNodeHome = SCNNode(geometry: jGeo)
-        jNodeHome.position = SCNVector3(153, 50, 0)
-        scene.rootNode.addChildNode(jNodeHome)
+        oNodeFrozen = LetterNode(geometry: oGeo, frozen: true)
+        oNodeFrozen.position = SCNVector3(20, 20, 0)
+        scene.rootNode.addChildNode(oNodeFrozen)
         
-        kNodeHome = SCNNode(geometry: kGeo)
-        kNodeHome.position = SCNVector3(170, 50, 0)
-        scene.rootNode.addChildNode(kNodeHome)
+        pNodeFrozen = LetterNode(geometry: pGeo, frozen: true)
+        pNodeFrozen.position = SCNVector3(40, 20, 0)
+        scene.rootNode.addChildNode(pNodeFrozen)
         
-        lNodeHome = SCNNode(geometry: lGeo)
-        lNodeHome.position = SCNVector3(187, 50, 0)
-        scene.rootNode.addChildNode(lNodeHome)
+        qNodeFrozen = LetterNode(geometry: qGeo, frozen: true)
+        qNodeFrozen.position = SCNVector3(60, 20, 0)
+        scene.rootNode.addChildNode(qNodeFrozen)
         
-        mNodeHome = SCNNode(geometry: mGeo)
-        mNodeHome.position = SCNVector3(204, 50, 0)
-        scene.rootNode.addChildNode(mNodeHome)
+        rNodeFrozen = LetterNode(geometry: rGeo, frozen: true)
+        rNodeFrozen.position = SCNVector3(80, 20, 0)
+        scene.rootNode.addChildNode(rNodeFrozen)
         
-        nNodeHome = SCNNode(geometry: nGeo)
-        nNodeHome.position = SCNVector3(0, 20, 0)
-        scene.rootNode.addChildNode(nNodeHome)
+        sNodeFrozen = LetterNode(geometry: sGeo, frozen: true)
+        sNodeFrozen.position = SCNVector3(100, 20, 0)
+        scene.rootNode.addChildNode(sNodeFrozen)
         
-        oNodeHome = SCNNode(geometry: oGeo)
-        oNodeHome.position = SCNVector3(20, 20, 0)
-        scene.rootNode.addChildNode(oNodeHome)
+        tNodeFrozen = LetterNode(geometry: tGeo, frozen: true)
+        tNodeFrozen.position = SCNVector3(120, 20, 0)
+        scene.rootNode.addChildNode(tNodeFrozen)
         
-        pNodeHome = SCNNode(geometry: pGeo)
-        pNodeHome.position = SCNVector3(40, 20, 0)
-        scene.rootNode.addChildNode(pNodeHome)
+        uNodeFrozen = LetterNode(geometry: uGeo, frozen: true)
+        uNodeFrozen.position = SCNVector3(140, 20, 0)
+        scene.rootNode.addChildNode(uNodeFrozen)
         
-        qNodeHome = SCNNode(geometry: qGeo)
-        qNodeHome.position = SCNVector3(60, 20, 0)
-        scene.rootNode.addChildNode(qNodeHome)
+        vNodeFrozen = LetterNode(geometry: vGeo, frozen: true)
+        vNodeFrozen.position = SCNVector3(160, 20, 0)
+        scene.rootNode.addChildNode(vNodeFrozen)
         
-        rNodeHome = SCNNode(geometry: rGeo)
-        rNodeHome.position = SCNVector3(80, 20, 0)
-        scene.rootNode.addChildNode(rNodeHome)
+        wNodeFrozen = LetterNode(geometry: wGeo, frozen: true)
+        wNodeFrozen.position = SCNVector3(180, 20, 0)
+        scene.rootNode.addChildNode(wNodeFrozen)
         
-        sNodeHome = SCNNode(geometry: sGeo)
-        sNodeHome.position = SCNVector3(100, 20, 0)
-        scene.rootNode.addChildNode(sNodeHome)
+        xNodeFrozen = LetterNode(geometry: xGeo, frozen: true)
+        xNodeFrozen.position = SCNVector3(200, 20, 0)
+        scene.rootNode.addChildNode(xNodeFrozen)
         
-        tNodeHome = SCNNode(geometry: tGeo)
-        tNodeHome.position = SCNVector3(120, 20, 0)
-        scene.rootNode.addChildNode(tNodeHome)
+        yNodeFrozen = LetterNode(geometry: yGeo, frozen: true)
+        yNodeFrozen.position = SCNVector3(220, 20, 0)
+        scene.rootNode.addChildNode(yNodeFrozen)
         
-        uNodeHome = SCNNode(geometry: uGeo)
-        uNodeHome.position = SCNVector3(140, 20, 0)
-        scene.rootNode.addChildNode(uNodeHome)
-        
-        vNodeHome = SCNNode(geometry: vGeo)
-        vNodeHome.position = SCNVector3(160, 20, 0)
-        scene.rootNode.addChildNode(vNodeHome)
-        
-        wNodeHome = SCNNode(geometry: wGeo)
-        wNodeHome.position = SCNVector3(180, 20, 0)
-        scene.rootNode.addChildNode(wNodeHome)
-        
-        xNodeHome = SCNNode(geometry: xGeo)
-        xNodeHome.position = SCNVector3(200, 20, 0)
-        scene.rootNode.addChildNode(xNodeHome)
-        
-        yNodeHome = SCNNode(geometry: yGeo)
-        yNodeHome.position = SCNVector3(220, 20, 0)
-        scene.rootNode.addChildNode(yNodeHome)
-        
-        zNodeHome = SCNNode(geometry: zGeo)
-        zNodeHome.position = SCNVector3(240, 20, 0)
-        scene.rootNode.addChildNode(zNodeHome)
+        zNodeFrozen = LetterNode(geometry: zGeo, frozen: true)
+        zNodeFrozen.position = SCNVector3(240, 20, 0)
+        scene.rootNode.addChildNode(zNodeFrozen)
         
     }
     
