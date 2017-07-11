@@ -26,7 +26,6 @@ class LetterNode: SCNNode {
 
         if frozen == true {
             self.geometry?.firstMaterial?.diffuse.contents = UIColor.white
-            print("inside frozen == true")
             self.isHidden = true
         } else {
             switch string {
