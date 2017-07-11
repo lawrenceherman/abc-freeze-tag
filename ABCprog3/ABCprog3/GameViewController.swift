@@ -22,21 +22,31 @@ class GameViewController: UIViewController {
     var startTapBool: Bool = true
     
     
-    var aGeo, bGeo, cGeo, dGeo, eGeo, fGeo, gGeo, hGeo, iGeo,
-    jGeo, kGeo, lGeo, mGeo, nGeo, oGeo, pGeo, qGeo, rGeo, sGeo,
-    tGeo, uGeo, vGeo, wGeo, xGeo, yGeo, zGeo: Letter!
+    var aGeo, bGeo, cGeo: Letter!
+    
+//    dGeo, eGeo, fGeo, gGeo, hGeo, iGeo,
+//    jGeo, kGeo, lGeo, mGeo, nGeo, oGeo, pGeo, qGeo, rGeo, sGeo,
+//    tGeo, uGeo, vGeo, wGeo, xGeo, yGeo, zGeo
     
     // have to figure out a way to share these Geos
     
-    var aGeoF, bGeoF, cGeoF, dGeoF, eGeoF, fGeoF, gGeoF, hGeoF, iGeoF,
-    jGeoF, kGeoF, lGeoF, mGeoF, nGeoF, oGeoF, pGeoF, qGeoF, rGeoF, sGeoF,
-    tGeoF, uGeoF, vGeoF, wGeoF, xGeoF, yGeoF, zGeoF: Letter!
+    var aGeoF: Letter!
+    //    var aGeoF, bGeoF, cGeoF, dGeoF, eGeoF, fGeoF, gGeoF, hGeoF, iGeoF,
+//    jGeoF, kGeoF, lGeoF, mGeoF, nGeoF, oGeoF, pGeoF, qGeoF, rGeoF, sGeoF,
+//    tGeoF, uGeoF, vGeoF, wGeoF, xGeoF, yGeoF, zGeoF: Letter!
     
     
     
-    var  aNodeFrozen, bNodeFrozen, cNodeFrozen, dNodeFrozen, eNodeFrozen, fNodeFrozen, gNodeFrozen,
-    hNodeFrozen, iNodeFrozen, jNodeFrozen, kNodeFrozen, lNodeFrozen, mNodeFrozen, nNodeFrozen, oNodeFrozen, pNodeFrozen, qNodeFrozen, rNodeFrozen, sNodeFrozen, tNodeFrozen, uNodeFrozen, vNodeFrozen, wNodeFrozen,
-    xNodeFrozen, yNodeFrozen, zNodeFrozen: LetterNode!
+    var  aNodeFrozen, bNodeFrozen, cNodeFrozen: LetterNode!
+    
+ //   dNodeFrozen, eNodeFrozen, fNodeFrozen, gNodeFrozen,
+//    hNodeFrozen, iNodeFrozen, jNodeFrozen, kNodeFrozen, lNodeFrozen, mNodeFrozen, nNodeFrozen, oNodeFrozen, pNodeFrozen, qNodeFrozen, rNodeFrozen, sNodeFrozen, tNodeFrozen, uNodeFrozen, vNodeFrozen, wNodeFrozen,
+//    xNodeFrozen, yNodeFrozen, zNodeFrozen
+
+    
+    var frozenArray: [LetterNode] = []
+    var freeArray: [LetterNode] = []
+    var geoArray: [Letter] = []
     
     var aNodeFree, bNodeFree, cNodeFree: LetterNode!
     
@@ -44,11 +54,15 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        loadNodesFree2()
         cameraAndLights()
         environment()
-        
+
         loadGeometry()
+        
         loadNodesFrozen()
+        
+        
         loadNodesFree()
         
         scnView = self.view as! SCNView
@@ -57,13 +71,13 @@ class GameViewController: UIViewController {
         scnView.showsStatistics = true
         scnView.backgroundColor = UIColor.blue
         scnView.autoenablesDefaultLighting = false
-        
-        loadGameView()
-        
-        runWild(aNodeFree)
-        runWild(bNodeFree)
-        runWild(cNodeFree)
 
+        loadGameView()
+
+//        runWild(aNodeFree)
+//        runWild(bNodeFree)
+//        runWild(cNodeFree)
+        
     }
     
     
