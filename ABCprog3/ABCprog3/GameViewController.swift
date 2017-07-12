@@ -15,46 +15,38 @@ class GameViewController: UIViewController {
     let scene = SCNScene()
     let gameView = UIView()
     var startLabel: UILabel!
-    var pauseLabel: UILabel!
+//    var pauseLabel: UILabel!
     
     var scnView: SCNView!
     var pauseBool: Bool = true
     var startTapBool: Bool = true
     
     
-    var aGeo, bGeo, cGeo: Letter!
-    
-//    dGeo, eGeo, fGeo, gGeo, hGeo, iGeo,
-//    jGeo, kGeo, lGeo, mGeo, nGeo, oGeo, pGeo, qGeo, rGeo, sGeo,
-//    tGeo, uGeo, vGeo, wGeo, xGeo, yGeo, zGeo
+    var aGeo, bGeo, cGeo, dGeo, eGeo, fGeo, gGeo, hGeo, iGeo,
+    jGeo, kGeo, lGeo, mGeo, nGeo, oGeo, pGeo, qGeo, rGeo, sGeo,
+    tGeo, uGeo, vGeo, wGeo, xGeo, yGeo, zGeo: Letter!
     
     // have to figure out a way to share these Geos
     
-    var aGeoF: Letter!
-    //    var aGeoF, bGeoF, cGeoF, dGeoF, eGeoF, fGeoF, gGeoF, hGeoF, iGeoF,
-//    jGeoF, kGeoF, lGeoF, mGeoF, nGeoF, oGeoF, pGeoF, qGeoF, rGeoF, sGeoF,
-//    tGeoF, uGeoF, vGeoF, wGeoF, xGeoF, yGeoF, zGeoF: Letter!
+    var aGeoF, bGeoF, cGeoF, dGeoF, eGeoF, fGeoF, gGeoF, hGeoF, iGeoF,
+    jGeoF, kGeoF, lGeoF, mGeoF, nGeoF, oGeoF, pGeoF, qGeoF, rGeoF, sGeoF,
+    tGeoF, uGeoF, vGeoF, wGeoF, xGeoF, yGeoF, zGeoF: Letter!
+    
+    var  aNodeFrozen, bNodeFrozen, cNodeFrozen, dNodeFrozen, eNodeFrozen, fNodeFrozen, gNodeFrozen,hNodeFrozen, iNodeFrozen, jNodeFrozen, kNodeFrozen, lNodeFrozen, mNodeFrozen, nNodeFrozen, oNodeFrozen, pNodeFrozen, qNodeFrozen, rNodeFrozen, sNodeFrozen, tNodeFrozen, uNodeFrozen, vNodeFrozen, wNodeFrozen,
+    xNodeFrozen, yNodeFrozen, zNodeFrozen: LetterNode!
     
     
+//    var frozenArray: [LetterNode] = []
+//    var freeArray: [LetterNode] = []
+//    var geoArray: [Letter] = []
     
-    var  aNodeFrozen, bNodeFrozen, cNodeFrozen: LetterNode!
-    
- //   dNodeFrozen, eNodeFrozen, fNodeFrozen, gNodeFrozen,
-//    hNodeFrozen, iNodeFrozen, jNodeFrozen, kNodeFrozen, lNodeFrozen, mNodeFrozen, nNodeFrozen, oNodeFrozen, pNodeFrozen, qNodeFrozen, rNodeFrozen, sNodeFrozen, tNodeFrozen, uNodeFrozen, vNodeFrozen, wNodeFrozen,
-//    xNodeFrozen, yNodeFrozen, zNodeFrozen
-
-    
-    var frozenArray: [LetterNode] = []
-    var freeArray: [LetterNode] = []
-    var geoArray: [Letter] = []
-    
-    var aNodeFree, bNodeFree, cNodeFree: LetterNode!
+    var aNodeFree, bNodeFree, cNodeFree, dNodeFree, eNodeFree, fNodeFree, gNodeFree, hNodeFree, iNodeFree, jNodeFree, kNodeFree, lNodeFree, mNodeFree, nNodeFree, oNodeFree, pNodeFree, qNodeFree, rNodeFree, sNodeFree, tNodeFree, uNodeFree, vNodeFree, wNodeFree, xNodeFree, yNodeFree, zNodeFree: LetterNode!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        loadNodesFree2()
+
         cameraAndLights()
         environment()
 
@@ -74,16 +66,9 @@ class GameViewController: UIViewController {
 
         loadGameView()
 
-//        runWild(aNodeFree)
-//        runWild(bNodeFree)
-//        runWild(cNodeFree)
+        
         
     }
-    
-    
-    
-    
-    
     
     
     func runWild(_ node: LetterNode) {
@@ -146,11 +131,8 @@ class GameViewController: UIViewController {
                         })
                     }
                 }
-                
             }
         }
-        
-        
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleLetterTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
@@ -188,7 +170,7 @@ class GameViewController: UIViewController {
     
     
     
-    func loadGameView () {
+    func loadGameView() {
         
         scnView.addSubview(gameView)
         
@@ -219,59 +201,76 @@ class GameViewController: UIViewController {
         startLabel.topAnchor.constraint(equalTo: gameView.topAnchor, constant: 150).isActive = true
         startLabel.isUserInteractionEnabled = true
         
-        pauseLabel = UILabel()
-        gameView.addSubview(pauseLabel)
-        
-        pauseLabel.adjustsFontSizeToFitWidth = true
-        
-        pauseLabel.font = UIFont(name: "Arial", size: 36.0 )
-        pauseLabel.text = "Pause"
-        pauseLabel.layer.masksToBounds = true
-        //        startLabel.layer.cornerRadius = 125
-        pauseLabel.layer.backgroundColor = UIColor.yellow.cgColor
-        
-        pauseLabel.translatesAutoresizingMaskIntoConstraints = false
-        pauseLabel.layer.cornerRadius = startLabel.frame.width/2
-        
-        pauseLabel.widthAnchor.constraint(equalTo: startLabel.heightAnchor, multiplier: 0.0)
-        pauseLabel.leadingAnchor.constraint(equalTo: gameView.leadingAnchor, constant: 50).isActive = true
-        pauseLabel.topAnchor.constraint(equalTo: gameView.topAnchor, constant: 150).isActive = true
-        pauseLabel.isUserInteractionEnabled = true
-        
         let startTap = UITapGestureRecognizer(target: self, action: #selector(handleStartTap(_:)))
-        //
         startLabel.addGestureRecognizer(startTap)
-        
-        let pauseTap = UITapGestureRecognizer(target: self, action: #selector(handlePauseTap(_:)))
-        pauseLabel.addGestureRecognizer(pauseTap)
-        
-        
-        
     }
+//        pauseLabel = UILabel()
+//        gameView.addSubview(pauseLabel)
+//
+//        pauseLabel.adjustsFontSizeToFitWidth = true
+//
+//        pauseLabel.font = UIFont(name: "Arial", size: 36.0 )
+//        pauseLabel.text = "Pause"
+//        pauseLabel.layer.masksToBounds = true
+//        //        startLabel.layer.cornerRadius = 125
+//        pauseLabel.layer.backgroundColor = UIColor.yellow.cgColor
+//
+//        pauseLabel.translatesAutoresizingMaskIntoConstraints = false
+//        pauseLabel.layer.cornerRadius = startLabel.frame.width/2
+//
+//        pauseLabel.widthAnchor.constraint(equalTo: startLabel.heightAnchor, multiplier: 0.0)
+//        pauseLabel.leadingAnchor.constraint(equalTo: gameView.leadingAnchor, constant: 50).isActive = true
+//        pauseLabel.topAnchor.constraint(equalTo: gameView.topAnchor, constant: 150).isActive = true
+//        pauseLabel.isUserInteractionEnabled = true
+//
     
-    @objc func handlePauseTap(_ gestureRecognizer: UITapGestureRecognizer) {
-        
-        // TODO: fix pause exploit
-        
-        if pauseBool == true {
-            pauseBool = false
-            scnView.scene?.isPaused = true
-        } else{
-            pauseBool = true
-            scnView.scene?.isPaused = false
-        }
-        
-        
+//
+//        let pauseTap = UITapGestureRecognizer(target: self, action: #selector(handlePauseTap(_:)))
+//        pauseLabel.addGestureRecognizer(pauseTap)
+//
+//    }
+//
+//    @objc func handlePauseTap(_ gestureRecognizer: UITapGestureRecognizer) {
+//
+//        // TODO: fix pause exploit
+//
+//        if pauseBool == true {
+//            pauseBool = false
+//            scnView.scene?.isPaused = true
+//        } else{
+//            pauseBool = true
+//            scnView.scene?.isPaused = false
+//        }
+//
+//
+//    }
+    func makeFrozenNodesVisible() {
+    
+        aNodeFrozen.isHidden = false
+        bNodeFrozen.isHidden = false
+        cNodeFrozen.isHidden = false
+        dNodeFrozen.isHidden = false
+        eNodeFrozen.isHidden = false
+    
     }
     
     @objc func handleStartTap(_ gestureRecognizer: UITapGestureRecognizer) {
         
-        print("handletapcalled")
-        
-        scene.rootNode.enumerateChildNodes { (node, stop) in
-            node.removeFromParentNode()
+        if startTapBool == true {
+            
+            startTapBool = false
+            
+            makeFrozenNodesVisible()
+            runWild(aNodeFree)
+            runWild(bNodeFree)
+            runWild(cNodeFree)
+            
+        } else {
+            startTapBool = true
+            scene.rootNode.enumerateChildNodes { (node, stop) in
+                node.removeFromParentNode() }
+                 viewDidLoad()
         }
-        viewDidLoad()
         
     }
     
