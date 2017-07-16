@@ -73,10 +73,10 @@ class GameViewController: UIViewController {
     
     func runWild(_ node: LetterNode) {
         
-        let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 20, duration: 0.25)
-        let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -20.0, duration: 0.25)
-        let runRight = SCNAction.moveBy(x: 20.00, y: 0, z: 0, duration: 0.25)
-        let runLeft = SCNAction.moveBy(x: -20.00, y: 0, z: 0, duration: 0.25 )
+        let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 20, duration: 1.0)
+        let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -20.0, duration: 1.0)
+        let runRight = SCNAction.moveBy(x: 20.00, y: 0, z: 0, duration: 1.0)
+        let runLeft = SCNAction.moveBy(x: -20.00, y: 0, z: 0, duration: 1.0 )
         
         if node.hitTapped == false  {
             
@@ -146,25 +146,41 @@ class GameViewController: UIViewController {
         
         let tapCG = gestureRecognizer.location(in: scnView)
         
-        let hitResults = scnView.hitTest(tapCG, options: [:])
+        var hitResults = scnView.hitTest(tapCG, options: [SCNHitTestOption.firstFoundOnly: true, SCNHitTestOption.boundingBoxOnly: true, SCNHitTestOption.clipToZRange: true])
+        
         
         
         if let tappedNode = hitResults.first?.node as? LetterNode {
             
             
-            if tappedNode.frozenPosition != nil {
-                tappedNode.hitTapped = true
-                
-                let wait = SCNAction.wait(duration: 1.0)
-                let presentLetter = SCNAction.move(to: SCNVector3(133, 3, 170), duration: 0.5)
-                let moveToHome = SCNAction.move(to: tappedNode.frozenPosition!, duration: 1.0)
-                let actionArray = [presentLetter, wait, moveToHome]
-                let sequence = SCNAction.sequence(actionArray)
-                tappedNode.runAction(sequence)
-                
-                
-            }
+            
+            print("hitresult first is LetterNode \n\n")
+//            if tappedNode.first! == aNodeFree || tappedNode.first! == bNodeFree || tappedNode.first! == cNodeFree {
+//
+//
+//
+//
+//            }
+            
+            
         }
+        
+//        if let tappedNode = hitResults[0] as? LetterNode {
+//
+//
+//            if tappedNode.frozenPosition != nil {
+//                tappedNode.hitTapped = true
+//
+//                let wait = SCNAction.wait(duration: 1.0)
+//                let presentLetter = SCNAction.move(to: SCNVector3(133, 3, 170), duration: 0.5)
+//                let moveToHome = SCNAction.move(to: tappedNode.frozenPosition!, duration: 1.0)
+//                let actionArray = [presentLetter, wait, moveToHome]
+//                let sequence = SCNAction.sequence(actionArray)
+//                tappedNode.runAction(sequence)
+//
+//
+//            }
+//        }
         
     }
     
