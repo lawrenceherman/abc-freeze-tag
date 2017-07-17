@@ -10,7 +10,7 @@ import UIKit
 import QuartzCore
 import SceneKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     
     let scene = SCNScene()
     let gameView = UIView()
@@ -50,7 +50,9 @@ class GameViewController: UIViewController {
 
         cameraAndLights()
         environment()
-
+        
+        scene.physicsWorld.contactDelegate = self 
+        
         loadGeometry()
         
         loadNodesFrozen()
@@ -138,13 +140,6 @@ class GameViewController: UIViewController {
                 }
             }
         }
-        
-        
-        
-        
-        
-        
-        
     }
     
     @objc func handleLetterTap(_ gestureRecognizer: UITapGestureRecognizer) {
@@ -164,6 +159,7 @@ class GameViewController: UIViewController {
             tappedNode = (hitResults.first?.node as! LetterNode)
             if tappedNode.frozenPosition != nil && tappedNode.frozen == false{
                 tappedNode.frozen = true
+                tapGesture.isEnabled = false
                 print("not frozen letter Node")
                 
                 nodeCaughtAnimation(node: tappedNode)
@@ -178,11 +174,13 @@ class GameViewController: UIViewController {
         let moveToHome = SCNAction.move(to: node.frozenPosition!, duration: 1.0)
         let actionArray = [presentLetter, wait, moveToHome]
         let sequence = SCNAction.sequence(actionArray)
-        node.runAction(sequence)
+        node.runAction(sequence, completionHandler: tapGestureTrue)
         
     }
     
-    
+    func tapGestureTrue() {
+        tapGesture.isEnabled = true
+    }
     
     func loadGameView() {
         
@@ -310,6 +308,14 @@ class GameViewController: UIViewController {
             runWild(jNodeFree)
             runWild(kNodeFree)
             runWild(lNodeFree)
+            runWild(mNodeFree)
+            runWild(nNodeFree)
+            
+            aNodeFree.physicsBody = SCNPhysicsBody.dynamic()
+            bNodeFree.physicsBody = SCNPhysicsBody.dynamic()
+            cNodeFree.physicsBody = SCNPhysicsBody.dynamic()
+            dNodeFree.physicsBody = SCNPhysicsBody.dynamic()
+            eNodeFree.physicsBody = SCNPhysicsBody.dynamic()
             
         } else {
             startTapBool = true

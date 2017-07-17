@@ -30,71 +30,104 @@ extension GameViewController {
         // TODO: create function to randomly generate starting position
         // TODO: Add subtle animations
         
-        //        let physicsBody = SCNPhysicsBody.dynamic()
         
         
         
         aNodeFree = LetterNode(geometry: aGeo, frozen: false)
         aNodeFree.position = randomStartingPosition()
         aNodeFree.frozenPosition = aNodeFrozen.position
-//        aNodeFree.physicsBody = physicsBody
+        
+        aNodeFree.physicsBody?.contactTestBitMask = 1
         scene.rootNode.addChildNode(aNodeFree)
+        
+
+        
+        
+        
         
         bNodeFree = LetterNode(geometry: bGeo, frozen: false)
         bNodeFree.position = randomStartingPosition()
         bNodeFree.frozenPosition = bNodeFrozen.position
+        
+        aNodeFree.physicsBody?.contactTestBitMask = 1
         scene.rootNode.addChildNode(bNodeFree)
         
         cNodeFree = LetterNode(geometry: cGeo, frozen: false)
         cNodeFree.position = randomStartingPosition()
         cNodeFree.frozenPosition = cNodeFrozen.position
-        //        cNodeFree.physicsBody = physicsBody
+        cNodeFree.physicsBody?.contactTestBitMask = 1
         scene.rootNode.addChildNode(cNodeFree)
         
         dNodeFree = LetterNode(geometry: dGeo, frozen: false)
         dNodeFree.position = randomStartingPosition()
         dNodeFree.frozenPosition = dNodeFrozen.position
+        dNodeFree.physicsBody?.contactTestBitMask = 1
         scene.rootNode.addChildNode(dNodeFree)
         
         eNodeFree = LetterNode(geometry: eGeo, frozen: false)
         eNodeFree.position = randomStartingPosition()
         eNodeFree.frozenPosition = eNodeFrozen.position
+        dNodeFree.physicsBody?.contactTestBitMask = 1
         scene.rootNode.addChildNode(eNodeFree)
         
         fNodeFree = LetterNode(geometry: fGeo, frozen: false)
         fNodeFree.position = randomStartingPosition()
         fNodeFree.frozenPosition = fNodeFrozen.position
+//        fNodeFree.physicsBody = physicsBody
         scene.rootNode.addChildNode(fNodeFree)
         
         gNodeFree = LetterNode(geometry: gGeo, frozen: false)
         gNodeFree.position = randomStartingPosition()
         gNodeFree.frozenPosition = gNodeFrozen.position
+//        gNodeFree.physicsBody = physicsBody
         scene.rootNode.addChildNode(gNodeFree)
         
         hNodeFree = LetterNode(geometry: hGeo, frozen: false)
         hNodeFree.position = randomStartingPosition()
         hNodeFree.frozenPosition = hNodeFrozen.position
+//        hNodeFree.physicsBody = physicsBody
         scene.rootNode.addChildNode(hNodeFree)
         
         iNodeFree = LetterNode(geometry: iGeo, frozen: false)
         iNodeFree.position = randomStartingPosition()
         iNodeFree.frozenPosition = iNodeFrozen.position
+//        iNodeFree.physicsBody = physicsBody
         scene.rootNode.addChildNode(iNodeFree)
         
         jNodeFree = LetterNode(geometry: jGeo, frozen: false)
         jNodeFree.position = randomStartingPosition()
         jNodeFree.frozenPosition = jNodeFrozen.position
+//        jNodeFree.physicsBody = physicsBody
         scene.rootNode.addChildNode(jNodeFree)
         
         kNodeFree = LetterNode(geometry: kGeo, frozen: false)
         kNodeFree.position = randomStartingPosition()
         kNodeFree.frozenPosition = kNodeFrozen.position
+//        kNodeFree.physicsBody = physicsBody
         scene.rootNode.addChildNode(kNodeFree)
         
         lNodeFree = LetterNode(geometry: lGeo, frozen: false)
         lNodeFree.position = randomStartingPosition()
         lNodeFree.frozenPosition = lNodeFrozen.position
+//        lNodeFree.physicsBody = physicsBody
         scene.rootNode.addChildNode(lNodeFree)
+        
+        mNodeFree = LetterNode(geometry: mGeo, frozen: false)
+        mNodeFree.position = randomStartingPosition()
+        mNodeFree.frozenPosition = mNodeFrozen.position
+        scene.rootNode.addChildNode(mNodeFree)
+        
+        nNodeFree = LetterNode(geometry: nGeo, frozen: false)
+        nNodeFree.position = randomStartingPosition()
+        nNodeFree.frozenPosition = nNodeFrozen.position
+        scene.rootNode.addChildNode(nNodeFree)
+        
+        
+    }
+    
+    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        
+        contact.nodeB.removeAllActions()
     }
     
     func loadNodesFrozen() {
