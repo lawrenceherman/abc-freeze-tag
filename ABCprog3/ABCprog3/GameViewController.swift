@@ -20,6 +20,7 @@ class GameViewController: UIViewController {
     var scnView: SCNView!
     var pauseBool: Bool = true
     var startTapBool: Bool = true
+    var tapGesture: UITapGestureRecognizer!
     
     
     var aGeo, bGeo, cGeo, dGeo, eGeo, fGeo, gGeo, hGeo, iGeo,
@@ -63,6 +64,10 @@ class GameViewController: UIViewController {
         scnView.showsStatistics = true
         scnView.backgroundColor = UIColor.blue
         scnView.autoenablesDefaultLighting = false
+        
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleLetterTap(_:)))
+        scnView.addGestureRecognizer(tapGesture)
+        tapGesture.isEnabled = false
 
         loadGameView()
 
@@ -73,12 +78,12 @@ class GameViewController: UIViewController {
     
     func runWild(_ node: LetterNode) {
         
-        let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 20, duration: 1.0)
-        let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -20.0, duration: 1.0)
-        let runRight = SCNAction.moveBy(x: 20.00, y: 0, z: 0, duration: 1.0)
-        let runLeft = SCNAction.moveBy(x: -20.00, y: 0, z: 0, duration: 1.0 )
+        let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 20, duration: 0.3)
+        let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -20.0, duration: 0.3)
+        let runRight = SCNAction.moveBy(x: 20.00, y: 0, z: 0, duration: 0.3)
+        let runLeft = SCNAction.moveBy(x: -20.00, y: 0, z: 0, duration: 0.3)
         
-        if node.hitTapped == false  {
+        if node.frozen == false  {
             
             let x = arc4random_uniform(2)
             
@@ -134,53 +139,46 @@ class GameViewController: UIViewController {
             }
         }
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleLetterTap(_:)))
-        scnView.addGestureRecognizer(tapGesture)
+        
+        
+        
         
         
         
     }
     
     @objc func handleLetterTap(_ gestureRecognizer: UITapGestureRecognizer) {
+        
+        
         print("tap working")
+        
+        let tappedNode: LetterNode!
         
         let tapCG = gestureRecognizer.location(in: scnView)
         
-        var hitResults = scnView.hitTest(tapCG, options: [SCNHitTestOption.firstFoundOnly: true, SCNHitTestOption.boundingBoxOnly: true, SCNHitTestOption.clipToZRange: true])
+        let hitResults = scnView.hitTest(tapCG, options: [SCNHitTestOption.boundingBoxOnly: true, SCNHitTestOption.clipToZRange: true])
         
-        
-        
-        if let tappedNode = hitResults.first?.node as? LetterNode {
-            
-            
-            
-            print("hitresult first is LetterNode \n\n")
-//            if tappedNode.first! == aNodeFree || tappedNode.first! == bNodeFree || tappedNode.first! == cNodeFree {
-//
-//
-//
-//
-//            }
-            
-            
+        if hitResults.first?.node is LetterNode
+        {
+            print("is letter node")
+            tappedNode = (hitResults.first?.node as! LetterNode)
+            if tappedNode.frozenPosition != nil && tappedNode.frozen == false{
+                tappedNode.frozen = true
+                print("not frozen letter Node")
+                
+                nodeCaughtAnimation(node: tappedNode)
+            }
         }
+    }
+    
+    func nodeCaughtAnimation(node: LetterNode) {
         
-//        if let tappedNode = hitResults[0] as? LetterNode {
-//
-//
-//            if tappedNode.frozenPosition != nil {
-//                tappedNode.hitTapped = true
-//
-//                let wait = SCNAction.wait(duration: 1.0)
-//                let presentLetter = SCNAction.move(to: SCNVector3(133, 3, 170), duration: 0.5)
-//                let moveToHome = SCNAction.move(to: tappedNode.frozenPosition!, duration: 1.0)
-//                let actionArray = [presentLetter, wait, moveToHome]
-//                let sequence = SCNAction.sequence(actionArray)
-//                tappedNode.runAction(sequence)
-//
-//
-//            }
-//        }
+        let wait = SCNAction.wait(duration: 1.0)
+        let presentLetter = SCNAction.move(to: SCNVector3(133, 3, 170), duration: 0.5)
+        let moveToHome = SCNAction.move(to: node.frozenPosition!, duration: 1.0)
+        let actionArray = [presentLetter, wait, moveToHome]
+        let sequence = SCNAction.sequence(actionArray)
+        node.runAction(sequence)
         
     }
     
@@ -260,6 +258,7 @@ class GameViewController: UIViewController {
 //
 //
 //    }
+    
     func makeFrozenNodesVisible() {
     
         aNodeFrozen.isHidden = false
@@ -267,6 +266,27 @@ class GameViewController: UIViewController {
         cNodeFrozen.isHidden = false
         dNodeFrozen.isHidden = false
         eNodeFrozen.isHidden = false
+        fNodeFrozen.isHidden = false
+        gNodeFrozen.isHidden = false
+        hNodeFrozen.isHidden = false
+        iNodeFrozen.isHidden = false
+        jNodeFrozen.isHidden = false
+        kNodeFrozen.isHidden = false
+        lNodeFrozen.isHidden = false
+        mNodeFrozen.isHidden = false
+        nNodeFrozen.isHidden = false
+        oNodeFrozen.isHidden = false
+        pNodeFrozen.isHidden = false
+        qNodeFrozen.isHidden = false
+        rNodeFrozen.isHidden = false
+        sNodeFrozen.isHidden = false
+        tNodeFrozen.isHidden = false
+        uNodeFrozen.isHidden = false
+        vNodeFrozen.isHidden = false
+        wNodeFrozen.isHidden = false
+        xNodeFrozen.isHidden = false
+        yNodeFrozen.isHidden = false
+        zNodeFrozen.isHidden = false
     
     }
     
@@ -275,14 +295,25 @@ class GameViewController: UIViewController {
         if startTapBool == true {
             
             startTapBool = false
+            tapGesture.isEnabled = true
             
             makeFrozenNodesVisible()
             runWild(aNodeFree)
             runWild(bNodeFree)
             runWild(cNodeFree)
+            runWild(dNodeFree)
+            runWild(eNodeFree)
+            runWild(fNodeFree)
+            runWild(gNodeFree)
+            runWild(hNodeFree)
+            runWild(iNodeFree)
+            runWild(jNodeFree)
+            runWild(kNodeFree)
+            runWild(lNodeFree)
             
         } else {
             startTapBool = true
+            tapGesture.isEnabled = false
             scene.rootNode.enumerateChildNodes { (node, stop) in
                 node.removeFromParentNode() }
                  viewDidLoad()

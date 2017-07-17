@@ -34,35 +34,80 @@ extension GameViewController {
         
         
         
-        aNodeFree = LetterNode(geometry: aGeoF, frozen: false)
+        aNodeFree = LetterNode(geometry: aGeo, frozen: false)
         aNodeFree.position = randomStartingPosition()
         aNodeFree.frozenPosition = aNodeFrozen.position
 //        aNodeFree.physicsBody = physicsBody
         scene.rootNode.addChildNode(aNodeFree)
         
-        bNodeFree = LetterNode(geometry: bGeoF, frozen: false)
+        bNodeFree = LetterNode(geometry: bGeo, frozen: false)
         bNodeFree.position = randomStartingPosition()
         bNodeFree.frozenPosition = bNodeFrozen.position
         scene.rootNode.addChildNode(bNodeFree)
         
-        cNodeFree = LetterNode(geometry: cGeoF, frozen: false)
+        cNodeFree = LetterNode(geometry: cGeo, frozen: false)
         cNodeFree.position = randomStartingPosition()
         cNodeFree.frozenPosition = cNodeFrozen.position
         //        cNodeFree.physicsBody = physicsBody
         scene.rootNode.addChildNode(cNodeFree)
+        
+        dNodeFree = LetterNode(geometry: dGeo, frozen: false)
+        dNodeFree.position = randomStartingPosition()
+        dNodeFree.frozenPosition = dNodeFrozen.position
+        scene.rootNode.addChildNode(dNodeFree)
+        
+        eNodeFree = LetterNode(geometry: eGeo, frozen: false)
+        eNodeFree.position = randomStartingPosition()
+        eNodeFree.frozenPosition = eNodeFrozen.position
+        scene.rootNode.addChildNode(eNodeFree)
+        
+        fNodeFree = LetterNode(geometry: fGeo, frozen: false)
+        fNodeFree.position = randomStartingPosition()
+        fNodeFree.frozenPosition = fNodeFrozen.position
+        scene.rootNode.addChildNode(fNodeFree)
+        
+        gNodeFree = LetterNode(geometry: gGeo, frozen: false)
+        gNodeFree.position = randomStartingPosition()
+        gNodeFree.frozenPosition = gNodeFrozen.position
+        scene.rootNode.addChildNode(gNodeFree)
+        
+        hNodeFree = LetterNode(geometry: hGeo, frozen: false)
+        hNodeFree.position = randomStartingPosition()
+        hNodeFree.frozenPosition = hNodeFrozen.position
+        scene.rootNode.addChildNode(hNodeFree)
+        
+        iNodeFree = LetterNode(geometry: iGeo, frozen: false)
+        iNodeFree.position = randomStartingPosition()
+        iNodeFree.frozenPosition = iNodeFrozen.position
+        scene.rootNode.addChildNode(iNodeFree)
+        
+        jNodeFree = LetterNode(geometry: jGeo, frozen: false)
+        jNodeFree.position = randomStartingPosition()
+        jNodeFree.frozenPosition = jNodeFrozen.position
+        scene.rootNode.addChildNode(jNodeFree)
+        
+        kNodeFree = LetterNode(geometry: kGeo, frozen: false)
+        kNodeFree.position = randomStartingPosition()
+        kNodeFree.frozenPosition = kNodeFrozen.position
+        scene.rootNode.addChildNode(kNodeFree)
+        
+        lNodeFree = LetterNode(geometry: lGeo, frozen: false)
+        lNodeFree.position = randomStartingPosition()
+        lNodeFree.frozenPosition = lNodeFrozen.position
+        scene.rootNode.addChildNode(lNodeFree)
     }
     
     func loadNodesFrozen() {
         
-        aNodeFrozen = LetterNode(geometry: aGeo, frozen: true)
+        aNodeFrozen = LetterNode(geometry: aGeoF, frozen: true)
         aNodeFrozen.position = SCNVector3(0, 50, 0)
         scene.rootNode.addChildNode(aNodeFrozen)
         
-        bNodeFrozen = LetterNode(geometry: bGeo, frozen: true)
+        bNodeFrozen = LetterNode(geometry: bGeoF, frozen: true)
         bNodeFrozen.position = SCNVector3(17, 50, 0)
         scene.rootNode.addChildNode(bNodeFrozen)
         
-        cNodeFrozen = LetterNode(geometry: cGeo, frozen: true)
+        cNodeFrozen = LetterNode(geometry: cGeoF, frozen: true)
         cNodeFrozen.position = SCNVector3(34, 50, 0)
         scene.rootNode.addChildNode(cNodeFrozen)
         
