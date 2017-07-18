@@ -37,8 +37,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     xNodeFrozen, yNodeFrozen, zNodeFrozen: LetterNode!
     
     
-//    var frozenArray: [LetterNode] = []
-//    var freeArray: [LetterNode] = []
+    var frozenArray: [LetterNode] = []
+    var freeArray: [LetterNode] = []
 //    var geoArray: [Letter] = []
     
     var aNodeFree, bNodeFree, cNodeFree, dNodeFree, eNodeFree, fNodeFree, gNodeFree, hNodeFree, iNodeFree, jNodeFree, kNodeFree, lNodeFree, mNodeFree, nNodeFree, oNodeFree, pNodeFree, qNodeFree, rNodeFree, sNodeFree, tNodeFree, uNodeFree, vNodeFree, wNodeFree, xNodeFree, yNodeFree, zNodeFree: LetterNode!
@@ -47,21 +47,16 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         cameraAndLights()
         environment()
         
-        scene.physicsWorld.contactDelegate = self 
-        
         loadGeometry()
-        
         loadNodesFrozen()
-        
-        
         loadNodesFree()
         
         scnView = self.view as! SCNView
         scnView.scene = scene
+//        scene.physicsWorld.contactDelegate = self
         scnView.allowsCameraControl = false
         scnView.showsStatistics = true
         scnView.backgroundColor = UIColor.blue
@@ -73,8 +68,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
 
         loadGameView()
 
-        
-        
     }
     
     
@@ -165,21 +158,44 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
                 nodeCaughtAnimation(node: tappedNode)
             }
         }
+        
+//        if freeNodesArray.count == 0 {
+//
+//            // disable button
+//            // animation
+//            // viewDidLoad
+//            
+//            
+//            
+//            
+//        }
+        
+        
     }
     
     func nodeCaughtAnimation(node: LetterNode) {
         
+        
+//        print(node)
+//        print(freeArray.count)
+        let i = freeArray.index(of: node)!
+        let frozenNode = frozenArray[i]
+        
         let wait = SCNAction.wait(duration: 1.0)
         let presentLetter = SCNAction.move(to: SCNVector3(133, 3, 170), duration: 0.5)
         let moveToHome = SCNAction.move(to: node.frozenPosition!, duration: 1.0)
+        let hideFrozenNode = SCNAction.fadeOpacity(to: 0, duration: 3.0)
+        
         let actionArray = [presentLetter, wait, moveToHome]
         let sequence = SCNAction.sequence(actionArray)
         node.runAction(sequence, completionHandler: tapGestureTrue)
+        frozenNode.isHidden = true
         
     }
     
     func tapGestureTrue() {
         tapGesture.isEnabled = true
+//        bNodeFrozen.isHidden = true
     }
     
     func loadGameView() {
@@ -216,77 +232,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         let startTap = UITapGestureRecognizer(target: self, action: #selector(handleStartTap(_:)))
         startLabel.addGestureRecognizer(startTap)
     }
-//        pauseLabel = UILabel()
-//        gameView.addSubview(pauseLabel)
-//
-//        pauseLabel.adjustsFontSizeToFitWidth = true
-//
-//        pauseLabel.font = UIFont(name: "Arial", size: 36.0 )
-//        pauseLabel.text = "Pause"
-//        pauseLabel.layer.masksToBounds = true
-//        //        startLabel.layer.cornerRadius = 125
-//        pauseLabel.layer.backgroundColor = UIColor.yellow.cgColor
-//
-//        pauseLabel.translatesAutoresizingMaskIntoConstraints = false
-//        pauseLabel.layer.cornerRadius = startLabel.frame.width/2
-//
-//        pauseLabel.widthAnchor.constraint(equalTo: startLabel.heightAnchor, multiplier: 0.0)
-//        pauseLabel.leadingAnchor.constraint(equalTo: gameView.leadingAnchor, constant: 50).isActive = true
-//        pauseLabel.topAnchor.constraint(equalTo: gameView.topAnchor, constant: 150).isActive = true
-//        pauseLabel.isUserInteractionEnabled = true
-//
-    
-//
-//        let pauseTap = UITapGestureRecognizer(target: self, action: #selector(handlePauseTap(_:)))
-//        pauseLabel.addGestureRecognizer(pauseTap)
-//
-//    }
-//
-//    @objc func handlePauseTap(_ gestureRecognizer: UITapGestureRecognizer) {
-//
-//        // TODO: fix pause exploit
-//
-//        if pauseBool == true {
-//            pauseBool = false
-//            scnView.scene?.isPaused = true
-//        } else{
-//            pauseBool = true
-//            scnView.scene?.isPaused = false
-//        }
-//
-//
-//    }
-    
-    func makeFrozenNodesVisible() {
-    
-        aNodeFrozen.isHidden = false
-        bNodeFrozen.isHidden = false
-        cNodeFrozen.isHidden = false
-        dNodeFrozen.isHidden = false
-        eNodeFrozen.isHidden = false
-        fNodeFrozen.isHidden = false
-        gNodeFrozen.isHidden = false
-        hNodeFrozen.isHidden = false
-        iNodeFrozen.isHidden = false
-        jNodeFrozen.isHidden = false
-        kNodeFrozen.isHidden = false
-        lNodeFrozen.isHidden = false
-        mNodeFrozen.isHidden = false
-        nNodeFrozen.isHidden = false
-        oNodeFrozen.isHidden = false
-        pNodeFrozen.isHidden = false
-        qNodeFrozen.isHidden = false
-        rNodeFrozen.isHidden = false
-        sNodeFrozen.isHidden = false
-        tNodeFrozen.isHidden = false
-        uNodeFrozen.isHidden = false
-        vNodeFrozen.isHidden = false
-        wNodeFrozen.isHidden = false
-        xNodeFrozen.isHidden = false
-        yNodeFrozen.isHidden = false
-        zNodeFrozen.isHidden = false
-    
-    }
     
     @objc func handleStartTap(_ gestureRecognizer: UITapGestureRecognizer) {
         
@@ -311,11 +256,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             runWild(mNodeFree)
             runWild(nNodeFree)
             
-            aNodeFree.physicsBody = SCNPhysicsBody.dynamic()
-            bNodeFree.physicsBody = SCNPhysicsBody.dynamic()
-            cNodeFree.physicsBody = SCNPhysicsBody.dynamic()
-            dNodeFree.physicsBody = SCNPhysicsBody.dynamic()
-            eNodeFree.physicsBody = SCNPhysicsBody.dynamic()
             
         } else {
             startTapBool = true
@@ -337,3 +277,44 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     
     
 }
+
+//        pauseLabel = UILabel()
+//        gameView.addSubview(pauseLabel)
+//
+//        pauseLabel.adjustsFontSizeToFitWidth = true
+//
+//        pauseLabel.font = UIFont(name: "Arial", size: 36.0 )
+//        pauseLabel.text = "Pause"
+//        pauseLabel.layer.masksToBounds = true
+//        //        startLabel.layer.cornerRadius = 125
+//        pauseLabel.layer.backgroundColor = UIColor.yellow.cgColor
+//
+//        pauseLabel.translatesAutoresizingMaskIntoConstraints = false
+//        pauseLabel.layer.cornerRadius = startLabel.frame.width/2
+//
+//        pauseLabel.widthAnchor.constraint(equalTo: startLabel.heightAnchor, multiplier: 0.0)
+//        pauseLabel.leadingAnchor.constraint(equalTo: gameView.leadingAnchor, constant: 50).isActive = true
+//        pauseLabel.topAnchor.constraint(equalTo: gameView.topAnchor, constant: 150).isActive = true
+//        pauseLabel.isUserInteractionEnabled = true
+//
+
+//
+//        let pauseTap = UITapGestureRecognizer(target: self, action: #selector(handlePauseTap(_:)))
+//        pauseLabel.addGestureRecognizer(pauseTap)
+//
+//    }
+//
+//    @objc func handlePauseTap(_ gestureRecognizer: UITapGestureRecognizer) {
+//
+//        // TODO: fix pause exploit
+//
+//        if pauseBool == true {
+//            pauseBool = false
+//            scnView.scene?.isPaused = true
+//        } else{
+//            pauseBool = true
+//            scnView.scene?.isPaused = false
+//        }
+//
+//
+//    }
