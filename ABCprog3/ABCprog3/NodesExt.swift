@@ -127,11 +127,6 @@ extension GameViewController {
         
     }
     
-//    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-//
-//        contact.nodeB.removeAllActions()
-//    }
-    
     func loadNodesFrozen() {
         
         aNodeFrozen = LetterNode(geometry: aGeoF, frozen: true)

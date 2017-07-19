@@ -9,6 +9,7 @@
 import UIKit
 import QuartzCore
 import SceneKit
+import SpriteKit
 
 class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     
@@ -21,6 +22,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     var pauseBool: Bool = true
     var startTapBool: Bool = true
     var tapGesture: UITapGestureRecognizer!
+    var i = 14
     
     
     var aGeo, bGeo, cGeo, dGeo, eGeo, fGeo, gGeo, hGeo, iGeo,
@@ -39,7 +41,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     
     var frozenArray: [LetterNode] = []
     var freeArray: [LetterNode] = []
-//    var geoArray: [Letter] = []
     
     var aNodeFree, bNodeFree, cNodeFree, dNodeFree, eNodeFree, fNodeFree, gNodeFree, hNodeFree, iNodeFree, jNodeFree, kNodeFree, lNodeFree, mNodeFree, nNodeFree, oNodeFree, pNodeFree, qNodeFree, rNodeFree, sNodeFree, tNodeFree, uNodeFree, vNodeFree, wNodeFree, xNodeFree, yNodeFree, zNodeFree: LetterNode!
     
@@ -54,6 +55,8 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         loadNodesFrozen()
         loadNodesFree()
         
+        
+        
         scnView = self.view as! SCNView
         scnView.scene = scene
 //        scene.physicsWorld.contactDelegate = self
@@ -61,6 +64,25 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         scnView.showsStatistics = true
         scnView.backgroundColor = UIColor.blue
         scnView.autoenablesDefaultLighting = false
+        
+        
+        
+        var spriteScene = SKScene()
+        scnView.overlaySKScene = spriteScene
+
+
+
+        let b = SKEmitterNode(fileNamed: "SparkParticle")
+
+        spriteScene.addChild(b!)
+
+        
+        
+        
+        
+        
+        
+        
         
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleLetterTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
@@ -148,38 +170,42 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         
         if hitResults.first?.node is LetterNode
         {
-            print("is letter node")
             tappedNode = (hitResults.first?.node as! LetterNode)
             if tappedNode.frozenPosition != nil && tappedNode.frozen == false{
                 tappedNode.frozen = true
                 tapGesture.isEnabled = false
-                print("not frozen letter Node")
-                
                 nodeCaughtAnimation(node: tappedNode)
             }
         }
         
-//        if freeNodesArray.count == 0 {
-//
-//            // disable button
-//            // animation
-//            // viewDidLoad
-//            
-//            
-//            
-//            
-//        }
+        if i == 0 {
+            
+            
+            print("you won")
+            
+            // disable button
+            // animation
+            // viewDidLoad
+            
+            
+            
+            
+        }
         
         
     }
     
     func nodeCaughtAnimation(node: LetterNode) {
         
+        print(node)
+        print(freeArray.count)
+        print(frozenArray.count)
         
-//        print(node)
-//        print(freeArray.count)
-        let i = freeArray.index(of: node)!
-        let frozenNode = frozenArray[i]
+        i -= 1
+        print(i)
+        
+        let j = freeArray.index(of: node)!
+        let frozenNode = frozenArray[j]
         
         let wait = SCNAction.wait(duration: 1.0)
         let presentLetter = SCNAction.move(to: SCNVector3(133, 3, 170), duration: 0.5)
@@ -189,13 +215,12 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         let actionArray = [presentLetter, wait, moveToHome]
         let sequence = SCNAction.sequence(actionArray)
         node.runAction(sequence, completionHandler: tapGestureTrue)
-        frozenNode.isHidden = true
+        frozenNode.runAction(hideFrozenNode)
         
     }
     
     func tapGestureTrue() {
         tapGesture.isEnabled = true
-//        bNodeFrozen.isHidden = true
     }
     
     func loadGameView() {
@@ -208,7 +233,6 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         gameView.topAnchor.constraint(equalTo: scnView.topAnchor).isActive = true
         gameView.bottomAnchor.constraint(equalTo: scnView.bottomAnchor).isActive = true
         
-        //        let testCGRect = CGRect(x: 100, y: 100, width: 5, height: 5)
         
         startLabel = UILabel( )
         gameView.addSubview(startLabel)
@@ -262,7 +286,10 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             tapGesture.isEnabled = false
             scene.rootNode.enumerateChildNodes { (node, stop) in
                 node.removeFromParentNode() }
-                 viewDidLoad()
+            i = 14
+            frozenArray = []
+            freeArray = []
+            viewDidLoad()
         }
         
     }

@@ -16,6 +16,8 @@
 		FE529FF91F1428A0005E3EF3 /* EnvironmentExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FF81F1428A0005E3EF3 /* EnvironmentExt.swift */; };
 		FE529FFB1F142AEF005E3EF3 /* GeometryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */; };
 		FE529FFD1F142D5F005E3EF3 /* NodesExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */; };
+		FE5FF61A1F20161F001DF7DC /* SparkParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = FE5FF6191F20161F001DF7DC /* SparkParticle.sks */; };
+		FE7810041F1FF93F00FDECDE /* SceneKit Scene.scn in Resources */ = {isa = PBXBuildFile; fileRef = FE7810031F1FF93F00FDECDE /* SceneKit Scene.scn */; };
 		FEC6C3E31F113E44009410BE /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E21F113E44009410BE /* Letter.swift */; };
 		FEC6C3E51F11505B009410BE /* LetterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E41F11505B009410BE /* LetterNode.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +34,8 @@
 		FE529FF81F1428A0005E3EF3 /* EnvironmentExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentExt.swift; sourceTree = "<group>"; };
 		FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryExt.swift; sourceTree = "<group>"; };
 		FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodesExt.swift; sourceTree = "<group>"; };
+		FE5FF6191F20161F001DF7DC /* SparkParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SparkParticle.sks; sourceTree = "<group>"; };
+		FE7810031F1FF93F00FDECDE /* SceneKit Scene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "SceneKit Scene.scn"; sourceTree = "<group>"; };
 		FEC6C3E21F113E44009410BE /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
 		FEC6C3E41F11505B009410BE /* LetterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +82,8 @@
 				FE529FF81F1428A0005E3EF3 /* EnvironmentExt.swift */,
 				FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */,
 				FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */,
+				FE7810031F1FF93F00FDECDE /* SceneKit Scene.scn */,
+				FE5FF6191F20161F001DF7DC /* SparkParticle.sks */,
 			);
 			path = ABCprog3;
 			sourceTree = "<group>";
@@ -144,8 +150,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE4E579D1F01868300C78154 /* art.scnassets in Resources */,
+				FE5FF61A1F20161F001DF7DC /* SparkParticle.sks in Resources */,
 				FE4E57A71F01868300C78154 /* LaunchScreen.storyboard in Resources */,
 				FE4E57A41F01868300C78154 /* Assets.xcassets in Resources */,
+				FE7810041F1FF93F00FDECDE /* SceneKit Scene.scn in Resources */,
 				FE4E57A21F01868300C78154 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

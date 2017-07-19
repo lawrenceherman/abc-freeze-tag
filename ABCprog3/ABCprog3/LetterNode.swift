@@ -15,7 +15,7 @@ class LetterNode: SCNNode {
     var frozen: Bool
     var frozenPosition: SCNVector3?
     var string: String!
-//    var hitTapped: Bool = false
+    var corNode: LetterNode?
     
     init(geometry: Letter, frozen: Bool) {
         self.frozen = frozen
@@ -23,13 +23,11 @@ class LetterNode: SCNNode {
         
         super.init()
         self.geometry = geometry
-
+        
         if frozen == true {
             self.geometry?.firstMaterial?.diffuse.contents = UIColor.white
             self.isHidden = true
             
-            
-//            self.hitTapped = true
         } else {
             switch string {
             case "F", "D", "K", "P", "T", "Y":
@@ -45,6 +43,7 @@ class LetterNode: SCNNode {
             default:
                 self.geometry?.firstMaterial?.diffuse.contents = UIColor.red
             }
+            
         }
         
     }
