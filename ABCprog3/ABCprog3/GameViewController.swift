@@ -6,7 +6,7 @@
 //  Copyright © 2017 Lawrence Herman. All rights reserved.
 //
 
-import UIKit
+//import UIKit
 import QuartzCore
 import SceneKit
 import SpriteKit
@@ -60,38 +60,77 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         scnView = self.view as! SCNView
         scnView.scene = scene
 //        scene.physicsWorld.contactDelegate = self
-        scnView.allowsCameraControl = false
+        scnView.allowsCameraControl = true
         scnView.showsStatistics = true
         scnView.backgroundColor = UIColor.blue
         scnView.autoenablesDefaultLighting = false
         
+
+        let spriteScene = SKScene(size: CGSize(width: 750, height: 1334))
+//        spriteScene.scaleMode = .aspectFill
+        
+        let spritePlayLabel = SKLabelNode()
+        spritePlayLabel.position = CGPoint(x: 300, y: 150)
+        spritePlayLabel.text = "Play"
+        spritePlayLabel.color = UIColor.black
+        
+        spriteScene.addChild(spritePlayLabel)
+        
+    
         
         
-        var spriteScene = SKScene()
+        
+        
+//        let button = SKSpriteNode(color: SKColor.red, size: CGSize(width: 100, height: 200))
+//        // Put it in the center of the scene
+//        button.position = CGPoint(x: 150, y: 150)
+//        spriteScene.addChild(button)
+        
+//        if let b = SKReferenceNode(fileNamed: "SparkParticle.sks") {
+//            spriteScene.addChild(b)
+//            print("particle loaded")
+//        }
+        
         scnView.overlaySKScene = spriteScene
+//
+//
+     
+    
+//
 
-
-
-        let b = SKEmitterNode(fileNamed: "SparkParticle")
-
-        spriteScene.addChild(b!)
-
-        
-        
-        
-        
-        
-        
-        
-        
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleLetterTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
         tapGesture.isEnabled = false
 
-        loadGameView()
+//        loadGameView()
 
     }
     
+//    class ButtonTestScene: SKScene {
+//
+//        var button: SKNode! = nil
+//
+//        override func didMove(to view: SKView) {
+//            // Create a simple red rectangle that's 100x44
+//            button = SKSpriteNode(color: SKColor.red, size: CGSize(width: 100, height: 44))
+//            // Put it in the center of the scene
+//            button.position = CGPoint(x: 100, y: 100)
+//
+//            self.addChild(button)
+//        }
+    
+//        override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+//            // Loop over all the touches in this event
+//            for touch: AnyObject in touches {
+//                // Get the location of the touch in this scene
+//                let location = touch.locationInNode(self)
+//                // Check if the location of the touch is within the button's bounds
+//                if button.containsPoint(location) {
+//                    println("tapped!")
+//                }
+//            }
+//        }
+//    }
     
     func runWild(_ node: LetterNode) {
         
@@ -187,11 +226,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             // animation
             // viewDidLoad
             
-            
-            
-            
         }
-        
         
     }
     
@@ -223,39 +258,39 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         tapGesture.isEnabled = true
     }
     
-    func loadGameView() {
-        
-        scnView.addSubview(gameView)
-        
-        gameView.translatesAutoresizingMaskIntoConstraints = false
-        gameView.trailingAnchor.constraint(equalTo: scnView.trailingAnchor).isActive = true
-        gameView.leadingAnchor.constraint(equalTo: scnView.leadingAnchor).isActive = true
-        gameView.topAnchor.constraint(equalTo: scnView.topAnchor).isActive = true
-        gameView.bottomAnchor.constraint(equalTo: scnView.bottomAnchor).isActive = true
-        
-        
-        startLabel = UILabel( )
-        gameView.addSubview(startLabel)
-        
-        startLabel.adjustsFontSizeToFitWidth = true
-        
-        startLabel.font = UIFont(name: "Arial", size: 36.0 )
-        startLabel.text = "START"
-        startLabel.layer.masksToBounds = true
-        //        startLabel.layer.cornerRadius = 125
-        startLabel.layer.backgroundColor = UIColor.green.cgColor
-        
-        startLabel.translatesAutoresizingMaskIntoConstraints = false
-        startLabel.layer.cornerRadius = startLabel.frame.width/2
-        
-        startLabel.widthAnchor.constraint(equalTo: startLabel.heightAnchor, multiplier: 0.0)
-        startLabel.trailingAnchor.constraint(equalTo: gameView.trailingAnchor, constant: -50).isActive = true
-        startLabel.topAnchor.constraint(equalTo: gameView.topAnchor, constant: 150).isActive = true
-        startLabel.isUserInteractionEnabled = true
-        
-        let startTap = UITapGestureRecognizer(target: self, action: #selector(handleStartTap(_:)))
-        startLabel.addGestureRecognizer(startTap)
-    }
+//    func loadGameView() {
+//
+//        scnView.addSubview(gameView)
+//
+//        gameView.translatesAutoresizingMaskIntoConstraints = false
+//        gameView.trailingAnchor.constraint(equalTo: scnView.trailingAnchor).isActive = true
+//        gameView.leadingAnchor.constraint(equalTo: scnView.leadingAnchor).isActive = true
+//        gameView.topAnchor.constraint(equalTo: scnView.topAnchor).isActive = true
+//        gameView.bottomAnchor.constraint(equalTo: scnView.bottomAnchor).isActive = true
+//
+//
+//        startLabel = UILabel( )
+//        gameView.addSubview(startLabel)
+//
+//        startLabel.adjustsFontSizeToFitWidth = true
+//
+//        startLabel.font = UIFont(name: "Arial", size: 36.0 )
+//        startLabel.text = "START"
+//        startLabel.layer.masksToBounds = true
+//        //        startLabel.layer.cornerRadius = 125
+//        startLabel.layer.backgroundColor = UIColor.green.cgColor
+//
+//        startLabel.translatesAutoresizingMaskIntoConstraints = false
+//        startLabel.layer.cornerRadius = startLabel.frame.width/2
+//
+//        startLabel.widthAnchor.constraint(equalTo: startLabel.heightAnchor, multiplier: 0.0)
+//        startLabel.trailingAnchor.constraint(equalTo: gameView.trailingAnchor, constant: -50).isActive = true
+//        startLabel.topAnchor.constraint(equalTo: gameView.topAnchor, constant: 150).isActive = true
+//        startLabel.isUserInteractionEnabled = true
+//
+//        let startTap = UITapGestureRecognizer(target: self, action: #selector(handleStartTap(_:)))
+//        startLabel.addGestureRecognizer(startTap)
+//    }
     
     @objc func handleStartTap(_ gestureRecognizer: UITapGestureRecognizer) {
         

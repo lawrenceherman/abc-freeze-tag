@@ -17,7 +17,7 @@
 		FE529FFB1F142AEF005E3EF3 /* GeometryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */; };
 		FE529FFD1F142D5F005E3EF3 /* NodesExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */; };
 		FE5FF61A1F20161F001DF7DC /* SparkParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = FE5FF6191F20161F001DF7DC /* SparkParticle.sks */; };
-		FE7810041F1FF93F00FDECDE /* SceneKit Scene.scn in Resources */ = {isa = PBXBuildFile; fileRef = FE7810031F1FF93F00FDECDE /* SceneKit Scene.scn */; };
+		FE86688A1F21192D000AD4F3 /* SpriteScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FE8668891F21192D000AD4F3 /* SpriteScene.sks */; };
 		FEC6C3E31F113E44009410BE /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E21F113E44009410BE /* Letter.swift */; };
 		FEC6C3E51F11505B009410BE /* LetterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E41F11505B009410BE /* LetterNode.swift */; };
 /* End PBXBuildFile section */
@@ -35,7 +35,7 @@
 		FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryExt.swift; sourceTree = "<group>"; };
 		FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodesExt.swift; sourceTree = "<group>"; };
 		FE5FF6191F20161F001DF7DC /* SparkParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SparkParticle.sks; sourceTree = "<group>"; };
-		FE7810031F1FF93F00FDECDE /* SceneKit Scene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "SceneKit Scene.scn"; sourceTree = "<group>"; };
+		FE8668891F21192D000AD4F3 /* SpriteScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpriteScene.sks; sourceTree = "<group>"; };
 		FEC6C3E21F113E44009410BE /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
 		FEC6C3E41F11505B009410BE /* LetterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				FE4E579A1F01868300C78154 /* AppDelegate.swift */,
+				FE86688B1F21230C000AD4F3 /* SCNParticles */,
 				FE4E579C1F01868300C78154 /* art.scnassets */,
 				FE4E579E1F01868300C78154 /* GameViewController.swift */,
 				FE4E57A01F01868300C78154 /* Main.storyboard */,
@@ -82,10 +83,17 @@
 				FE529FF81F1428A0005E3EF3 /* EnvironmentExt.swift */,
 				FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */,
 				FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */,
-				FE7810031F1FF93F00FDECDE /* SceneKit Scene.scn */,
 				FE5FF6191F20161F001DF7DC /* SparkParticle.sks */,
+				FE8668891F21192D000AD4F3 /* SpriteScene.sks */,
 			);
 			path = ABCprog3;
+			sourceTree = "<group>";
+		};
+		FE86688B1F21230C000AD4F3 /* SCNParticles */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SCNParticles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,10 +158,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE4E579D1F01868300C78154 /* art.scnassets in Resources */,
+				FE86688A1F21192D000AD4F3 /* SpriteScene.sks in Resources */,
 				FE5FF61A1F20161F001DF7DC /* SparkParticle.sks in Resources */,
 				FE4E57A71F01868300C78154 /* LaunchScreen.storyboard in Resources */,
 				FE4E57A41F01868300C78154 /* Assets.xcassets in Resources */,
-				FE7810041F1FF93F00FDECDE /* SceneKit Scene.scn in Resources */,
 				FE4E57A21F01868300C78154 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,7 +252,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -295,7 +303,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -314,7 +322,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Lawrence-Herman.ABCprog3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -328,7 +336,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Lawrence-Herman.ABCprog3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

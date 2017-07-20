@@ -7,8 +7,8 @@
 //
 
 import SceneKit
-import QuartzCore
-import UIKit
+//import QuartzCore
+//import UIKit
 
 
 extension GameViewController {
