@@ -16,6 +16,10 @@
 		FE529FF91F1428A0005E3EF3 /* EnvironmentExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FF81F1428A0005E3EF3 /* EnvironmentExt.swift */; };
 		FE529FFB1F142AEF005E3EF3 /* GeometryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */; };
 		FE529FFD1F142D5F005E3EF3 /* NodesExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */; };
+		FE900F641F23F45C00ED525D /* ABC SKYLAR CATCH ME.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FEB7B5901F229A6700124B2E /* ABC SKYLAR CATCH ME.mp3 */; };
+		FE900F651F23F45E00ED525D /* ABC SKYLAR YOU CANT CATCH ME.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FEB7B58E1F229A6600124B2E /* ABC SKYLAR YOU CANT CATCH ME.mp3 */; };
+		FE900F661F23F46100ED525D /* ABC SKYLARA1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FEB7B5911F229A6700124B2E /* ABC SKYLARA1.mp3 */; };
+		FE900F671F23F46300ED525D /* KidsPlayground1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FEB7B58F1F229A6700124B2E /* KidsPlayground1.mp3 */; };
 		FEC6C3E31F113E44009410BE /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E21F113E44009410BE /* Letter.swift */; };
 		FEC6C3E51F11505B009410BE /* LetterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E41F11505B009410BE /* LetterNode.swift */; };
 /* End PBXBuildFile section */
@@ -70,6 +74,7 @@
 		FE4E57991F01868300C78154 /* ABC Freeze Tag */ = {
 			isa = PBXGroup;
 			children = (
+				FE98855C1F23BD670083DD75 /* Particles */,
 				FEB7B58D1F229A3800124B2E /* Sounds */,
 				FE4E579A1F01868300C78154 /* AppDelegate.swift */,
 				FE4E579C1F01868300C78154 /* art.scnassets */,
@@ -85,6 +90,13 @@
 				FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */,
 			);
 			path = "ABC Freeze Tag";
+			sourceTree = "<group>";
+		};
+		FE98855C1F23BD670083DD75 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Particles;
 			sourceTree = "<group>";
 		};
 		FEB7B58D1F229A3800124B2E /* Sounds */ = {
@@ -159,9 +171,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE900F661F23F46100ED525D /* ABC SKYLARA1.mp3 in Resources */,
 				FE4E579D1F01868300C78154 /* art.scnassets in Resources */,
+				FE900F671F23F46300ED525D /* KidsPlayground1.mp3 in Resources */,
 				FE4E57A71F01868300C78154 /* LaunchScreen.storyboard in Resources */,
+				FE900F651F23F45E00ED525D /* ABC SKYLAR YOU CANT CATCH ME.mp3 in Resources */,
 				FE4E57A41F01868300C78154 /* Assets.xcassets in Resources */,
+				FE900F641F23F45C00ED525D /* ABC SKYLAR CATCH ME.mp3 in Resources */,
 				FE4E57A21F01868300C78154 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

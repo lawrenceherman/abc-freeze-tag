@@ -9,14 +9,15 @@
 //import UIKit
 import QuartzCore
 import SceneKit
-import SpriteKit
+//import SpriteKit
+//import AVFoundation
 
-class GameViewController: UIViewController, SCNPhysicsContactDelegate {
+class GameViewController: UIViewController {
     
     let scene = SCNScene()
     let gameView = UIView()
     var startLabel: UILabel!
-//    var pauseLabel: UILabel!
+    //    var pauseLabel: UILabel!
     
     var scnView: SCNView!
     var pauseBool: Bool = true
@@ -44,6 +45,10 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     
     var aNodeFree, bNodeFree, cNodeFree, dNodeFree, eNodeFree, fNodeFree, gNodeFree, hNodeFree, iNodeFree, jNodeFree, kNodeFree, lNodeFree, mNodeFree, nNodeFree, oNodeFree, pNodeFree, qNodeFree, rNodeFree, sNodeFree, tNodeFree, uNodeFree, vNodeFree, wNodeFree, xNodeFree, yNodeFree, zNodeFree: LetterNode!
     
+    //    var x = AVAudioPlayer()
+    
+//    var audioEngine: AVAudioEngine!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,51 +64,89 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         
         scnView = self.view as! SCNView
         scnView.scene = scene
-//        scene.physicsWorld.contactDelegate = self
+        //        scene.physicsWorld.contactDelegate = self
         scnView.allowsCameraControl = false
         scnView.showsStatistics = true
         scnView.backgroundColor = UIColor.blue
         scnView.autoenablesDefaultLighting = false
         
-//
-//        let spriteScene = SKScene(size: CGSize(width: 750, height: 1334))
-////        spriteScene.scaleMode = .aspectFill
-//
-//        let spritePlayLabel = SKLabelNode()
-//        spritePlayLabel.position = CGPoint(x: 300, y: 150)
-//        spritePlayLabel.text = "Play"
-//        spritePlayLabel.color = UIColor.black
-//
-//        spriteScene.addChild(spritePlayLabel)
         
-    
-        
-//        let button = SKSpriteNode(color: SKColor.red, size: CGSize(width: 100, height: 200))
-//        // Put it in the center of the scene
-//        button.position = CGPoint(x: 150, y: 150)
-//        spriteScene.addChild(button)
-        
-//        if let b = SKReferenceNode(fileNamed: "SparkParticle.sks") {
-//            spriteScene.addChild(b)
-//            print("particle loaded")
-//        }
-        
-//        scnView.overlaySKScene = spriteScene
-//
-//
-     
-    
-//
-
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleLetterTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
         tapGesture.isEnabled = false
-
+        
         loadGameView()
-
+        loadSounds()
+        
     }
     
-
+    func loadSounds() {
+        
+//        audioEngine = AVAudioEngine()
+        
+        
+//        let ambAudioNode = AVAudioNode()
+        
+        
+        guard let kidPlayGround1 = SCNAudioSource(fileNamed: "KidsPlayground1")
+//            let skylarA1 = SCNAudioSource(fileNamed: "ABC SKYLARA1")
+            else { print("sound load failure"); return}
+        
+        
+//        let skylarA1Player = SCNAudioPlayer(source: skylarA1)
+        let playground1Player = SCNAudioPlayer(source: kidPlayGround1)
+        
+        aNodeFree.addAudioPlayer(playground1Player)
+        
+//        let format = AVAudioFormat(standardFormatWithSampleRate: 44.1, channels: 2)
+        
+//        audioEngine.attach(playground1Player.audioNode!)
+//        audioEngine.connect(playground1Player.audioNode!, to: audioEngine.mainMixerNode, format: format)
+        
+//        let x = SCNAction.playAudio(kidPlayGround1, waitForCompletion: true)
+//        aNodeFree.runAction(x)
+        
+        
+        
+        //        let playgroundSounds1 = AVAudioPlayerNode()
+        //        let path = Bundle.main.path(forResource: "KidsPlayground1", ofType: "mp3")!
+        //        let url = URL(fileURLWithPath: path)
+        //
+        //
+        //        let audioFile = try! AVAudioFile(forReading: url)
+        //        let audioFormat = audioFile.processingFormat
+        //        let audioFrameCount = UInt32(audioFile.length)
+        //        let audioFileBuffer = AVAudioPCMBuffer(pcmFormat: audioFormat, frameCapacity: audioFrameCount)
+        //
+        //        do {
+        //            try audioFile.read(into: audioFileBuffer)
+        //        }
+        //        catch {
+        //            print("error")
+        //        }
+        //
+        //        audioEngine.attach(playgroundSounds1)
+        //        playgroundSounds1.scheduleFile(audioFile, at: nil, completionHandler: nil)
+        //        audioEngine.connect(playgroundSounds1, to: audioEngine.mainMixerNode, format: audioFormat)
+        //        //        audioEngine.connect(audioEngine.mainMixerNode, to: audioEngine.outputNode, format: audioFormat)
+        //
+//                do {
+//                    try audioEngine.start()
+//                }
+//                catch {
+//                    print("error")
+//                }
+        
+        
+        
+//                playgroundSounds1.play()
+        
+        
+        
+        
+        
+        
+    }
     
     func runWild(_ node: LetterNode) {
         
@@ -186,6 +229,7 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
             if tappedNode.frozenPosition != nil && tappedNode.frozen == false{
                 tappedNode.frozen = true
                 tapGesture.isEnabled = false
+                
                 nodeCaughtAnimation(node: tappedNode)
             }
         }
@@ -216,9 +260,10 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
         let frozenNode = frozenArray[j]
         
         let wait = SCNAction.wait(duration: 1.0)
-        let presentLetter = SCNAction.move(to: SCNVector3(134, 2, 176), duration: 0.5)
+        let presentLetter = SCNAction.move(to: SCNVector3(134, 5, 176), duration: 0.5)
         let moveToHome = SCNAction.move(to: node.frozenPosition!, duration: 1.0)
         let hideFrozenNode = SCNAction.fadeOpacity(to: 0, duration: 3.0)
+        
         
         let actionArray = [presentLetter, wait, moveToHome]
         let sequence = SCNAction.sequence(actionArray)
@@ -232,39 +277,39 @@ class GameViewController: UIViewController, SCNPhysicsContactDelegate {
     }
     
     func loadGameView() {
-
+        
         scnView.addSubview(gameView)
-
+        
         gameView.translatesAutoresizingMaskIntoConstraints = false
         gameView.trailingAnchor.constraint(equalTo: scnView.trailingAnchor).isActive = true
         gameView.leadingAnchor.constraint(equalTo: scnView.leadingAnchor).isActive = true
         gameView.topAnchor.constraint(equalTo: scnView.topAnchor).isActive = true
         gameView.bottomAnchor.constraint(equalTo: scnView.bottomAnchor).isActive = true
-    
-
-
+        
+        
+        
         startLabel = UILabel( )
         gameView.addSubview(startLabel)
-
-//        startLabel.adjustsFontSizeToFitWidth = true
-
+        
+        //        startLabel.adjustsFontSizeToFitWidth = true
+        
         startLabel.font = UIFont(name: "Arial", size: 40.0 )
-
+        
         startLabel.textAlignment = .center
         startLabel.text = "PLAY"
         startLabel.layer.masksToBounds = true
         startLabel.layer.cornerRadius = 25
         startLabel.layer.backgroundColor = UIColor.green.cgColor
-
+        
         startLabel.translatesAutoresizingMaskIntoConstraints = false
-//        startLabel.layer.cornerRadius = startLabel.frame.width/2
-
+        //        startLabel.layer.cornerRadius = startLabel.frame.width/2
+        
         startLabel.widthAnchor.constraint(equalTo: gameView.widthAnchor, multiplier: 0.13).isActive = true
         startLabel.heightAnchor.constraint(equalTo: gameView.heightAnchor, multiplier: 0.09 ).isActive = true
         startLabel.trailingAnchor.constraint(equalTo: gameView.trailingAnchor, constant: -30).isActive = true
         startLabel.topAnchor.constraint(equalTo: gameView.topAnchor, constant: 120).isActive = true
         startLabel.isUserInteractionEnabled = true
-
+        
         let startTap = UITapGestureRecognizer(target: self, action: #selector(handleStartTap(_:)))
         startLabel.addGestureRecognizer(startTap)
     }
