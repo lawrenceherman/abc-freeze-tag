@@ -7,6 +7,7 @@
 //
 
 import SceneKit
+import AVFoundation
 ////import UIKit
 //import QuartzCore
 
@@ -31,6 +32,7 @@ extension GameViewController {
         aNodeFree = LetterNode(geometry: aGeo, frozen: false)
         aNodeFree.position = randomStartingPosition()
         aNodeFree.frozenPosition = aNodeFrozen.position
+        aNodeFree.letterPlayer = skylarA1Source
         freeArray.append(aNodeFree)
 //        aNodeFree.physicsBody?.contactTestBitMask = 1
         scene.rootNode.addChildNode(aNodeFree)

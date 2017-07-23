@@ -16,6 +16,8 @@ class LetterNode: SCNNode {
     var frozenPosition: SCNVector3?
     var string: String!
     var corNode: LetterNode?
+    var letterPlayer: SCNAudioSource!
+    
     
     init(geometry: Letter, frozen: Bool) {
         self.frozen = frozen

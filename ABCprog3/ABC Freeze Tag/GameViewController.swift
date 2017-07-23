@@ -10,7 +10,7 @@
 import QuartzCore
 import SceneKit
 //import SpriteKit
-//import AVFoundation
+import AVFoundation
 
 class GameViewController: UIViewController {
     
@@ -39,15 +39,16 @@ class GameViewController: UIViewController {
     var  aNodeFrozen, bNodeFrozen, cNodeFrozen, dNodeFrozen, eNodeFrozen, fNodeFrozen, gNodeFrozen,hNodeFrozen, iNodeFrozen, jNodeFrozen, kNodeFrozen, lNodeFrozen, mNodeFrozen, nNodeFrozen, oNodeFrozen, pNodeFrozen, qNodeFrozen, rNodeFrozen, sNodeFrozen, tNodeFrozen, uNodeFrozen, vNodeFrozen, wNodeFrozen,
     xNodeFrozen, yNodeFrozen, zNodeFrozen: LetterNode!
     
+    var aNodeFree, bNodeFree, cNodeFree, dNodeFree, eNodeFree, fNodeFree, gNodeFree, hNodeFree, iNodeFree, jNodeFree, kNodeFree, lNodeFree, mNodeFree, nNodeFree, oNodeFree, pNodeFree, qNodeFree, rNodeFree, sNodeFree, tNodeFree, uNodeFree, vNodeFree, wNodeFree, xNodeFree, yNodeFree, zNodeFree: LetterNode!
     
     var frozenArray: [LetterNode] = []
     var freeArray: [LetterNode] = []
     
-    var aNodeFree, bNodeFree, cNodeFree, dNodeFree, eNodeFree, fNodeFree, gNodeFree, hNodeFree, iNodeFree, jNodeFree, kNodeFree, lNodeFree, mNodeFree, nNodeFree, oNodeFree, pNodeFree, qNodeFree, rNodeFree, sNodeFree, tNodeFree, uNodeFree, vNodeFree, wNodeFree, xNodeFree, yNodeFree, zNodeFree: LetterNode!
+    var audioEngine: AVAudioEngine!
     
-    //    var x = AVAudioPlayer()
+    var skylarA1Source: SCNAudioSource!
     
-//    var audioEngine: AVAudioEngine!
+    
     
     
     override func viewDidLoad() {
@@ -56,6 +57,8 @@ class GameViewController: UIViewController {
         cameraAndLights()
         environment()
         
+        loadSounds()
+
         loadGeometry()
         loadNodesFrozen()
         loadNodesFree()
@@ -76,27 +79,33 @@ class GameViewController: UIViewController {
         tapGesture.isEnabled = false
         
         loadGameView()
-        loadSounds()
         
     }
     
     func loadSounds() {
         
-//        audioEngine = AVAudioEngine()
+        audioEngine = AVAudioEngine()
         
         
 //        let ambAudioNode = AVAudioNode()
         
         
-        guard let kidPlayGround1 = SCNAudioSource(fileNamed: "KidsPlayground1")
+//        guard let kidPlayGround1 = SCNAudioSource(fileNamed: "KidsPlayground1"),
 //            let skylarA1 = SCNAudioSource(fileNamed: "ABC SKYLARA1")
-            else { print("sound load failure"); return}
+//            else { print("sound load failure"); return}
+        
+//        skylarA1Source = SCNAudioSource(fileNamed: "ABC SKYLARA1")
+//
+//        print(skylarA1Source.description)
+        
+//        let skylarA1Player = SCNAudioPlayer(source: skylarA1Source)
+//        
+//        aNodeFree.addAudioPlayer(skylarA1Player)
+//        let playground1Player = SCNAudioPlayer(source: kidPlayGround1)
         
         
-//        let skylarA1Player = SCNAudioPlayer(source: skylarA1)
-        let playground1Player = SCNAudioPlayer(source: kidPlayGround1)
         
-        aNodeFree.addAudioPlayer(playground1Player)
+//        aNodeFree.addAudioPlayer(playground1Player)
         
 //        let format = AVAudioFormat(standardFormatWithSampleRate: 44.1, channels: 2)
         
@@ -259,13 +268,22 @@ class GameViewController: UIViewController {
         let j = freeArray.index(of: node)!
         let frozenNode = frozenArray[j]
         
-        let wait = SCNAction.wait(duration: 1.0)
+//        let wait = SCNAction.wait(duration: 1.0)
         let presentLetter = SCNAction.move(to: SCNVector3(134, 5, 176), duration: 0.5)
+        
+        // add sound
+        
+        let playLetter = SCNAction.playAudio(node.letterPlayer, waitForCompletion: true)
+
+//
+//        node.addAudioPlayer(<#T##player: SCNAudioPlayer##SCNAudioPlayer#>)
+        
+        
         let moveToHome = SCNAction.move(to: node.frozenPosition!, duration: 1.0)
         let hideFrozenNode = SCNAction.fadeOpacity(to: 0, duration: 3.0)
         
         
-        let actionArray = [presentLetter, wait, moveToHome]
+        let actionArray = [presentLetter, playLetter, moveToHome]
         let sequence = SCNAction.sequence(actionArray)
         node.runAction(sequence, completionHandler: tapGestureTrue)
         frozenNode.runAction(hideFrozenNode)
