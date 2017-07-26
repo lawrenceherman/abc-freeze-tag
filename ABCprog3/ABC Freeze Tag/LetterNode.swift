@@ -16,13 +16,24 @@ class LetterNode: SCNNode {
     var frozenPosition: SCNVector3?
     var string: String!
     var corNode: LetterNode?
-    var letterPlayer: SCNAudioSource!
+//    var letterPlayer: SCNAudioSource
     
+//    func playLetter() {
+//        
+//        SCNAction.playAudio(letterPlayer, waitForCompletion: true)
+//        
+//    }
     
     init(geometry: Letter, frozen: Bool) {
         self.frozen = frozen
         self.string = geometry.string as! String
         
+//        self.letterPlayer = SCNAudioSource(fileNamed: "ABC SKYLARA1.mp3")
+        
+//        self.letterPlayer = SCNAudioSource(named: "Sounds/ABC SKYLARA1.mp3")!
+        
+    
+      
         super.init()
         self.geometry = geometry
         

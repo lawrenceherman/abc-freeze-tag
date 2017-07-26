@@ -10,7 +10,7 @@
 import QuartzCore
 import SceneKit
 //import SpriteKit
-import AVFoundation
+//import AVFoundation
 
 class GameViewController: UIViewController {
     
@@ -24,7 +24,6 @@ class GameViewController: UIViewController {
     var startTapBool: Bool = true
     var tapGesture: UITapGestureRecognizer!
     var i = 26
-    
     
     var aGeo, bGeo, cGeo, dGeo, eGeo, fGeo, gGeo, hGeo, iGeo,
     jGeo, kGeo, lGeo, mGeo, nGeo, oGeo, pGeo, qGeo, rGeo, sGeo,
@@ -44,12 +43,11 @@ class GameViewController: UIViewController {
     var frozenArray: [LetterNode] = []
     var freeArray: [LetterNode] = []
     
-    var audioEngine: AVAudioEngine!
+//    var audioEngine: AVAudioEngine!
     
     var skylarA1Source: SCNAudioSource!
-    
-    
-    
+    var kidsPlayground1: SCNAudioSource!
+//    var skylarA1Player: SCNAudioPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,13 +55,15 @@ class GameViewController: UIViewController {
         cameraAndLights()
         environment()
         
-        loadSounds()
 
         loadGeometry()
+   
         loadNodesFrozen()
+       
         loadNodesFree()
-        
-        
+       
+        loadSounds()
+
         
         scnView = self.view as! SCNView
         scnView.scene = scene
@@ -72,88 +72,43 @@ class GameViewController: UIViewController {
         scnView.showsStatistics = true
         scnView.backgroundColor = UIColor.blue
         scnView.autoenablesDefaultLighting = false
-        
-        
+   
+
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleLetterTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
         tapGesture.isEnabled = false
         
         loadGameView()
         
+    
+        
+
+    
+    
     }
+    
+    
     
     func loadSounds() {
         
-        audioEngine = AVAudioEngine()
+        
+        skylarA1Source = SCNAudioSource(named: "ABC SKYLARA1.mp3")
+        kidsPlayground1 = SCNAudioSource(named: "KidsPlayground1.mp3")
+        
+//        let kidsPlayground1Player = SCNAudioPlayer(source: kidsPlayground1)
         
         
-//        let ambAudioNode = AVAudioNode()
+        skylarA1Source.volume = 1.0
         
+        skylarA1Source.shouldStream = false
+        skylarA1Source.load()
         
-//        guard let kidPlayGround1 = SCNAudioSource(fileNamed: "KidsPlayground1"),
-//            let skylarA1 = SCNAudioSource(fileNamed: "ABC SKYLARA1")
-//            else { print("sound load failure"); return}
+        //        self.scene.rootNode.addAudioPlayer(SCNAudioPlayer(source: SCNAudioSource(named: "KidsPlayground1.mp3")!))
         
-//        skylarA1Source = SCNAudioSource(fileNamed: "ABC SKYLARA1")
-//
-//        print(skylarA1Source.description)
+        aNodeFree.runAction(SCNAction.playAudio(skylarA1Source, waitForCompletion: true))
+
         
-//        let skylarA1Player = SCNAudioPlayer(source: skylarA1Source)
-//        
-//        aNodeFree.addAudioPlayer(skylarA1Player)
-//        let playground1Player = SCNAudioPlayer(source: kidPlayGround1)
-        
-        
-        
-//        aNodeFree.addAudioPlayer(playground1Player)
-        
-//        let format = AVAudioFormat(standardFormatWithSampleRate: 44.1, channels: 2)
-        
-//        audioEngine.attach(playground1Player.audioNode!)
-//        audioEngine.connect(playground1Player.audioNode!, to: audioEngine.mainMixerNode, format: format)
-        
-//        let x = SCNAction.playAudio(kidPlayGround1, waitForCompletion: true)
-//        aNodeFree.runAction(x)
-        
-        
-        
-        //        let playgroundSounds1 = AVAudioPlayerNode()
-        //        let path = Bundle.main.path(forResource: "KidsPlayground1", ofType: "mp3")!
-        //        let url = URL(fileURLWithPath: path)
-        //
-        //
-        //        let audioFile = try! AVAudioFile(forReading: url)
-        //        let audioFormat = audioFile.processingFormat
-        //        let audioFrameCount = UInt32(audioFile.length)
-        //        let audioFileBuffer = AVAudioPCMBuffer(pcmFormat: audioFormat, frameCapacity: audioFrameCount)
-        //
-        //        do {
-        //            try audioFile.read(into: audioFileBuffer)
-        //        }
-        //        catch {
-        //            print("error")
-        //        }
-        //
-        //        audioEngine.attach(playgroundSounds1)
-        //        playgroundSounds1.scheduleFile(audioFile, at: nil, completionHandler: nil)
-        //        audioEngine.connect(playgroundSounds1, to: audioEngine.mainMixerNode, format: audioFormat)
-        //        //        audioEngine.connect(audioEngine.mainMixerNode, to: audioEngine.outputNode, format: audioFormat)
-        //
-//                do {
-//                    try audioEngine.start()
-//                }
-//                catch {
-//                    print("error")
-//                }
-        
-        
-        
-//                playgroundSounds1.play()
-        
-        
-        
-        
-        
+
         
     }
     
@@ -268,22 +223,23 @@ class GameViewController: UIViewController {
         let j = freeArray.index(of: node)!
         let frozenNode = frozenArray[j]
         
-//        let wait = SCNAction.wait(duration: 1.0)
+        let wait = SCNAction.wait(duration: 1.0)
         let presentLetter = SCNAction.move(to: SCNVector3(134, 5, 176), duration: 0.5)
         
         // add sound
         
-        let playLetter = SCNAction.playAudio(node.letterPlayer, waitForCompletion: true)
+//        let playLetter = SCNAction.playAudio(node.letterPlayer, waitForCompletion: true)
 
+//        let tempPlayer = SCNAudioPlayer(source: node.letterPlayer)
 //
-//        node.addAudioPlayer(<#T##player: SCNAudioPlayer##SCNAudioPlayer#>)
+//        node.addAudioPlayer(tempPlayer)
         
         
         let moveToHome = SCNAction.move(to: node.frozenPosition!, duration: 1.0)
         let hideFrozenNode = SCNAction.fadeOpacity(to: 0, duration: 3.0)
         
         
-        let actionArray = [presentLetter, playLetter, moveToHome]
+        let actionArray = [presentLetter, wait, moveToHome]
         let sequence = SCNAction.sequence(actionArray)
         node.runAction(sequence, completionHandler: tapGestureTrue)
         frozenNode.runAction(hideFrozenNode)
@@ -339,6 +295,9 @@ class GameViewController: UIViewController {
             startTapBool = false
             tapGesture.isEnabled = true
             
+//            aNodeFree.addAudioPlayer(skylarA1Player)
+
+            
             makeFrozenNodesVisible()
             runWild(aNodeFree)
             runWild(bNodeFree)
@@ -391,6 +350,19 @@ class GameViewController: UIViewController {
     }
     
     
+}
+
+extension SCNAudioSource {
+    convenience init(name: String, volume: Float = 1.0, positional: Bool = true, loops: Bool = false, shouldStream: Bool = false, shouldLoad: Bool = true) {
+        self.init(named: "Sounds/\(name)")!
+        self.volume = volume
+        self.isPositional = positional
+        self.loops = loops
+        self.shouldStream = shouldStream
+        if shouldLoad {
+            load()
+        }
+    }
 }
 
 //        pauseLabel = UILabel()
