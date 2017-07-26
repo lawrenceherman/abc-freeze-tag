@@ -47,6 +47,12 @@ class GameViewController: UIViewController {
     
     var skylarA1Source: SCNAudioSource!
     var kidsPlayground1: SCNAudioSource!
+    var mx70BPM: SCNAudioSource!
+    var mx100BPM: SCNAudioSource!
+    var mx130BPM: SCNAudioSource!
+    var mx160BPM: SCNAudioSource!
+    
+    
 //    var skylarA1Player: SCNAudioPlayer!
     
     override func viewDidLoad() {
@@ -80,7 +86,7 @@ class GameViewController: UIViewController {
         
         loadGameView()
         
-    
+
         
 
     
@@ -93,22 +99,35 @@ class GameViewController: UIViewController {
         
         
         skylarA1Source = SCNAudioSource(named: "ABC SKYLARA1.mp3")
-        kidsPlayground1 = SCNAudioSource(named: "KidsPlayground1.mp3")
+ 
+        skylarA1Source.load()
+//
+//        
+//        kidsPlayground1 = SCNAudioSource(named: "KidsPlayground1.mp3")
+//        kidsPlayground1.loops = true
+        
+
+        mx70BPM = SCNAudioSource(named: "ABC FT 1 70.mp3")
+        mx70BPM.loops = true
+        mx70BPM.load()
+        
+        mx100BPM = SCNAudioSource(named: "ABC FT 2 100.mp3")
+        mx100BPM.loops = true
+        mx100BPM.shouldStream = true
+
+        
+//        mx70BPM = SCNAudioSource(name: "ABC FT 1 70.mp3", volume: 20.0, positional: false, loops: true, shouldStream: false, shouldLoad: true)
+//        mx70BPM.load()
+        
         
 //        let kidsPlayground1Player = SCNAudioPlayer(source: kidsPlayground1)
         
         
-        skylarA1Source.volume = 1.0
-        
-        skylarA1Source.shouldStream = false
-        skylarA1Source.load()
         
         //        self.scene.rootNode.addAudioPlayer(SCNAudioPlayer(source: SCNAudioSource(named: "KidsPlayground1.mp3")!))
         
-        aNodeFree.runAction(SCNAction.playAudio(skylarA1Source, waitForCompletion: true))
-
-        
-
+//        aNodeFree.runAction(SCNAction.playAudio(skylarA1Source, waitForCompletion: true))
+//        scene.rootNode.runAction(SCNAction.playAudio(mx70BPM, waitForCompletion: false))
         
     }
     
@@ -211,14 +230,29 @@ class GameViewController: UIViewController {
         
     }
     
+    func switchMX() {
+        
+        
+        
+        
+        
+        
+        
+    }
+    
     func nodeCaughtAnimation(node: LetterNode) {
         
         print(node)
         print(freeArray.count)
         print(frozenArray.count)
         
-        i -= 1
-        print(i)
+//        i -= 1
+//        switch i {
+//        case 20:
+//            switchMX()
+//        default:
+//            <#code#>
+//        }
         
         let j = freeArray.index(of: node)!
         let frozenNode = frozenArray[j]
@@ -295,7 +329,8 @@ class GameViewController: UIViewController {
             startTapBool = false
             tapGesture.isEnabled = true
             
-//            aNodeFree.addAudioPlayer(skylarA1Player)
+            scene.rootNode.addAudioPlayer(SCNAudioPlayer(source: skylarA1Source))
+
 
             
             makeFrozenNodesVisible()
@@ -334,6 +369,7 @@ class GameViewController: UIViewController {
             scene.rootNode.enumerateChildNodes { (node, stop) in
                 node.removeFromParentNode() }
             i = 14
+            scene.rootNode.removeAllAudioPlayers()
             frozenArray = []
             freeArray = []
             viewDidLoad()
@@ -352,18 +388,18 @@ class GameViewController: UIViewController {
     
 }
 
-extension SCNAudioSource {
-    convenience init(name: String, volume: Float = 1.0, positional: Bool = true, loops: Bool = false, shouldStream: Bool = false, shouldLoad: Bool = true) {
-        self.init(named: "Sounds/\(name)")!
-        self.volume = volume
-        self.isPositional = positional
-        self.loops = loops
-        self.shouldStream = shouldStream
-        if shouldLoad {
-            load()
-        }
-    }
-}
+//extension SCNAudioSource {
+//    convenience init(name: String, volume: Float = 1.0, positional: Bool = true, loops: Bool = false, shouldStream: Bool = false, shouldLoad: Bool = true) {
+//        self.init(named: "Sounds/\(name)")
+//        self.volume = volume
+//        self.isPositional = positional
+//        self.loops = loops
+//        self.shouldStream = shouldStream
+//        if shouldLoad {
+//            load()
+//        }
+//    }
+//}
 
 //        pauseLabel = UILabel()
 //        gameView.addSubview(pauseLabel)
