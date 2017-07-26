@@ -12,6 +12,7 @@
 		FE0661301F28CDD300DCEAEE /* ABC FT 3 130.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE06612C1F28CDD300DCEAEE /* ABC FT 3 130.mp3 */; };
 		FE0661311F28CDD300DCEAEE /* ABC FT 4 160.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE06612D1F28CDD300DCEAEE /* ABC FT 4 160.mp3 */; };
 		FE1025891F25186400BD5C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1025881F25186400BD5C63 /* AppDelegate.swift */; };
+		FE2034B61F292A7B009E800C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE2034B51F292A7B009E800C /* Launch Screen.storyboard */; };
 		FE4E579D1F01868300C78154 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = FE4E579C1F01868300C78154 /* art.scnassets */; };
 		FE4E579F1F01868300C78154 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4E579E1F01868300C78154 /* GameViewController.swift */; };
 		FE4E57A21F01868300C78154 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE4E57A01F01868300C78154 /* Main.storyboard */; };
@@ -25,7 +26,6 @@
 		FE900F671F23F46300ED525D /* KidsPlayground1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FEB7B58F1F229A6700124B2E /* KidsPlayground1.mp3 */; };
 		FEA869A11F28E33B0090D124 /* ABC SKYLARA1ST.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FEA869A01F28E33B0090D124 /* ABC SKYLARA1ST.mp3 */; };
 		FEA869A61F28FED60090D124 /* ABCFreezTagLS1.png in Resources */ = {isa = PBXBuildFile; fileRef = FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */; };
-		FEA869A81F28FF190090D124 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA869A71F28FF190090D124 /* Launch Screen.storyboard */; };
 		FEC6C3E31F113E44009410BE /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E21F113E44009410BE /* Letter.swift */; };
 		FEC6C3E51F11505B009410BE /* LetterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E41F11505B009410BE /* LetterNode.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +36,7 @@
 		FE06612C1F28CDD300DCEAEE /* ABC FT 3 130.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ABC FT 3 130.mp3"; sourceTree = "<group>"; };
 		FE06612D1F28CDD300DCEAEE /* ABC FT 4 160.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ABC FT 4 160.mp3"; sourceTree = "<group>"; };
 		FE1025881F25186400BD5C63 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FE2034B51F292A7B009E800C /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FE4E57971F01868300C78154 /* ABC Freeze Tag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ABC Freeze Tag.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE4E579C1F01868300C78154 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		FE4E579E1F01868300C78154 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -47,7 +48,6 @@
 		FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodesExt.swift; sourceTree = "<group>"; };
 		FEA869A01F28E33B0090D124 /* ABC SKYLARA1ST.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ABC SKYLARA1ST.mp3"; sourceTree = "<group>"; };
 		FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ABCFreezTagLS1.png; sourceTree = "<group>"; };
-		FEA869A71F28FF190090D124 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FEB7B58E1F229A6600124B2E /* ABC SKYLAR YOU CANT CATCH ME.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "ABC SKYLAR YOU CANT CATCH ME.mp3"; path = "../../../../../../../Desktop/FreezeTagABC Sounds/For XCODE/ABC SKYLAR YOU CANT CATCH ME.mp3"; sourceTree = "<group>"; };
 		FEB7B58F1F229A6700124B2E /* KidsPlayground1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = KidsPlayground1.mp3; path = "../../../../../../../Desktop/FreezeTagABC Sounds/For XCODE/KidsPlayground1.mp3"; sourceTree = "<group>"; };
 		FEB7B5901F229A6700124B2E /* ABC SKYLAR CATCH ME.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "ABC SKYLAR CATCH ME.mp3"; path = "../../../../../../../Desktop/FreezeTagABC Sounds/For XCODE/ABC SKYLAR CATCH ME.mp3"; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		FE4E57991F01868300C78154 /* ABC Freeze Tag */ = {
 			isa = PBXGroup;
 			children = (
-				FEA869A41F28FE710090D124 /* Images */,
+				FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */,
 				FE1025881F25186400BD5C63 /* AppDelegate.swift */,
 				FE98855C1F23BD670083DD75 /* Particles */,
 				FEB7B58D1F229A3800124B2E /* Sounds */,
@@ -100,7 +100,7 @@
 				FE529FF81F1428A0005E3EF3 /* EnvironmentExt.swift */,
 				FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */,
 				FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */,
-				FEA869A71F28FF190090D124 /* Launch Screen.storyboard */,
+				FE2034B51F292A7B009E800C /* Launch Screen.storyboard */,
 			);
 			path = "ABC Freeze Tag";
 			sourceTree = "<group>";
@@ -110,14 +110,6 @@
 			children = (
 			);
 			name = Particles;
-			sourceTree = "<group>";
-		};
-		FEA869A41F28FE710090D124 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */,
-			);
-			name = Images;
 			sourceTree = "<group>";
 		};
 		FEB7B58D1F229A3800124B2E /* Sounds */ = {
@@ -203,7 +195,7 @@
 				FE900F661F23F46100ED525D /* ABC SKYLARA1.mp3 in Resources */,
 				FEA869A11F28E33B0090D124 /* ABC SKYLARA1ST.mp3 in Resources */,
 				FE4E579D1F01868300C78154 /* art.scnassets in Resources */,
-				FEA869A81F28FF190090D124 /* Launch Screen.storyboard in Resources */,
+				FE2034B61F292A7B009E800C /* Launch Screen.storyboard in Resources */,
 				FE0661301F28CDD300DCEAEE /* ABC FT 3 130.mp3 in Resources */,
 				FE900F671F23F46300ED525D /* KidsPlayground1.mp3 in Resources */,
 				FE900F651F23F45E00ED525D /* ABC SKYLAR YOU CANT CATCH ME.mp3 in Resources */,
