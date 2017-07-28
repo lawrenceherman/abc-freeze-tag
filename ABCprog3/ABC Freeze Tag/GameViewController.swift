@@ -43,14 +43,14 @@ class GameViewController: UIViewController {
     var frozenArray: [LetterNode] = []
     var freeArray: [LetterNode] = []
     
-//    var audioEngine: AVAudioEngine!
     
-    var skylarA1Source: SCNAudioSource!
-    var kidsPlayground1: SCNAudioSource!
-    var mx70BPM: SCNAudioSource!
-    var mx100BPM: SCNAudioSource!
-    var mx130BPM: SCNAudioSource!
-    var mx160BPM: SCNAudioSource!
+    var rdySetGo: SCNAudioSource!
+    var startScream1: SCNAudioSource!
+    var freezeTag: SCNAudioSource!
+//    var mx70BPM: SCNAudioSource!
+//    var mx100BPM: SCNAudioSource!
+//    var mx130BPM: SCNAudioSource!
+//    var mx160BPM: SCNAudioSource!
     
     
 //    var skylarA1Player: SCNAudioPlayer!
@@ -86,35 +86,48 @@ class GameViewController: UIViewController {
         
         loadGameView()
         
-
+     
         
-
-    
+//        if let audioSource  = SCNAudioSource(fileNamed: "ABC_FT_1_70.mp3") {
+//            
+//            print("inside audio source")
+//            
+//            audioSource.loops = true
+//            audioSource.isPositional = false
+//            audioSource.shouldStream = true
+//            scene.rootNode.addAudioPlayer(SCNAudioPlayer(source: audioSource))
+//            
+//            
+//        }
+        
+       
     
     }
     
-    
-    
     func loadSounds() {
         
+        rdySetGo = SCNAudioSource(named: "ABC_READY_SET_GO_GROUP_1.mp3")
+        rdySetGo.isPositional = false
+        rdySetGo.load()
         
-        skylarA1Source = SCNAudioSource(named: "ABC SKYLARA1.mp3")
- 
-        skylarA1Source.load()
-//
+        startScream1 = SCNAudioSource(named: "ABC_START_SCREAM_1.mp3")
+        startScream1.isPositional = false
+        startScream1.load()
+        
+        
+        freezeTag = SCNAudioSource(named: "ABC_FREEZE_TAG_GROUP_1.mp3")
+        freezeTag.isPositional = false
+        freezeTag.load()
+        
+
+//        mx70BPM = SCNAudioSource(named: "ABC FT 1 70.mp3")
+//        mx70BPM.loops = true
+//        mx70BPM.load()
 //        
-//        kidsPlayground1 = SCNAudioSource(named: "KidsPlayground1.mp3")
-//        kidsPlayground1.loops = true
-        
-
-        mx70BPM = SCNAudioSource(named: "ABC FT 1 70.mp3")
-        mx70BPM.loops = true
-        mx70BPM.load()
-        
-        mx100BPM = SCNAudioSource(named: "ABC FT 2 100.mp3")
-        mx100BPM.loops = true
-        mx100BPM.shouldStream = true
-
+//        mx100BPM = SCNAudioSource(named: "ABC FT 2 100.mp3")
+//        mx100BPM.loops = true
+//        mx100BPM.shouldStream = true
+//
         
 //        mx70BPM = SCNAudioSource(name: "ABC FT 1 70.mp3", volume: 20.0, positional: false, loops: true, shouldStream: false, shouldLoad: true)
 //        mx70BPM.load()
@@ -322,14 +335,40 @@ class GameViewController: UIViewController {
         startLabel.addGestureRecognizer(startTap)
     }
     
+    func startPlayAudio () {
+//        
+//        scene.rootNode.runAction(<#T##action: SCNAction##SCNAction#>)
+//        
+//        SCNAction.playAudio(rdySetGo, waitForCompletion: true)
+//        SCNAction.playAudio(startScream1, waitForCompletion: false)
+//        SCNAction.playAudio(freezeTag, waitForCompletion: false)
+//        
+//        scene.rootNode
+//        
+//        
+//        
+//        SCNAction.sequence(<#T##actions: [SCNAction]##[SCNAction]#>)
+//        
+        
+        
+        
+    }
+    
+    
+    
+    
     @objc func handleStartTap(_ gestureRecognizer: UITapGestureRecognizer) {
         
         if startTapBool == true {
             
+            
+            
+            
+    
+            
             startTapBool = false
             tapGesture.isEnabled = true
             
-            scene.rootNode.addAudioPlayer(SCNAudioPlayer(source: skylarA1Source))
 
 
             
@@ -368,7 +407,7 @@ class GameViewController: UIViewController {
             tapGesture.isEnabled = false
             scene.rootNode.enumerateChildNodes { (node, stop) in
                 node.removeFromParentNode() }
-            i = 14
+            i = 26
             scene.rootNode.removeAllAudioPlayers()
             frozenArray = []
             freeArray = []
