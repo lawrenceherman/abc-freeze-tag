@@ -19,21 +19,6 @@ class Letter: SCNText {
         self.extrusionDepth = 2.0
         self.font = UIFont.init(name: "Arial", size: 18.0)
         self.flatness = 0
-        
-//        switch letter {
-//        case "F", "D", "K", "P", "T", "Y":
-//            self.firstMaterial?.diffuse.contents = UIColor.red
-//        case "B", "G", "L", "Q", "V":
-//            self.firstMaterial?.diffuse.contents = UIColor.blue
-//        case "C", "H", "M", "R", "W", "Z":
-//            self.firstMaterial?.diffuse.contents = UIColor.yellow
-//        case "A", "E", "I", "O", "U":
-//            self.firstMaterial?.diffuse.contents = UIColor.green
-//        case "J", "N", "S", "X":
-//            self.firstMaterial?.diffuse.contents = UIColor.orange
-//        default:
-//            self.firstMaterial?.diffuse.contents = UIColor.red
-//        }
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -17,7 +17,7 @@ extension GameViewController {
     func randomStartingPosition() -> SCNVector3 {
         
         let x = Float(arc4random_uniform(250))
-        let y = Float(0)
+        let y = Float(-2)
         let z = Float(arc4random_uniform(175))
         
         return SCNVector3Make(x, y, z)
@@ -25,181 +25,163 @@ extension GameViewController {
     
     func loadNodesFree() {
         
-        
-        // TODO: Add subtle animations
-        
-        
-        aNodeFree = LetterNode(geometry: aGeo, frozen: false)
+        aNodeFree = LetterNode(geometry: aGeo, frozen: false, audioSource: aSound)
         aNodeFree.position = randomStartingPosition()
         aNodeFree.frozenPosition = aNodeFrozen.position
-//        aNodeFree.letterPlayer = skylarA1Source
         freeArray.append(aNodeFree)
-//        aNodeFree.physicsBody?.contactTestBitMask = 1
         scene.rootNode.addChildNode(aNodeFree)
         
-        bNodeFree = LetterNode(geometry: bGeo, frozen: false)
+        bNodeFree = LetterNode(geometry: bGeo, frozen: false, audioSource: bSound)
         bNodeFree.position = randomStartingPosition()
         bNodeFree.frozenPosition = bNodeFrozen.position
         freeArray.append(bNodeFree)
-//       bNodeFree.physicsBody?.contactTestBitMask = 1
         scene.rootNode.addChildNode(bNodeFree)
         
-        cNodeFree = LetterNode(geometry: cGeo, frozen: false)
+        cNodeFree = LetterNode(geometry: cGeo, frozen: false, audioSource: cSound)
         cNodeFree.position = randomStartingPosition()
         cNodeFree.frozenPosition = cNodeFrozen.position
         freeArray.append(cNodeFree)
-//        cNodeFree.physicsBody?.contactTestBitMask = 1
         scene.rootNode.addChildNode(cNodeFree)
         
-        dNodeFree = LetterNode(geometry: dGeo, frozen: false)
+        dNodeFree = LetterNode(geometry: dGeo, frozen: false, audioSource: dSound)
         dNodeFree.position = randomStartingPosition()
         dNodeFree.frozenPosition = dNodeFrozen.position
         freeArray.append(dNodeFree)
-//        dNodeFree.physicsBody?.contactTestBitMask = 1
         scene.rootNode.addChildNode(dNodeFree)
         
-        eNodeFree = LetterNode(geometry: eGeo, frozen: false)
+        eNodeFree = LetterNode(geometry: eGeo, frozen: false, audioSource: eSound)
         eNodeFree.position = randomStartingPosition()
         eNodeFree.frozenPosition = eNodeFrozen.position
         freeArray.append(eNodeFree)
-//        dNodeFree.physicsBody?.contactTestBitMask = 1
         scene.rootNode.addChildNode(eNodeFree)
         
-        fNodeFree = LetterNode(geometry: fGeo, frozen: false)
+        fNodeFree = LetterNode(geometry: fGeo, frozen: false, audioSource: fSound)
         fNodeFree.position = randomStartingPosition()
         fNodeFree.frozenPosition = fNodeFrozen.position
         freeArray.append(fNodeFree)
-//        fNodeFree.physicsBody = physicsBody
         scene.rootNode.addChildNode(fNodeFree)
         
-        gNodeFree = LetterNode(geometry: gGeo, frozen: false)
+        gNodeFree = LetterNode(geometry: gGeo, frozen: false, audioSource: gSound)
         gNodeFree.position = randomStartingPosition()
         gNodeFree.frozenPosition = gNodeFrozen.position
         freeArray.append(gNodeFree)
-//        gNodeFree.physicsBody = physicsBody
         scene.rootNode.addChildNode(gNodeFree)
         
-        hNodeFree = LetterNode(geometry: hGeo, frozen: false)
+        hNodeFree = LetterNode(geometry: hGeo, frozen: false, audioSource: hSound)
         hNodeFree.position = randomStartingPosition()
         hNodeFree.frozenPosition = hNodeFrozen.position
         freeArray.append(hNodeFree)
-//        hNodeFree.physicsBody = physicsBody
         scene.rootNode.addChildNode(hNodeFree)
         
-        iNodeFree = LetterNode(geometry: iGeo, frozen: false)
+        iNodeFree = LetterNode(geometry: iGeo, frozen: false, audioSource: iSound)
         iNodeFree.position = randomStartingPosition()
         iNodeFree.frozenPosition = iNodeFrozen.position
         freeArray.append(iNodeFree)
-//        iNodeFree.physicsBody = physicsBody
         scene.rootNode.addChildNode(iNodeFree)
         
-        jNodeFree = LetterNode(geometry: jGeo, frozen: false)
+        jNodeFree = LetterNode(geometry: jGeo, frozen: false, audioSource: jSound)
         jNodeFree.position = randomStartingPosition()
         jNodeFree.frozenPosition = jNodeFrozen.position
         freeArray.append(jNodeFree)
-//        jNodeFree.physicsBody = physicsBody
         scene.rootNode.addChildNode(jNodeFree)
         
-        kNodeFree = LetterNode(geometry: kGeo, frozen: false)
+        kNodeFree = LetterNode(geometry: kGeo, frozen: false, audioSource: kSound)
         kNodeFree.position = randomStartingPosition()
         kNodeFree.frozenPosition = kNodeFrozen.position
         freeArray.append(kNodeFree)
-//        kNodeFree.physicsBody = physicsBody
         scene.rootNode.addChildNode(kNodeFree)
         
-        lNodeFree = LetterNode(geometry: lGeo, frozen: false)
+        lNodeFree = LetterNode(geometry: lGeo, frozen: false, audioSource: lSound)
         lNodeFree.position = randomStartingPosition()
         lNodeFree.frozenPosition = lNodeFrozen.position
         freeArray.append(lNodeFree)
-//        lNodeFree.physicsBody = physicsBody
         scene.rootNode.addChildNode(lNodeFree)
         
-        mNodeFree = LetterNode(geometry: mGeo, frozen: false)
+        mNodeFree = LetterNode(geometry: mGeo, frozen: false, audioSource: mSound)
         mNodeFree.position = randomStartingPosition()
         mNodeFree.frozenPosition = mNodeFrozen.position
         freeArray.append(mNodeFree)
         scene.rootNode.addChildNode(mNodeFree)
         
-        nNodeFree = LetterNode(geometry: nGeo, frozen: false)
+        nNodeFree = LetterNode(geometry: nGeo, frozen: false, audioSource: nSound)
         nNodeFree.position = randomStartingPosition()
         nNodeFree.frozenPosition = nNodeFrozen.position
         freeArray.append(nNodeFree)
         scene.rootNode.addChildNode(nNodeFree)
         
-        oNodeFree = LetterNode(geometry: oGeo, frozen: false)
+        oNodeFree = LetterNode(geometry: oGeo, frozen: false, audioSource: oSound)
         oNodeFree.position = randomStartingPosition()
         oNodeFree.frozenPosition = oNodeFrozen.position
         freeArray.append(oNodeFree)
         scene.rootNode.addChildNode(oNodeFree)
         
-        pNodeFree = LetterNode(geometry: pGeo, frozen: false)
+        pNodeFree = LetterNode(geometry: pGeo, frozen: false, audioSource: pSound)
         pNodeFree.position = randomStartingPosition()
         pNodeFree.frozenPosition = pNodeFrozen.position
         freeArray.append(pNodeFree)
         scene.rootNode.addChildNode(pNodeFree)
         
-        qNodeFree = LetterNode(geometry: qGeo, frozen: false)
+        qNodeFree = LetterNode(geometry: qGeo, frozen: false, audioSource: qSound)
         qNodeFree.position = randomStartingPosition()
         qNodeFree.frozenPosition = qNodeFrozen.position
         freeArray.append(qNodeFree)
         scene.rootNode.addChildNode(qNodeFree)
         
-        rNodeFree = LetterNode(geometry: rGeo, frozen: false)
+        rNodeFree = LetterNode(geometry: rGeo, frozen: false, audioSource: rSound)
         rNodeFree.position = randomStartingPosition()
         rNodeFree.frozenPosition = rNodeFrozen.position
         freeArray.append(rNodeFree)
         scene.rootNode.addChildNode(rNodeFree)
         
-        sNodeFree = LetterNode(geometry: sGeo, frozen: false)
+        sNodeFree = LetterNode(geometry: sGeo, frozen: false, audioSource: sSound)
         sNodeFree.position = randomStartingPosition()
         sNodeFree.frozenPosition = sNodeFrozen.position
         freeArray.append(sNodeFree)
         scene.rootNode.addChildNode(sNodeFree)
         
-        tNodeFree = LetterNode(geometry: tGeo, frozen: false)
+        tNodeFree = LetterNode(geometry: tGeo, frozen: false, audioSource: tSound)
         tNodeFree.position = randomStartingPosition()
         tNodeFree.frozenPosition = tNodeFrozen.position
         freeArray.append(tNodeFree)
         scene.rootNode.addChildNode(tNodeFree)
         
-        uNodeFree = LetterNode(geometry: uGeo, frozen: false)
+        uNodeFree = LetterNode(geometry: uGeo, frozen: false, audioSource: uSound)
         uNodeFree.position = randomStartingPosition()
         uNodeFree.frozenPosition = uNodeFrozen.position
         freeArray.append(uNodeFree)
         scene.rootNode.addChildNode(uNodeFree)
         
-        vNodeFree = LetterNode(geometry: vGeo, frozen: false)
+        vNodeFree = LetterNode(geometry: vGeo, frozen: false, audioSource: vSound)
         vNodeFree.position = randomStartingPosition()
         vNodeFree.frozenPosition = vNodeFrozen.position
         freeArray.append(vNodeFree)
         scene.rootNode.addChildNode(vNodeFree)
         
-        wNodeFree = LetterNode(geometry: wGeo, frozen: false)
+        wNodeFree = LetterNode(geometry: wGeo, frozen: false, audioSource: wSound)
         wNodeFree.position = randomStartingPosition()
         wNodeFree.frozenPosition = wNodeFrozen.position
         freeArray.append(wNodeFree)
         scene.rootNode.addChildNode(wNodeFree)
         
-        xNodeFree = LetterNode(geometry: xGeo, frozen: false)
+        xNodeFree = LetterNode(geometry: xGeo, frozen: false, audioSource: xSound)
         xNodeFree.position = randomStartingPosition()
         xNodeFree.frozenPosition = xNodeFrozen.position
         freeArray.append(xNodeFree)
         scene.rootNode.addChildNode(xNodeFree)
         
-        yNodeFree = LetterNode(geometry: yGeo, frozen: false)
+        yNodeFree = LetterNode(geometry: yGeo, frozen: false, audioSource: ySound)
         yNodeFree.position = randomStartingPosition()
         yNodeFree.frozenPosition = yNodeFrozen.position
         freeArray.append(yNodeFree)
         scene.rootNode.addChildNode(yNodeFree)
         
-        zNodeFree = LetterNode(geometry: zGeo, frozen: false)
+        zNodeFree = LetterNode(geometry: zGeo, frozen: false, audioSource: zSound)
         zNodeFree.position = randomStartingPosition()
         zNodeFree.frozenPosition = zNodeFrozen.position
         freeArray.append(zNodeFree)
         scene.rootNode.addChildNode(zNodeFree)
         
-        
-    }
+}
     
     func loadNodesFrozen() {
         
@@ -234,7 +216,7 @@ extension GameViewController {
         scene.rootNode.addChildNode(fNodeFrozen)
         
         gNodeFrozen = LetterNode(geometry: gGeoF, frozen: true)
-        gNodeFrozen.position = SCNVector3(102, 50, 0)
+        gNodeFrozen.position = SCNVector3(101, 50, 0)
         frozenArray.append(gNodeFrozen)
         scene.rootNode.addChildNode(gNodeFrozen)
         
@@ -244,7 +226,7 @@ extension GameViewController {
         scene.rootNode.addChildNode(hNodeFrozen)
         
         iNodeFrozen = LetterNode(geometry: iGeoF, frozen: true)
-        iNodeFrozen.position = SCNVector3(136, 50, 0)
+        iNodeFrozen.position = SCNVector3(139, 50, 0)
         frozenArray.append(iNodeFrozen)
         scene.rootNode.addChildNode(iNodeFrozen)
         
@@ -254,7 +236,7 @@ extension GameViewController {
         scene.rootNode.addChildNode(jNodeFrozen)
         
         kNodeFrozen = LetterNode(geometry: kGeoF, frozen: true)
-        kNodeFrozen.position = SCNVector3(170, 50, 0)
+        kNodeFrozen.position = SCNVector3(169, 50, 0)
         frozenArray.append(kNodeFrozen)
         scene.rootNode.addChildNode(kNodeFrozen)
         

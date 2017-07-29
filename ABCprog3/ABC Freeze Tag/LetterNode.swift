@@ -16,24 +16,13 @@ class LetterNode: SCNNode {
     var frozenPosition: SCNVector3?
     var string: String!
     var corNode: LetterNode?
-//    var letterPlayer: SCNAudioSource
-    
-//    func playLetter() {
-//        
-//        SCNAction.playAudio(letterPlayer, waitForCompletion: true)
-//        
-//    }
+    var letterSound: SCNAudioSource?
     
     init(geometry: Letter, frozen: Bool) {
+        
         self.frozen = frozen
         self.string = geometry.string as! String
         
-//        self.letterPlayer = SCNAudioSource(fileNamed: "ABC SKYLARA1.mp3")
-        
-//        self.letterPlayer = SCNAudioSource(named: "Sounds/ABC SKYLARA1.mp3")!
-        
-    
-      
         super.init()
         self.geometry = geometry
         
@@ -56,12 +45,14 @@ class LetterNode: SCNNode {
             default:
                 self.geometry?.firstMaterial?.diffuse.contents = UIColor.red
             }
-            
         }
-        
     }
     
-    
+    convenience init(geometry: Letter, frozen: Bool, audioSource: SCNAudioSource) {
+        self.init(geometry: geometry, frozen: frozen)
+        self.letterSound = audioSource
+
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

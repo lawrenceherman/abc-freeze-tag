@@ -6,24 +6,21 @@
 //  Copyright © 2017 Lawrence Herman. All rights reserved.
 //
 
-//import UIKit
 import QuartzCore
 import SceneKit
-//import SpriteKit
-//import AVFoundation
 
 class GameViewController: UIViewController {
     
     let scene = SCNScene()
     let gameView = UIView()
     var startLabel: UILabel!
-    //    var pauseLabel: UILabel!
     
     var scnView: SCNView!
     var pauseBool: Bool = true
     var startTapBool: Bool = true
-    var tapGesture: UITapGestureRecognizer!
-    var i = 26
+    var letterTap: UITapGestureRecognizer!
+    var startLabelTap: UITapGestureRecognizer!
+    var letterCount = 26
     
     var aGeo, bGeo, cGeo, dGeo, eGeo, fGeo, gGeo, hGeo, iGeo,
     jGeo, kGeo, lGeo, mGeo, nGeo, oGeo, pGeo, qGeo, rGeo, sGeo,
@@ -43,105 +40,35 @@ class GameViewController: UIViewController {
     var frozenArray: [LetterNode] = []
     var freeArray: [LetterNode] = []
     
-    
-    var rdySetGo: SCNAudioSource!
-    var startScream1: SCNAudioSource!
-    var freezeTag: SCNAudioSource!
-//    var mx70BPM: SCNAudioSource!
-//    var mx100BPM: SCNAudioSource!
-//    var mx130BPM: SCNAudioSource!
-//    var mx160BPM: SCNAudioSource!
-    
-    
-//    var skylarA1Player: SCNAudioPlayer!
+    var rdySet, go, startScream1, freezeTag, letterTapSound, winMusic: SCNAudioSource!
+    var mx70BPM, mx100BPM, mx130BPM, mx160BPM: SCNAudioSource!
+    var mx70BPMPlayer, mx100BPMPlayer, mx130BPMPlayer, mx160BPMPlayer: SCNAudioPlayer!
+    var kidPlayGround1: SCNAudioSource!
+    var youCaughtEverybody, yae1, yae2, greatjob: SCNAudioSource!
+    var aSound, bSound, cSound, dSound, eSound, fSound, gSound, hSound, iSound, jSound, kSound, lSound, mSound, nSound, oSound, pSound, qSound, rSound, sSound, tSound, uSound,
+    vSound, wSound, xSound, ySound, zSound: SCNAudioSource!
+    var toSlow, giggle1, giggle2, overHere, cantCatchMe: SCNAudioSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         cameraAndLights()
         environment()
-        
-
         loadGeometry()
-   
-        loadNodesFrozen()
-       
-        loadNodesFree()
-       
         loadSounds()
-
+        loadNodesFrozen()
+        loadNodesFree()
         
         scnView = self.view as! SCNView
         scnView.scene = scene
-        //        scene.physicsWorld.contactDelegate = self
         scnView.allowsCameraControl = false
-        scnView.showsStatistics = true
-        scnView.backgroundColor = UIColor.blue
+        scnView.showsStatistics = false
+        scnView.backgroundColor = UIColor(red: 0.4, green: 0.8, blue: 1.0, alpha: 1.0)
         scnView.autoenablesDefaultLighting = false
-   
-
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleLetterTap(_:)))
-        scnView.addGestureRecognizer(tapGesture)
-        tapGesture.isEnabled = false
-        
+        letterTap = UITapGestureRecognizer(target: self, action: #selector(handleLetterTap(_:)))
+        scnView.addGestureRecognizer(letterTap)
+        letterTap.isEnabled = false
         loadGameView()
-        
-     
-        
-//        if let audioSource  = SCNAudioSource(fileNamed: "ABC_FT_1_70.mp3") {
-//            
-//            print("inside audio source")
-//            
-//            audioSource.loops = true
-//            audioSource.isPositional = false
-//            audioSource.shouldStream = true
-//            scene.rootNode.addAudioPlayer(SCNAudioPlayer(source: audioSource))
-//            
-//            
-//        }
-        
-       
-    
-    }
-    
-    func loadSounds() {
-        
-        rdySetGo = SCNAudioSource(named: "ABC_READY_SET_GO_GROUP_1.mp3")
-        rdySetGo.isPositional = false
-        rdySetGo.load()
-        
-        startScream1 = SCNAudioSource(named: "ABC_START_SCREAM_1.mp3")
-        startScream1.isPositional = false
-        startScream1.load()
-        
-        
-        freezeTag = SCNAudioSource(named: "ABC_FREEZE_TAG_GROUP_1.mp3")
-        freezeTag.isPositional = false
-        freezeTag.load()
-        
-
-//        mx70BPM = SCNAudioSource(named: "ABC FT 1 70.mp3")
-//        mx70BPM.loops = true
-//        mx70BPM.load()
-//        
-//        mx100BPM = SCNAudioSource(named: "ABC FT 2 100.mp3")
-//        mx100BPM.loops = true
-//        mx100BPM.shouldStream = true
-//
-        
-//        mx70BPM = SCNAudioSource(name: "ABC FT 1 70.mp3", volume: 20.0, positional: false, loops: true, shouldStream: false, shouldLoad: true)
-//        mx70BPM.load()
-        
-        
-//        let kidsPlayground1Player = SCNAudioPlayer(source: kidsPlayground1)
-        
-        
-        
-        //        self.scene.rootNode.addAudioPlayer(SCNAudioPlayer(source: SCNAudioSource(named: "KidsPlayground1.mp3")!))
-        
-//        aNodeFree.runAction(SCNAction.playAudio(skylarA1Source, waitForCompletion: true))
-//        scene.rootNode.runAction(SCNAction.playAudio(mx70BPM, waitForCompletion: false))
-        
     }
     
     func runWild(_ node: LetterNode) {
@@ -156,11 +83,11 @@ class GameViewController: UIViewController {
             let x = arc4random_uniform(2)
             
             if x == 0 {
-                if node.position.x > 230 {
+                if node.position.x > 220 {
                     node.runAction(runLeft, completionHandler: {
                         self.runWild(node)
                     })
-                } else if node.position.x < 30 {
+                } else if node.position.x < 40 {
                     node.runAction(runRight, completionHandler: {
                         self.runWild(node)
                     })
@@ -185,7 +112,7 @@ class GameViewController: UIViewController {
                     node.runAction(runForward, completionHandler: {
                         self.runWild(node)
                     })
-                } else if node.position.z > 160 {
+                } else if node.position.z > 155 {
                     node.runAction(runBackward, completionHandler: {
                         self.runWild(node)
                     })
@@ -210,11 +137,8 @@ class GameViewController: UIViewController {
     
     @objc func handleLetterTap(_ gestureRecognizer: UITapGestureRecognizer) {
         
-        
-        print("tap working")
-        
+        print("handle letter tap")
         let tappedNode: LetterNode!
-        
         let tapCG = gestureRecognizer.location(in: scnView)
         
         let hitResults = scnView.hitTest(tapCG, options: [SCNHitTestOption.boundingBoxOnly: true, SCNHitTestOption.clipToZRange: true])
@@ -222,80 +146,102 @@ class GameViewController: UIViewController {
         if hitResults.first?.node is LetterNode
         {
             tappedNode = (hitResults.first?.node as! LetterNode)
-            if tappedNode.frozenPosition != nil && tappedNode.frozen == false{
+            if tappedNode.frozenPosition != nil && tappedNode.frozen == false {
                 tappedNode.frozen = true
-                tapGesture.isEnabled = false
-                
+                letterTap.isEnabled = false
                 nodeCaughtAnimation(node: tappedNode)
             }
-        }
+            
+        } else { randomMissSound() }
+    }
+    
+    func randomMissSound() {
+        
+        let i = arc4random_uniform(10)
+        let missArray = [toSlow, giggle1, giggle2, overHere, cantCatchMe]
         
         if i == 0 {
             
-            
-            print("you won")
-            
-            // disable button
-            // animation
-            // viewDidLoad
+            let node: LetterNode = freeArray[Int(arc4random_uniform(25))]
+            let j = Int(arc4random_uniform(5))
+            node.addAudioPlayer(SCNAudioPlayer(source: missArray[j]!))
             
         }
-        
     }
     
     func switchMX() {
         
+        let node = scene.rootNode
         
-        
-        
-        
-        
-        
+        switch letterCount {
+        case 20:
+            node.removeAudioPlayer(mx70BPMPlayer)
+            node.addAudioPlayer(mx100BPMPlayer)
+        case 14:
+            node.removeAudioPlayer(mx100BPMPlayer)
+            node.addAudioPlayer(mx130BPMPlayer)
+        case 8:
+            node.removeAudioPlayer(mx130BPMPlayer)
+            node.addAudioPlayer(mx160BPMPlayer)
+        default:
+            print("reserved")
+        }
     }
     
     func nodeCaughtAnimation(node: LetterNode) {
         
-        print(node)
-        print(freeArray.count)
-        print(frozenArray.count)
+        letterCount -= 1
+        print(letterCount)
         
-//        i -= 1
-//        switch i {
-//        case 20:
-//            switchMX()
-//        default:
-//            <#code#>
-//        }
+        switchMX()
         
         let j = freeArray.index(of: node)!
         let frozenNode = frozenArray[j]
         
-        let wait = SCNAction.wait(duration: 1.0)
+        let tapSound = SCNAction.playAudio(letterTapSound, waitForCompletion: false)
         let presentLetter = SCNAction.move(to: SCNVector3(134, 5, 176), duration: 0.5)
-        
-        // add sound
-        
-//        let playLetter = SCNAction.playAudio(node.letterPlayer, waitForCompletion: true)
-
-//        let tempPlayer = SCNAudioPlayer(source: node.letterPlayer)
-//
-//        node.addAudioPlayer(tempPlayer)
-        
-        
+        let playLetterSound = SCNAction.playAudio(node.letterSound!, waitForCompletion: true)
         let moveToHome = SCNAction.move(to: node.frozenPosition!, duration: 1.0)
         let hideFrozenNode = SCNAction.fadeOpacity(to: 0, duration: 3.0)
-        
-        
-        let actionArray = [presentLetter, wait, moveToHome]
+        let actionArray = [tapSound, presentLetter, playLetterSound, moveToHome]
         let sequence = SCNAction.sequence(actionArray)
-        node.runAction(sequence, completionHandler: tapGestureTrue)
+        node.runAction(sequence, completionHandler: enableLetterTap)
         frozenNode.runAction(hideFrozenNode)
         
+        if letterCount == 0 {
+            letterTap.isEnabled = false
+            startLabelTap.isEnabled = false
+            winSequence()
+        }
     }
     
-    func tapGestureTrue() {
-        tapGesture.isEnabled = true
+    func winSequence() {
+        
+        let node = scene.rootNode
+        node.removeAllAudioPlayers()
+
+        let wait = SCNAction.wait(duration: 2.0)
+        let yea1Sound = SCNAction.playAudio(yae1, waitForCompletion: false)
+        let yea2Sound = SCNAction.playAudio(yae2, waitForCompletion: true)
+        let music = SCNAction.playAudio(winMusic, waitForCompletion: true)
+        let youCaughtEverybodySound = SCNAction.playAudio(youCaughtEverybody, waitForCompletion: true)
+        let greatJobSound = SCNAction.playAudio(greatjob, waitForCompletion: false)
+        
+        let sequence = [yea1Sound, yea2Sound, music, wait, youCaughtEverybodySound, greatJobSound]
+        
+        let actionSequence = SCNAction.sequence(sequence)
+        
+        node.runAction(actionSequence) {
+            self.startLabelTap.isEnabled = true
+        }
     }
+    
+    func enableLetterTap() {
+        
+        if letterCount > 0 {
+            letterTap.isEnabled = true
+        }
+   }
     
     func loadGameView() {
         
@@ -307,12 +253,10 @@ class GameViewController: UIViewController {
         gameView.topAnchor.constraint(equalTo: scnView.topAnchor).isActive = true
         gameView.bottomAnchor.constraint(equalTo: scnView.bottomAnchor).isActive = true
         
-        
-        
         startLabel = UILabel( )
         gameView.addSubview(startLabel)
         
-        //        startLabel.adjustsFontSizeToFitWidth = true
+        // startLabel.adjustsFontSizeToFitWidth = true
         
         startLabel.font = UIFont(name: "Arial", size: 40.0 )
         
@@ -331,89 +275,72 @@ class GameViewController: UIViewController {
         startLabel.topAnchor.constraint(equalTo: gameView.topAnchor, constant: 120).isActive = true
         startLabel.isUserInteractionEnabled = true
         
-        let startTap = UITapGestureRecognizer(target: self, action: #selector(handleStartTap(_:)))
-        startLabel.addGestureRecognizer(startTap)
-    }
-    
-    func startPlayAudio () {
-//        
-//        scene.rootNode.runAction(<#T##action: SCNAction##SCNAction#>)
-//        
-//        SCNAction.playAudio(rdySetGo, waitForCompletion: true)
-//        SCNAction.playAudio(startScream1, waitForCompletion: false)
-//        SCNAction.playAudio(freezeTag, waitForCompletion: false)
-//        
-//        scene.rootNode
-//        
-//        
-//        
-//        SCNAction.sequence(<#T##actions: [SCNAction]##[SCNAction]#>)
-//        
-        
-        
+        startLabelTap = UITapGestureRecognizer(target: self, action: #selector(handleStartTap(_:)))
+        startLabel.addGestureRecognizer(startLabelTap)
         
     }
     
-    
-    
+    func startPlayAudio() -> SCNAction {
+        
+        return SCNAction.sequence([SCNAction.playAudio(rdySet, waitForCompletion: true), SCNAction.playAudio(startScream1, waitForCompletion: false),SCNAction.playAudio(freezeTag, waitForCompletion: false)])
+        
+    }
     
     @objc func handleStartTap(_ gestureRecognizer: UITapGestureRecognizer) {
         
         if startTapBool == true {
+            print(startTapBool)
+            self.startTapBool = false
+            self.startLabelTap.isEnabled = false
+            // label change doesnt work in CH
+            self.startLabel.text = "REST"
             
-            
-            
-            
-    
-            
-            startTapBool = false
-            tapGesture.isEnabled = true
-            
-
-
-            
-            makeFrozenNodesVisible()
-            runWild(aNodeFree)
-            runWild(bNodeFree)
-            runWild(cNodeFree)
-            runWild(dNodeFree)
-            runWild(eNodeFree)
-            runWild(fNodeFree)
-            runWild(gNodeFree)
-            runWild(hNodeFree)
-            runWild(iNodeFree)
-            runWild(jNodeFree)
-            runWild(kNodeFree)
-            runWild(lNodeFree)
-            runWild(mNodeFree)
-            runWild(nNodeFree)
-            runWild(oNodeFree)
-            runWild(pNodeFree)
-            runWild(qNodeFree)
-            runWild(rNodeFree)
-            runWild(sNodeFree)
-            runWild(tNodeFree)
-            runWild(uNodeFree)
-            runWild(vNodeFree)
-            runWild(wNodeFree)
-            runWild(xNodeFree)
-            runWild(yNodeFree)
-            runWild(zNodeFree)
-            
-            startLabel.text = "REST"
-            
+            scene.rootNode.runAction(startPlayAudio(), completionHandler: {
+                
+                self.scene.rootNode.addAudioPlayer(SCNAudioPlayer(source: self.kidPlayGround1))
+                self.scene.rootNode.addAudioPlayer(self.mx70BPMPlayer)
+                self.makeFrozenNodesVisible()
+                self.runWild(self.aNodeFree)
+                self.runWild(self.bNodeFree)
+                self.runWild(self.cNodeFree)
+                self.runWild(self.dNodeFree)
+                self.runWild(self.eNodeFree)
+                self.runWild(self.fNodeFree)
+                self.runWild(self.gNodeFree)
+                self.runWild(self.hNodeFree)
+                self.runWild(self.iNodeFree)
+                self.runWild(self.jNodeFree)
+                self.runWild(self.kNodeFree)
+                self.runWild(self.lNodeFree)
+                self.runWild(self.mNodeFree)
+                self.runWild(self.nNodeFree)
+                self.runWild(self.oNodeFree)
+                self.runWild(self.pNodeFree)
+                self.runWild(self.qNodeFree)
+                self.runWild(self.rNodeFree)
+                self.runWild(self.sNodeFree)
+                self.runWild(self.tNodeFree)
+                self.runWild(self.uNodeFree)
+                self.runWild(self.vNodeFree)
+                self.runWild(self.wNodeFree)
+                self.runWild(self.xNodeFree)
+                self.runWild(self.yNodeFree)
+                self.runWild(self.zNodeFree)
+                self.startLabelTap.isEnabled = true
+                self.letterTap.isEnabled = true
+            })
         } else {
+            
             startTapBool = true
-            tapGesture.isEnabled = false
+            letterTap.isEnabled = false
             scene.rootNode.enumerateChildNodes { (node, stop) in
                 node.removeFromParentNode() }
-            i = 26
             scene.rootNode.removeAllAudioPlayers()
             frozenArray = []
             freeArray = []
+            letterCount = 26
             viewDidLoad()
         }
-        
     }
     
     func degreesToRadians(degrees: Float) -> Float {
@@ -424,7 +351,173 @@ class GameViewController: UIViewController {
         return radians * 180 / Float.pi
     }
     
-    
+    func loadSounds() {
+        
+        rdySet = SCNAudioSource(named: "ABC_READY_SET_1.mp3")
+        rdySet.isPositional = false
+        rdySet.load()
+        
+        go = SCNAudioSource(named: "ABC_GO_1.mp3")
+        go.isPositional = false
+        go.load()
+        
+        startScream1 = SCNAudioSource(named: "ABC_START_SCREAM_1.mp3")
+        startScream1.isPositional = false
+        startScream1.load()
+        
+        kidPlayGround1 = SCNAudioSource(named: "KIDS_PLAYGROUND_1.mp3")
+        kidPlayGround1.volume = 0.8
+        kidPlayGround1.isPositional = false
+        kidPlayGround1.loops = true
+        kidPlayGround1.shouldStream = true
+        
+        freezeTag = SCNAudioSource(named: "ABC_FREEZE_TAG_GROUP_1.mp3")
+        freezeTag.isPositional = false
+        freezeTag.load()
+        
+        letterTapSound = SCNAudioSource(named: "ABC_LETTER_TAP_FX_1.mp3")
+        letterTapSound.volume = 0.8
+        letterTapSound.load()
+        
+        winMusic = SCNAudioSource(named: "ABC_WIN_MX_1.mp3")
+        winMusic.load()
+        
+        greatjob = SCNAudioSource(named: "ABC_GREAT_JOB_SKY_1.mp3")
+        greatjob.load()
+        
+        youCaughtEverybody = SCNAudioSource(named: "ABC_YOU_CAUGHT_EVERYBODY_GRACE_1.mp3")
+        youCaughtEverybody.load()
+        
+        yae1 = SCNAudioSource(named: "ABC_YEAAA_GRACE_1.mp3")
+        yae1.load()
+        
+        yae2 = SCNAudioSource(named: "ABC_YEAAAA_SKY_1.mp3")
+        yae2.load()
+        
+        toSlow = SCNAudioSource(named: "ABC_TO_SLOW_SKY_1.mp3")
+        toSlow.volume = 0.5
+        toSlow.load()
+        
+        giggle1 = SCNAudioSource(named: "KID_GIRL_GIGGLE_5.mp3")
+        giggle1.load()
+        
+        giggle2 = SCNAudioSource(named: "KID_GIRL_GIGGLE_6.mp3")
+        giggle2.load()
+        
+        overHere = SCNAudioSource(named: "ABC_OVER_HERE_GRACE_1.mp3")
+        overHere.volume = 0.5
+        overHere.load()
+        
+        cantCatchMe = SCNAudioSource(named: "ABC_YOU_CANT_CATCH_ME_GRACE_1.mp3")
+        cantCatchMe.volume = 0.5
+        cantCatchMe.load()
+        
+        mx70BPM = SCNAudioSource(named: "ABC_FT_1_70.mp3")
+        mx70BPM.isPositional = false
+        mx70BPM.volume = 0.3
+        mx70BPM.loops = true
+        mx70BPM.shouldStream = true
+        mx70BPMPlayer = SCNAudioPlayer(source: mx70BPM)
+        
+        mx100BPM = SCNAudioSource(named: "ABC_FT_2_100.mp3")
+        mx100BPM.isPositional = false
+        mx100BPM.volume = 0.3
+        mx100BPM.loops = true
+        mx100BPM.shouldStream = true
+        mx100BPMPlayer = SCNAudioPlayer(source: mx100BPM)
+        
+        mx130BPM = SCNAudioSource(named: "ABC_FT_3_130.mp3")
+        mx130BPM.isPositional = false
+        mx130BPM.volume = 0.3
+        mx130BPM.loops = true
+        mx130BPM.shouldStream = true
+        mx130BPMPlayer = SCNAudioPlayer(source: mx130BPM)
+        
+        mx160BPM = SCNAudioSource(named: "ABC_FT_4_160.mp3")
+        mx160BPM.volume = 0.3
+        mx160BPM.isPositional = false
+        mx160BPM.loops = true
+        mx160BPM.shouldStream = true
+        mx160BPMPlayer = SCNAudioPlayer(source: mx160BPM)
+        
+        aSound = SCNAudioSource(named: "ABC_GROUP_LETTER_A.mp3")
+        aSound.load()
+        
+        bSound = SCNAudioSource(named: "ABC_GROUP_LETTER_B.mp3")
+        bSound.load()
+        
+        cSound = SCNAudioSource(named: "ABC_GROUP_LETTER_C.mp3")
+        cSound.load()
+        
+        dSound = SCNAudioSource(named: "ABC_GROUP_LETTER_D.mp3")
+        dSound.load()
+        
+        eSound = SCNAudioSource(named: "ABC_GROUP_LETTER_E.mp3")
+        eSound.load()
+        
+        fSound = SCNAudioSource(named: "ABC_GROUP_LETTER_F.mp3")
+        fSound.load()
+        
+        gSound = SCNAudioSource(named: "ABC_GROUP_LETTER_G.mp3")
+        gSound.load()
+        
+        hSound = SCNAudioSource(named: "ABC_GROUP_LETTER_H.mp3")
+        hSound.load()
+        
+        iSound = SCNAudioSource(named: "ABC_GROUP_LETTER_I.mp3")
+        iSound.load()
+        
+        jSound = SCNAudioSource(named: "ABC_GROUP_LETTER_J.mp3")
+        jSound.load()
+        
+        kSound = SCNAudioSource(named: "ABC_GROUP_LETTER_K.mp3")
+        kSound.load()
+        
+        lSound = SCNAudioSource(named: "ABC_GROUP_LETTER_L.mp3")
+        lSound.load()
+        
+        mSound = SCNAudioSource(named: "ABC_GROUP_LETTER_M.mp3")
+        mSound.load()
+        
+        nSound = SCNAudioSource(named: "ABC_GROUP_LETTER_N.mp3")
+        nSound.load()
+        
+        oSound = SCNAudioSource(named: "ABC_GROUP_LETTER_O.mp3")
+        oSound.load()
+        
+        pSound = SCNAudioSource(named: "ABC_GROUP_LETTER_P.mp3")
+        pSound.load()
+        
+        qSound = SCNAudioSource(named: "ABC_GROUP_LETTER_Q.mp3")
+        qSound.load()
+        
+        rSound = SCNAudioSource(named: "ABC_GROUP_LETTER_R.mp3")
+        rSound.load()
+        
+        sSound = SCNAudioSource(named: "ABC_GROUP_LETTER_S.mp3")
+        sSound.load()
+        
+        tSound = SCNAudioSource(named: "ABC_GROUP_LETTER_T.mp3")
+        tSound.load()
+        
+        uSound = SCNAudioSource(named: "ABC_GROUP_LETTER_U.mp3")
+        uSound.load()
+        
+        vSound = SCNAudioSource(named: "ABC_GROUP_LETTER_V.mp3")
+        vSound.load()
+        
+        wSound = SCNAudioSource(named: "ABC_GROUP_LETTER_W.mp3")
+        wSound.load()
+        
+        xSound = SCNAudioSource(named: "ABC_GROUP_LETTER_X.mp3")
+        xSound.load()
+        
+        ySound = SCNAudioSource(named: "ABC_GROUP_LETTER_Y.mp3")
+        ySound.load()
+        
+        zSound = SCNAudioSource(named: "ABC_GROUP_LETTER_Z.mp3")
+        zSound.load()
+    }
 }
 
 //extension SCNAudioSource {
@@ -460,7 +553,7 @@ class GameViewController: UIViewController {
 //        pauseLabel.isUserInteractionEnabled = true
 //
 
-//
+
 //        let pauseTap = UITapGestureRecognizer(target: self, action: #selector(handlePauseTap(_:)))
 //        pauseLabel.addGestureRecognizer(pauseTap)
 //
