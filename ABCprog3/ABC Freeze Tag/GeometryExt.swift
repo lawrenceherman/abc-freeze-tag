@@ -73,5 +73,4 @@ extension GameViewController {
         yGeoF = Letter(letter: "Y")
         zGeoF = Letter(letter: "Z")
     }
-    
 }

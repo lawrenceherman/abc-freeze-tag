@@ -8,9 +8,6 @@
 
 import SceneKit
 import AVFoundation
-////import UIKit
-//import QuartzCore
-
 
 extension GameViewController {
     
@@ -181,7 +178,7 @@ extension GameViewController {
         freeArray.append(zNodeFree)
         scene.rootNode.addChildNode(zNodeFree)
         
-}
+    }
     
     func loadNodesFrozen() {
         
@@ -345,7 +342,4 @@ extension GameViewController {
         yNodeFrozen.isHidden = false
         zNodeFrozen.isHidden = false
     }
-    
-
-    
 }

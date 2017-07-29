@@ -219,7 +219,7 @@ class GameViewController: UIViewController {
         
         let node = scene.rootNode
         node.removeAllAudioPlayers()
-
+        
         let wait = SCNAction.wait(duration: 2.0)
         let yea1Sound = SCNAction.playAudio(yae1, waitForCompletion: false)
         let yea2Sound = SCNAction.playAudio(yae2, waitForCompletion: true)
@@ -241,7 +241,7 @@ class GameViewController: UIViewController {
         if letterCount > 0 {
             letterTap.isEnabled = true
         }
-   }
+    }
     
     func loadGameView() {
         

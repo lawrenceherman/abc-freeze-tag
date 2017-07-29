@@ -6,8 +6,6 @@
 //  Copyright © 2017 Lawrence Herman. All rights reserved.
 //
 
-//import UIKit
-//import QuartzCore
 import SceneKit
 
 class LetterNode: SCNNode {
@@ -51,7 +49,7 @@ class LetterNode: SCNNode {
     convenience init(geometry: Letter, frozen: Bool, audioSource: SCNAudioSource) {
         self.init(geometry: geometry, frozen: frozen)
         self.letterSound = audioSource
-
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

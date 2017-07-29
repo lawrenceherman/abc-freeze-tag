@@ -6,10 +6,7 @@
 //  Copyright © 2017 Lawrence Herman. All rights reserved.
 //
 
-//import UIKit
-//import QuartzCore
 import SceneKit
-
 
 class Letter: SCNText {
     
@@ -24,7 +21,6 @@ class Letter: SCNText {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 

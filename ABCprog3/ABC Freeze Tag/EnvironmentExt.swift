@@ -53,9 +53,5 @@ extension GameViewController {
         let floorPhysics = SCNPhysicsBody.static()
         floorNode.physicsBody = floorPhysics
         scene.rootNode.addChildNode(floorNode)
-        
-        
     }
-    
-    
 }
