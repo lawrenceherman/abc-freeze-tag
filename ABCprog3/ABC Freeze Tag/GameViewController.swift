@@ -220,14 +220,13 @@ class GameViewController: UIViewController {
         let node = scene.rootNode
         node.removeAllAudioPlayers()
         
-        let wait = SCNAction.wait(duration: 2.0)
         let yea1Sound = SCNAction.playAudio(yae1, waitForCompletion: false)
         let yea2Sound = SCNAction.playAudio(yae2, waitForCompletion: true)
         let music = SCNAction.playAudio(winMusic, waitForCompletion: true)
         let youCaughtEverybodySound = SCNAction.playAudio(youCaughtEverybody, waitForCompletion: true)
         let greatJobSound = SCNAction.playAudio(greatjob, waitForCompletion: false)
         
-        let sequence = [yea1Sound, yea2Sound, music, wait, youCaughtEverybodySound, greatJobSound]
+        let sequence = [yea1Sound, yea2Sound, music, youCaughtEverybodySound, greatJobSound]
         
         let actionSequence = SCNAction.sequence(sequence)
         
