@@ -26,24 +26,24 @@ import QuartzCore
 //    }
 //}
 
-extension SKShapeNode {
-    convenience init(radius: CGFloat, color: UIColor, text: String, fontNamed: String) {
-        self.init(circleOfRadius: radius)
-        self.fillColor = color
-        self.isUserInteractionEnabled = true
-        self.name = text
-        
-        let label = SKLabelNode(text: text)
-        label.fontName = fontNamed
-        
-        
-        //Creating and adding a blank label, centered on the button
-        label.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
-        label.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.center
-    
-        addChild(label)
-    }
-}
+//extension SKShapeNode {
+//    convenience init(radius: CGFloat, color: UIColor, text: String, fontNamed: String) {
+//        self.init(circleOfRadius: radius)
+//        self.fillColor = color
+//        self.isUserInteractionEnabled = true
+//        self.name = text
+//        
+//        let label = SKLabelNode(text: text)
+//        label.fontName = fontNamed
+//        
+//        
+//        //Creating and adding a blank label, centered on the button
+//        label.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
+//        label.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.center
+//    
+//        addChild(label)
+//    }
+//}
 
 //class SKButtonNode: SKSpriteNode {
 //

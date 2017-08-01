@@ -10,7 +10,7 @@
 ////import UIKit
 //import QuartzCore
 
-extension GameViewController {
+extension MainScene {
     
     func loadGeometry() {
         

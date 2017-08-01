@@ -69,16 +69,19 @@
 		FE4F2CAF1F2AA9980001C336 /* KID_GIRL_GIGGLE_5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE4F2C721F2AA9980001C336 /* KID_GIRL_GIGGLE_5.mp3 */; };
 		FE4F2CB01F2AA9980001C336 /* KID_GIRL_GIGGLE_6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE4F2C731F2AA9980001C336 /* KID_GIRL_GIGGLE_6.mp3 */; };
 		FE4F2CB11F2AA9980001C336 /* KIDS_PLAYGROUND_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE4F2C741F2AA9980001C336 /* KIDS_PLAYGROUND_1.mp3 */; };
-		FE529FF91F1428A0005E3EF3 /* EnvironmentExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FF81F1428A0005E3EF3 /* EnvironmentExt.swift */; };
+		FE529FF91F1428A0005E3EF3 /* CameraAndLightstExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FF81F1428A0005E3EF3 /* CameraAndLightstExt.swift */; };
 		FE529FFB1F142AEF005E3EF3 /* GeometryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */; };
 		FE529FFD1F142D5F005E3EF3 /* NodesExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */; };
 		FE6C35AA1F30CBE3008A0121 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6C35A91F30CBE3008A0121 /* GameView.swift */; };
-		FE6C35B01F311330008A0121 /* Pause.png in Resources */ = {isa = PBXBuildFile; fileRef = FE6C35AB1F311330008A0121 /* Pause.png */; };
-		FE6C35B11F311330008A0121 /* PlayActive.png in Resources */ = {isa = PBXBuildFile; fileRef = FE6C35AC1F311330008A0121 /* PlayActive.png */; };
-		FE6C35B21F311330008A0121 /* PlayInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = FE6C35AD1F311330008A0121 /* PlayInactive.png */; };
-		FE6C35B31F311330008A0121 /* Stop.png in Resources */ = {isa = PBXBuildFile; fileRef = FE6C35AE1F311330008A0121 /* Stop.png */; };
-		FE6C35B41F311330008A0121 /* StopInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = FE6C35AF1F311330008A0121 /* StopInactive.png */; };
+		FE6C35B61F311502008A0121 /* OverlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6C35B51F311502008A0121 /* OverlayScene.swift */; };
 		FE7176D11F2FB09900BE8185 /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7176D01F2FB09900BE8185 /* SKButton.swift */; };
+		FE93F28C1F3118EC00B23DCA /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE93F28B1F3118EC00B23DCA /* MainScene.swift */; };
+		FE93F28E1F311B6E00B23DCA /* SoundsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE93F28D1F311B6E00B23DCA /* SoundsExt.swift */; };
+		FE93F29E1F31425700B23DCA /* Pause100.png in Resources */ = {isa = PBXBuildFile; fileRef = FE93F2991F31425700B23DCA /* Pause100.png */; };
+		FE93F29F1F31425700B23DCA /* PlayActive100.png in Resources */ = {isa = PBXBuildFile; fileRef = FE93F29A1F31425700B23DCA /* PlayActive100.png */; };
+		FE93F2A01F31425700B23DCA /* PlayInactive100.png in Resources */ = {isa = PBXBuildFile; fileRef = FE93F29B1F31425700B23DCA /* PlayInactive100.png */; };
+		FE93F2A11F31425700B23DCA /* Stop100.png in Resources */ = {isa = PBXBuildFile; fileRef = FE93F29C1F31425700B23DCA /* Stop100.png */; };
+		FE93F2A21F31425700B23DCA /* StopInactive100.png in Resources */ = {isa = PBXBuildFile; fileRef = FE93F29D1F31425700B23DCA /* StopInactive100.png */; };
 		FEA869A61F28FED60090D124 /* ABCFreezTagLS1.png in Resources */ = {isa = PBXBuildFile; fileRef = FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */; };
 		FEC6C3E31F113E44009410BE /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E21F113E44009410BE /* Letter.swift */; };
 		FEC6C3E51F11505B009410BE /* LetterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E41F11505B009410BE /* LetterNode.swift */; };
@@ -149,16 +152,19 @@
 		FE4F2C721F2AA9980001C336 /* KID_GIRL_GIGGLE_5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = KID_GIRL_GIGGLE_5.mp3; sourceTree = "<group>"; };
 		FE4F2C731F2AA9980001C336 /* KID_GIRL_GIGGLE_6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = KID_GIRL_GIGGLE_6.mp3; sourceTree = "<group>"; };
 		FE4F2C741F2AA9980001C336 /* KIDS_PLAYGROUND_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = KIDS_PLAYGROUND_1.mp3; sourceTree = "<group>"; };
-		FE529FF81F1428A0005E3EF3 /* EnvironmentExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentExt.swift; sourceTree = "<group>"; };
+		FE529FF81F1428A0005E3EF3 /* CameraAndLightstExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAndLightstExt.swift; sourceTree = "<group>"; };
 		FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryExt.swift; sourceTree = "<group>"; };
 		FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodesExt.swift; sourceTree = "<group>"; };
 		FE6C35A91F30CBE3008A0121 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
-		FE6C35AB1F311330008A0121 /* Pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Pause.png; path = Images/Pause.png; sourceTree = "<group>"; };
-		FE6C35AC1F311330008A0121 /* PlayActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayActive.png; path = Images/PlayActive.png; sourceTree = "<group>"; };
-		FE6C35AD1F311330008A0121 /* PlayInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayInactive.png; path = Images/PlayInactive.png; sourceTree = "<group>"; };
-		FE6C35AE1F311330008A0121 /* Stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stop.png; path = Images/Stop.png; sourceTree = "<group>"; };
-		FE6C35AF1F311330008A0121 /* StopInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StopInactive.png; path = Images/StopInactive.png; sourceTree = "<group>"; };
+		FE6C35B51F311502008A0121 /* OverlayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayScene.swift; sourceTree = "<group>"; };
 		FE7176D01F2FB09900BE8185 /* SKButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
+		FE93F28B1F3118EC00B23DCA /* MainScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScene.swift; sourceTree = "<group>"; };
+		FE93F28D1F311B6E00B23DCA /* SoundsExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundsExt.swift; path = ../SoundsExt.swift; sourceTree = "<group>"; };
+		FE93F2991F31425700B23DCA /* Pause100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Pause100.png; path = Images/Pause100.png; sourceTree = "<group>"; };
+		FE93F29A1F31425700B23DCA /* PlayActive100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayActive100.png; path = Images/PlayActive100.png; sourceTree = "<group>"; };
+		FE93F29B1F31425700B23DCA /* PlayInactive100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayInactive100.png; path = Images/PlayInactive100.png; sourceTree = "<group>"; };
+		FE93F29C1F31425700B23DCA /* Stop100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stop100.png; path = Images/Stop100.png; sourceTree = "<group>"; };
+		FE93F29D1F31425700B23DCA /* StopInactive100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StopInactive100.png; path = Images/StopInactive100.png; sourceTree = "<group>"; };
 		FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ABCFreezTagLS1.png; path = Images.xcassets/LaunchImage.launchimage/ABCFreezTagLS1.png; sourceTree = "<group>"; };
 		FEC6C3E21F113E44009410BE /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
 		FEC6C3E41F11505B009410BE /* LetterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterNode.swift; sourceTree = "<group>"; };
@@ -194,6 +200,7 @@
 		FE4E57991F01868300C78154 /* ABC Freeze Tag */ = {
 			isa = PBXGroup;
 			children = (
+				FE93F28D1F311B6E00B23DCA /* SoundsExt.swift */,
 				FE5BFE9A1F2FEE43001AF59E /* Images */,
 				FE4F2C361F2A835A0001C336 /* Assets.xcassets */,
 				FE1025881F25186400BD5C63 /* AppDelegate.swift */,
@@ -204,12 +211,14 @@
 				FE4E57A81F01868300C78154 /* Info.plist */,
 				FEC6C3E21F113E44009410BE /* Letter.swift */,
 				FEC6C3E41F11505B009410BE /* LetterNode.swift */,
-				FE529FF81F1428A0005E3EF3 /* EnvironmentExt.swift */,
+				FE529FF81F1428A0005E3EF3 /* CameraAndLightstExt.swift */,
 				FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */,
 				FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */,
 				FE2034B51F292A7B009E800C /* Launch Screen.storyboard */,
 				FE7176D01F2FB09900BE8185 /* SKButton.swift */,
 				FE6C35A91F30CBE3008A0121 /* GameView.swift */,
+				FE6C35B51F311502008A0121 /* OverlayScene.swift */,
+				FE93F28B1F3118EC00B23DCA /* MainScene.swift */,
 			);
 			path = "ABC Freeze Tag";
 			sourceTree = "<group>";
@@ -217,11 +226,11 @@
 		FE5BFE9A1F2FEE43001AF59E /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				FE6C35AB1F311330008A0121 /* Pause.png */,
-				FE6C35AC1F311330008A0121 /* PlayActive.png */,
-				FE6C35AD1F311330008A0121 /* PlayInactive.png */,
-				FE6C35AE1F311330008A0121 /* Stop.png */,
-				FE6C35AF1F311330008A0121 /* StopInactive.png */,
+				FE93F2991F31425700B23DCA /* Pause100.png */,
+				FE93F29A1F31425700B23DCA /* PlayActive100.png */,
+				FE93F29B1F31425700B23DCA /* PlayInactive100.png */,
+				FE93F29C1F31425700B23DCA /* Stop100.png */,
+				FE93F29D1F31425700B23DCA /* StopInactive100.png */,
 				FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */,
 			);
 			name = Images;
@@ -374,8 +383,6 @@
 				FE4F2C8D1F2AA9980001C336 /* ABC_GROUP_LETTER_N.mp3 in Resources */,
 				FE4F2CA71F2AA9980001C336 /* ABC_YOU_CAUGHT_EVERYBODY_SKY_1.mp3 in Resources */,
 				FE4F2C9A1F2AA9980001C336 /* ABC_LOOK_OUT_SKY_1.mp3 in Resources */,
-				FE6C35B31F311330008A0121 /* Stop.png in Resources */,
-				FE6C35B21F311330008A0121 /* PlayInactive.png in Resources */,
 				FE4F2C911F2AA9980001C336 /* ABC_GROUP_LETTER_T.mp3 in Resources */,
 				FE4F2C371F2A835A0001C336 /* Assets.xcassets in Resources */,
 				FE4F2C811F2AA9980001C336 /* ABC_FT_4_160.mp3 in Resources */,
@@ -387,14 +394,17 @@
 				FE36B2EA1F2BB2FC004CB6D8 /* ABC_GROUP_LETTER_S.mp3 in Resources */,
 				FE4F2C851F2AA9980001C336 /* ABC_GROUP_LETTER_D.mp3 in Resources */,
 				FE4F2CA51F2AA9980001C336 /* ABC_YOU_CANT_CATCH_ME_SKY_1.mp3 in Resources */,
+				FE93F29E1F31425700B23DCA /* Pause100.png in Resources */,
 				FE4F2C781F2AA9980001C336 /* ABC_CATCH_EVERYBODY_GRACE_1.mp3 in Resources */,
 				FE36B2DE1F2B8BF1004CB6D8 /* ABC_LETTER_TAP_FX_1.mp3 in Resources */,
 				FE4F2CA61F2AA9980001C336 /* ABC_YOU_CAUGHT_EVERYBODY_GRACE_1.mp3 in Resources */,
 				FE36B2DF1F2B8BF1004CB6D8 /* ABC_READY_SET_1.mp3 in Resources */,
 				FE36B2E61F2BB2FC004CB6D8 /* ABC_GROUP_LETTER_C.mp3 in Resources */,
+				FE93F2A01F31425700B23DCA /* PlayInactive100.png in Resources */,
 				FE36B2DA1F2B8BE2004CB6D8 /* ABC_GO_1.mp3 in Resources */,
 				FE4F2CA41F2AA9980001C336 /* ABC_YOU_CANT_CATCH_ME_GRACE_1.mp3 in Resources */,
 				FE4F2C941F2AA9980001C336 /* ABC_GROUP_LETTER_W.mp3 in Resources */,
+				FE93F2A11F31425700B23DCA /* Stop100.png in Resources */,
 				FE4F2CAF1F2AA9980001C336 /* KID_GIRL_GIGGLE_5.mp3 in Resources */,
 				FE4F2C891F2AA9980001C336 /* ABC_GROUP_LETTER_H.mp3 in Resources */,
 				FE4F2C9B1F2AA9980001C336 /* ABC_OVER_HERE_GRACE_1.mp3 in Resources */,
@@ -408,12 +418,12 @@
 				FE4F2C861F2AA9980001C336 /* ABC_GROUP_LETTER_E.mp3 in Resources */,
 				FE4F2CB01F2AA9980001C336 /* KID_GIRL_GIGGLE_6.mp3 in Resources */,
 				FE4F2C871F2AA9980001C336 /* ABC_GROUP_LETTER_F.mp3 in Resources */,
-				FE6C35B01F311330008A0121 /* Pause.png in Resources */,
 				FE4F2CB11F2AA9980001C336 /* KIDS_PLAYGROUND_1.mp3 in Resources */,
 				FE4F2C821F2AA9980001C336 /* ABC_GREAT_JOB_SKY_1.mp3 in Resources */,
-				FE6C35B11F311330008A0121 /* PlayActive.png in Resources */,
+				FE93F2A21F31425700B23DCA /* StopInactive100.png in Resources */,
 				FE4E57A21F01868300C78154 /* Main.storyboard in Resources */,
 				FE4F2C7E1F2AA9980001C336 /* ABC_FT_1_70.mp3 in Resources */,
+				FE93F29F1F31425700B23DCA /* PlayActive100.png in Resources */,
 				FE4F2C9C1F2AA9980001C336 /* ABC_OVER_HERE_SKY_1.mp3 in Resources */,
 				FE4F2C8E1F2AA9980001C336 /* ABC_GROUP_LETTER_O.mp3 in Resources */,
 				FE4F2C991F2AA9980001C336 /* ABC_LOOK_OUT_GRACE_1.mp3 in Resources */,
@@ -422,7 +432,6 @@
 				FE4F2C8B1F2AA9980001C336 /* ABC_GROUP_LETTER_J.mp3 in Resources */,
 				FE4F2C951F2AA9980001C336 /* ABC_GROUP_LETTER_X.mp3 in Resources */,
 				FE4F2C8F1F2AA9980001C336 /* ABC_GROUP_LETTER_P.mp3 in Resources */,
-				FE6C35B41F311330008A0121 /* StopInactive.png in Resources */,
 				FE4F2C771F2AA9980001C336 /* ABC_CANT_CATCH_ME_SKY_1.mp3 in Resources */,
 				FE4F2C921F2AA9980001C336 /* ABC_GROUP_LETTER_U.mp3 in Resources */,
 			);
@@ -435,7 +444,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE6C35B61F311502008A0121 /* OverlayScene.swift in Sources */,
+				FE93F28C1F3118EC00B23DCA /* MainScene.swift in Sources */,
 				FEC6C3E51F11505B009410BE /* LetterNode.swift in Sources */,
+				FE93F28E1F311B6E00B23DCA /* SoundsExt.swift in Sources */,
 				FE529FFD1F142D5F005E3EF3 /* NodesExt.swift in Sources */,
 				FE529FFB1F142AEF005E3EF3 /* GeometryExt.swift in Sources */,
 				FE7176D11F2FB09900BE8185 /* SKButton.swift in Sources */,
@@ -443,7 +455,7 @@
 				FEC6C3E31F113E44009410BE /* Letter.swift in Sources */,
 				FE1025891F25186400BD5C63 /* AppDelegate.swift in Sources */,
 				FE4E579F1F01868300C78154 /* GameViewController.swift in Sources */,
-				FE529FF91F1428A0005E3EF3 /* EnvironmentExt.swift in Sources */,
+				FE529FF91F1428A0005E3EF3 /* CameraAndLightstExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
