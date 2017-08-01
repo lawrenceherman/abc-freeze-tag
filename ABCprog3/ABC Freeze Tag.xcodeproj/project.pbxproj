@@ -73,6 +73,8 @@
 		FE529FF91F1428A0005E3EF3 /* EnvironmentExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FF81F1428A0005E3EF3 /* EnvironmentExt.swift */; };
 		FE529FFB1F142AEF005E3EF3 /* GeometryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */; };
 		FE529FFD1F142D5F005E3EF3 /* NodesExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */; };
+		FE5BFE9C1F2FEE67001AF59E /* TestStartButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FE5BFE9B1F2FEE67001AF59E /* TestStartButton.png */; };
+		FE7176D11F2FB09900BE8185 /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7176D01F2FB09900BE8185 /* SKButton.swift */; };
 		FEA869A61F28FED60090D124 /* ABCFreezTagLS1.png in Resources */ = {isa = PBXBuildFile; fileRef = FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */; };
 		FEC6C3E31F113E44009410BE /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E21F113E44009410BE /* Letter.swift */; };
 		FEC6C3E51F11505B009410BE /* LetterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E41F11505B009410BE /* LetterNode.swift */; };
@@ -147,6 +149,8 @@
 		FE529FF81F1428A0005E3EF3 /* EnvironmentExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentExt.swift; sourceTree = "<group>"; };
 		FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryExt.swift; sourceTree = "<group>"; };
 		FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodesExt.swift; sourceTree = "<group>"; };
+		FE5BFE9B1F2FEE67001AF59E /* TestStartButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TestStartButton.png; sourceTree = "<group>"; };
+		FE7176D01F2FB09900BE8185 /* SKButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
 		FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ABCFreezTagLS1.png; sourceTree = "<group>"; };
 		FEC6C3E21F113E44009410BE /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
 		FEC6C3E41F11505B009410BE /* LetterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterNode.swift; sourceTree = "<group>"; };
@@ -182,8 +186,8 @@
 		FE4E57991F01868300C78154 /* ABC Freeze Tag */ = {
 			isa = PBXGroup;
 			children = (
+				FE5BFE9A1F2FEE43001AF59E /* Images */,
 				FE4F2C361F2A835A0001C336 /* Assets.xcassets */,
-				FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */,
 				FE1025881F25186400BD5C63 /* AppDelegate.swift */,
 				FE98855C1F23BD670083DD75 /* Particles */,
 				FEB7B58D1F229A3800124B2E /* Sounds */,
@@ -197,8 +201,18 @@
 				FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */,
 				FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */,
 				FE2034B51F292A7B009E800C /* Launch Screen.storyboard */,
+				FE7176D01F2FB09900BE8185 /* SKButton.swift */,
 			);
 			path = "ABC Freeze Tag";
+			sourceTree = "<group>";
+		};
+		FE5BFE9A1F2FEE43001AF59E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				FE5BFE9B1F2FEE67001AF59E /* TestStartButton.png */,
+				FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		FE98855C1F23BD670083DD75 /* Particles */ = {
@@ -378,6 +392,7 @@
 				FEA869A61F28FED60090D124 /* ABCFreezTagLS1.png in Resources */,
 				FE4F2CA01F2AA9980001C336 /* ABC_TO_SLOW_GRACE_1.mp3 in Resources */,
 				FE4F2C981F2AA9980001C336 /* ABC_IM_HERE_GRACE_1.mp3 in Resources */,
+				FE5BFE9C1F2FEE67001AF59E /* TestStartButton.png in Resources */,
 				FE4F2C861F2AA9980001C336 /* ABC_GROUP_LETTER_E.mp3 in Resources */,
 				FE4F2CB01F2AA9980001C336 /* KID_GIRL_GIGGLE_6.mp3 in Resources */,
 				FE4F2C871F2AA9980001C336 /* ABC_GROUP_LETTER_F.mp3 in Resources */,
@@ -408,6 +423,7 @@
 				FEC6C3E51F11505B009410BE /* LetterNode.swift in Sources */,
 				FE529FFD1F142D5F005E3EF3 /* NodesExt.swift in Sources */,
 				FE529FFB1F142AEF005E3EF3 /* GeometryExt.swift in Sources */,
+				FE7176D11F2FB09900BE8185 /* SKButton.swift in Sources */,
 				FEC6C3E31F113E44009410BE /* Letter.swift in Sources */,
 				FE1025891F25186400BD5C63 /* AppDelegate.swift in Sources */,
 				FE4E579F1F01868300C78154 /* GameViewController.swift in Sources */,
@@ -546,7 +562,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/ABC Freeze Tag/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Lawrence-Herman.ABCFreezeTag";
+				PRODUCT_BUNDLE_IDENTIFIER = com.LawrenceHerman.ABCFreezeTag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -565,8 +581,9 @@
 				INFOPLIST_FILE = "$(SRCROOT)/ABC Freeze Tag/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Lawrence-Herman.ABCFreezeTag";
+				PRODUCT_BUNDLE_IDENTIFIER = com.LawrenceHerman.ABCFreezeTag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 3.0;

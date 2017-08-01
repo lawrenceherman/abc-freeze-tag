@@ -8,6 +8,7 @@
 
 import QuartzCore
 import SceneKit
+import SpriteKit
 
 class GameViewController: UIViewController {
     
@@ -16,6 +17,7 @@ class GameViewController: UIViewController {
     var startLabel: UILabel!
     
     var scnView: SCNView!
+    var skScene: SKScene!
     var pauseBool: Bool = true
     var startTapBool: Bool = true
     var letterTap: UITapGestureRecognizer!
@@ -65,8 +67,33 @@ class GameViewController: UIViewController {
         scnView.showsStatistics = false
         scnView.backgroundColor = UIColor(red: 0.4, green: 0.8, blue: 1.0, alpha: 1.0)
         scnView.autoenablesDefaultLighting = false
+        
+
+        let playButton = SKButtonNode(type: .Play)
+        
+//        let testSize = CGSize(width: 100, height: 100)
+        
+        skScene = SKScene(size: scnView.bounds.size)
+        
+        let playButtonX = Int(skScene.frame.width * 0.9)
+        let playButtonY = Int(skScene.frame.height * 0.8)
+        
+        playButton.position = CGPoint(x: playButtonX, y: playButtonY)
+
+        skScene.addChild(playButton)
+        
+        scnView.overlaySKScene = skScene
+        
+    
+        
+        
         letterTap = UITapGestureRecognizer(target: self, action: #selector(handleLetterTap(_:)))
         scnView.addGestureRecognizer(letterTap)
+        
+        
+        
+        
+        
         letterTap.isEnabled = false
         loadGameView()
     }
