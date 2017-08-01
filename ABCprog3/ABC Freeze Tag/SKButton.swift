@@ -8,6 +8,42 @@
 import SpriteKit
 import QuartzCore
 
+// subclass or extension -- That is the question
+
+//class SKButtonWLabel : SKShapeNode {
+//    init(circleOfRadius: CGFloat) {
+//        super.init()
+//        
+//        let diameter = circleOfRadius * 2
+//        
+//        let rect = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: diameter, height: diameter))
+//        self.path = CGPath(ellipseIn: rect, transform: nil)
+//        self.fillColor = UIColor.red
+//    }
+//    
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//}
+
+extension SKShapeNode {
+    convenience init(radius: CGFloat, color: UIColor, text: String, fontNamed: String) {
+        self.init(circleOfRadius: radius)
+        self.fillColor = color
+        self.isUserInteractionEnabled = true
+        self.name = text
+        
+        let label = SKLabelNode(text: text)
+        label.fontName = fontNamed
+        
+        
+        //Creating and adding a blank label, centered on the button
+        label.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
+        label.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.center
+    
+        addChild(label)
+    }
+}
 
 //class SKButtonNode: SKSpriteNode {
 //
@@ -151,85 +187,3 @@ import QuartzCore
 //}
 
 
-
-//class SKButtonNode: SKSpriteNode {
-//    
-//    var label: SKLabelNode
-//    
-//    enum SKButtonActionType: Int {
-//        case TouchUpInside = 1,
-//        TouchDown, TouchUp
-//    }
-//    
-//    enum SKButtonType {
-//        case Play
-//        case Stop
-//    }
-//    
-//    init(type: SKButtonType) {
-//        
-//        
-//        self.label = SKLabelNode(fontNamed: "Helvetica");
-//
-//        //        switch type {
-//        //        case .Play:
-//        //            let buttonColor = UIColor.green
-//        //        case .Stop:
-//        //            let buttonColor = UIColor.red
-//        //        default:
-//        //            let buttonColor = UIColor.green
-//        //        }
-//        
-//        let buttonColor = UIColor.red
-//        let size = CGSize(width: 100, height: 100)
-//        
-////        let texture = SKTexture(imageNamed: "TestStartButton.png")
-//        
-//        
-//        super.init(texture: nil, color: buttonColor, size: size)
-//        
-//        //Creating and adding a blank label, centered on the button
-//        
-//        
-//        self.label.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center;
-//        self.label.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.center;
-//        
-//    
-//        addChild(self.label)
-//
-//        
-//        
-//        
-//        
-//        
-//    
-//    
-//    }
-//    
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//    
-//    
-//    
-//    
-//}
-
-class SKButtonWLabel : SKShapeNode {
-    
-    init(circleOfRadius: CGFloat) {
-        super.init()
-        
-        let diameter = circleOfRadius * 2
-        
-        let rect = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: diameter, height: diameter))
-        self.path = CGPath(ellipseIn: rect, transform: nil)
-        self.fillColor = UIColor.red
-    
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}

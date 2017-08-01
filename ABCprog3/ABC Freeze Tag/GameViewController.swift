@@ -13,6 +13,8 @@ import SpriteKit
 class GameViewController: UIViewController {
     
     let scene = SCNScene()
+    
+    
     let gameView = UIView()
     var startLabel: UILabel!
     
@@ -68,41 +70,26 @@ class GameViewController: UIViewController {
         scnView.backgroundColor = UIColor(red: 0.4, green: 0.8, blue: 1.0, alpha: 1.0)
         scnView.autoenablesDefaultLighting = false
         
-//
-//        let playButton = SKButtonNode(type: .Play)
-        
-//        let testSize = CGSize(width: 100, height: 100)
+
         
         skScene = SKScene(size: scnView.bounds.size)
         
         let playButtonX = Int(skScene.frame.width * 0.7)
         let playButtonY = Int(skScene.frame.height * 0.8)
-//
-//        let myCircle = SKShapeNode(circleOfRadius: 100.0)
-//        myCircle.fillColor = UIColor.red
-//        myCircle.position = CGPoint(x: playButtonX, y: playButtonY)
-        
-        let playButton = SKButtonWLabel(circleOfRadius: 100)
+        let playButton = SKShapeNode(radius: 45, color: UIColor.green, text: "Play", fontNamed: "Arial")
         playButton.position = CGPoint(x: playButtonX, y: playButtonY)
-
+        
+        let stopButton = SKShapeNode(radius: 45, color: UIColor.red, text: "Stop", fontNamed: "Arial")
+        let stopButtonX = Int(skScene.frame.width * 0.1)
+        let stopButtonY = Int(skScene.frame.height * 0.8)
+        stopButton.position = CGPoint(x: stopButtonX, y: stopButtonY)
      
-
-      
-        
-        
+        skScene.addChild(stopButton)
         skScene.addChild(playButton)
-        
+      
 
-//
-//        playButton.position = CGPoint(x: playButtonX, y: playButtonY)
-//        skScene.addChild(playButton)
-        
-//        
-//        let temp = CGSize(width: 100, height: 100)
-//        let tempCircle = SKSpriteNode(color: UIColor.green, size: temp)
-//        tempCircle.position = CGPoint(x: playButtonX, y: playButtonY)
-//
-//        skScene.addChild(tempCircle)
+
+
         
         
         
@@ -126,7 +113,6 @@ class GameViewController: UIViewController {
     }
     
     func runWild(_ node: LetterNode) {
-        
         let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 10, duration: 0.15)
         let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -10.0, duration: 0.15)
         let runRight = SCNAction.moveBy(x: 10.00, y: 0, z: 0, duration: 0.15)
@@ -190,12 +176,12 @@ class GameViewController: UIViewController {
     }
     
     @objc func handleLetterTap(_ gestureRecognizer: UITapGestureRecognizer) {
-        
-        print("handle letter tap")
         let tappedNode: LetterNode!
         let tapCG = gestureRecognizer.location(in: scnView)
         
         let hitResults = scnView.hitTest(tapCG, options: [SCNHitTestOption.boundingBoxOnly: true, SCNHitTestOption.clipToZRange: true])
+        
+        
         
         if hitResults.first?.node is LetterNode
         {
@@ -210,7 +196,6 @@ class GameViewController: UIViewController {
     }
     
     func randomMissSound() {
-        
         let i = arc4random_uniform(10)
         let missArray = [toSlow, giggle1, giggle2, overHere, cantCatchMe]
         
@@ -219,12 +204,10 @@ class GameViewController: UIViewController {
             let node: LetterNode = freeArray[Int(arc4random_uniform(25))]
             let j = Int(arc4random_uniform(5))
             node.addAudioPlayer(SCNAudioPlayer(source: missArray[j]!))
-            
         }
     }
     
     func switchMX() {
-        
         let node = scene.rootNode
         
         switch letterCount {
@@ -243,7 +226,6 @@ class GameViewController: UIViewController {
     }
     
     func nodeCaughtAnimation(node: LetterNode) {
-        
         letterCount -= 1
         print(letterCount)
         
@@ -270,7 +252,6 @@ class GameViewController: UIViewController {
     }
     
     func winSequence() {
-        
         let node = scene.rootNode
         node.removeAllAudioPlayers()
         
@@ -290,14 +271,12 @@ class GameViewController: UIViewController {
     }
     
     func enableLetterTap() {
-        
         if letterCount > 0 {
             letterTap.isEnabled = true
         }
     }
     
     func loadGameView() {
-        
         scnView.addSubview(gameView)
         
         gameView.translatesAutoresizingMaskIntoConstraints = false
@@ -334,13 +313,11 @@ class GameViewController: UIViewController {
     }
     
     func startPlayAudio() -> SCNAction {
-        
         return SCNAction.sequence([SCNAction.playAudio(rdySet, waitForCompletion: true), SCNAction.playAudio(startScream1, waitForCompletion: false),SCNAction.playAudio(freezeTag, waitForCompletion: false)])
         
     }
     
     @objc func handleStartTap(_ gestureRecognizer: UITapGestureRecognizer) {
-        
         if startTapBool == true {
             print(startTapBool)
             self.startTapBool = false
@@ -388,10 +365,19 @@ class GameViewController: UIViewController {
             letterTap.isEnabled = false
             scene.rootNode.enumerateChildNodes { (node, stop) in
                 node.removeFromParentNode() }
+           
+            
             scene.rootNode.removeAllAudioPlayers()
+    
+            
             frozenArray = []
+    
             freeArray = []
+   
             letterCount = 26
+            
+            scnView.overlaySKScene = nil
+   
             viewDidLoad()
         }
     }
@@ -405,7 +391,6 @@ class GameViewController: UIViewController {
     }
     
     func loadSounds() {
-        
         rdySet = SCNAudioSource(named: "ABC_READY_SET_1.mp3")
         rdySet.isPositional = false
         rdySet.load()
