@@ -12,17 +12,25 @@
 //    
 //    
 //    
+//    init() {
+//        super.init()
+////        self.allowsCameraControl = false
+////        self.showsStatistics = false
+////        self.backgroundColor = UIColor(red: 0.4, green: 0.8, blue: 1.0, alpha: 1.0)
+////        self.autoenablesDefaultLighting = false
+//        
+//        layOut2DOverlay()
+//        
+//        
+//    }
 //    
 //    
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//    
+//       
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//
 //    
 //    
 //}

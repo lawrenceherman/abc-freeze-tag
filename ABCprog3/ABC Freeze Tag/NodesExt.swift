@@ -9,7 +9,7 @@
 import SceneKit
 import AVFoundation
 
-extension MainScene {
+extension GameScene {
     
     func randomStartingPosition() -> SCNVector3 {
         

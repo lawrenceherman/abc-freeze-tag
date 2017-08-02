@@ -7,9 +7,10 @@
 //
 
 import SceneKit
+import Foundation
 
 
-class MainScene:  SCNScene {
+class GameScene: SCNScene {
     
     var aGeo, bGeo, cGeo, dGeo, eGeo, fGeo, gGeo, hGeo, iGeo,
     jGeo, kGeo, lGeo, mGeo, nGeo, oGeo, pGeo, qGeo, rGeo, sGeo,
@@ -26,10 +27,6 @@ class MainScene:  SCNScene {
     
     var aNodeFree, bNodeFree, cNodeFree, dNodeFree, eNodeFree, fNodeFree, gNodeFree, hNodeFree, iNodeFree, jNodeFree, kNodeFree, lNodeFree, mNodeFree, nNodeFree, oNodeFree, pNodeFree, qNodeFree, rNodeFree, sNodeFree, tNodeFree, uNodeFree, vNodeFree, wNodeFree, xNodeFree, yNodeFree, zNodeFree: LetterNode!
 
-    
-    
-//    var scnViewRef: SCNView?
-    
     var letterCount = 26
 
     
@@ -59,23 +56,17 @@ class MainScene:  SCNScene {
         loadNodesFree()
         
         
-        //        let playButtonX = Int(skScene.frame.width * 0.7)
-        //        let playButtonY = Int(skScene.frame.height * 0.8)
-        //        let playButton = SKShapeNode(radius: 45, color: UIColor.green, text: "Play", fontNamed: "Arial")
-        //        playButton.position = CGPoint(x: playButtonX, y: playButtonY)
-        //
-        //        let stopButton = SKShapeNode(radius: 45, color: UIColor.red, text: "Stop", fontNamed: "Arial")
-        //        let stopButtonX = Int(skScene.frame.width * 0.1)
-        //        let stopButtonY = Int(skScene.frame.height * 0.8)
-        //        stopButton.position = CGPoint(x: stopButtonX, y: stopButtonY)
-        //
-        //        skScene.addChild(stopButton)
-        //        skScene.addChild(playButton)
-        
-        
-        
-    }
+}
     
+
+//    
+//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+//        if keyPath == "paused" {
+//            print("observeValue keypath = pause")
+//            
+//        }
+//    }
+//    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -182,12 +173,14 @@ class MainScene:  SCNScene {
         let hideFrozenNode = SCNAction.fadeOpacity(to: 0, duration: 3.0)
         let actionArray = [tapSound, presentLetter, playLetterSound, moveToHome]
         let sequence = SCNAction.sequence(actionArray)
+        rootNode.runAction(sequence)
 //        self.runAction(sequence, completionHandler: enableLetterTap)
+
         frozenNode.runAction(hideFrozenNode)
         
         if letterCount == 0 {
-//            letterTap.isEnabled = false
-//            startLabelTap.isEnabled = false
+            //            letterTap.isEnabled = false
+            //            startLabelTap.isEnabled = false
             winSequence()
         }
     }
@@ -207,7 +200,7 @@ class MainScene:  SCNScene {
         let actionSequence = SCNAction.sequence(sequence)
         
         node.runAction(actionSequence) {
-//            self.startLabelTap.isEnabled = true
+            //            self.startLabelTap.isEnabled = true
         }
     }
     
@@ -215,16 +208,106 @@ class MainScene:  SCNScene {
         return SCNAction.sequence([SCNAction.playAudio(rdySet, waitForCompletion: true), SCNAction.playAudio(startScream1, waitForCompletion: false),SCNAction.playAudio(freezeTag, waitForCompletion: false)])
         
     }
-
     
+    func runWild(_ node: LetterNode) {
+        let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 10, duration: 0.15)
+        let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -10.0, duration: 0.15)
+        let runRight = SCNAction.moveBy(x: 10.00, y: 0, z: 0, duration: 0.15)
+        let runLeft = SCNAction.moveBy(x: -10.00, y: 0, z: 0, duration: 0.15)
+        
+        if node.frozen == false  {
+            
+            let x = arc4random_uniform(2)
+            
+            if x == 0 {
+                if node.position.x > 220 {
+                    node.runAction(runLeft, completionHandler: {
+                        self.runWild(node)
+                    })
+                } else if node.position.x < 40 {
+                    node.runAction(runRight, completionHandler: {
+                        self.runWild(node)
+                    })
+                } else {
+                    let i = arc4random_uniform(2)
+                    if i == 0 {
+                        node.runAction(runLeft, completionHandler: {
+                            self.runWild(node)
+                        })
+                    }
+                    
+                    if i == 1 {
+                        node.runAction(runRight, completionHandler: {
+                            self.runWild(node)
+                        })
+                    }
+                }
+            }
+            
+            if x == 1 {
+                if node.position.z < 80 {
+                    node.runAction(runForward, completionHandler: {
+                        self.runWild(node)
+                    })
+                } else if node.position.z > 155 {
+                    node.runAction(runBackward, completionHandler: {
+                        self.runWild(node)
+                    })
+                } else {
+                    let i = arc4random_uniform(2)
+                    
+                    if i == 0 {
+                        node.runAction(runForward, completionHandler: {
+                            self.runWild(node)
+                        })
+                    }
+                    
+                    if i == 1 {
+                        node.runAction(runBackward, completionHandler: {
+                            self.runWild(node)
+                        })
+                    }
+                }
+            }
+        }
+    }
     
+    func gameSceneStart () {
+        
+        allRunWild()
+        self.rootNode.addAudioPlayer(SCNAudioPlayer(source: kidPlayGround1))
+        self.rootNode.addAudioPlayer(mx70BPMPlayer)
+        self.makeFrozenNodesVisible()
+
+    }
     
-    
-    
-    
-
-
-
-
-
+    func allRunWild() {
+        
+        self.runWild(self.aNodeFree)
+        self.runWild(self.bNodeFree)
+        self.runWild(self.cNodeFree)
+        self.runWild(self.dNodeFree)
+        self.runWild(self.eNodeFree)
+        self.runWild(self.fNodeFree)
+        self.runWild(self.gNodeFree)
+        self.runWild(self.hNodeFree)
+        self.runWild(self.iNodeFree)
+        self.runWild(self.jNodeFree)
+        self.runWild(self.kNodeFree)
+        self.runWild(self.lNodeFree)
+        self.runWild(self.mNodeFree)
+        self.runWild(self.nNodeFree)
+        self.runWild(self.oNodeFree)
+        self.runWild(self.pNodeFree)
+        self.runWild(self.qNodeFree)
+        self.runWild(self.rNodeFree)
+        self.runWild(self.sNodeFree)
+        self.runWild(self.tNodeFree)
+        self.runWild(self.uNodeFree)
+        self.runWild(self.vNodeFree)
+        self.runWild(self.wNodeFree)
+        self.runWild(self.xNodeFree)
+        self.runWild(self.yNodeFree)
+        self.runWild(self.zNodeFree)
+    }
 }

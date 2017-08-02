@@ -8,7 +8,7 @@
 
 import SceneKit
 
-extension MainScene {
+extension GameScene {
     
         
     }

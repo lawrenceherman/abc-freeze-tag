@@ -9,7 +9,7 @@
 import SceneKit
 
 
-extension MainScene {
+extension GameScene {
     
     func loadSounds() {
         rdySet = SCNAudioSource(named: "ABC_READY_SET_1.mp3")
