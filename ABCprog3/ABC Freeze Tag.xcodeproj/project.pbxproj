@@ -76,11 +76,11 @@
 		FE7176D11F2FB09900BE8185 /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7176D01F2FB09900BE8185 /* SKButton.swift */; };
 		FE93F28C1F3118EC00B23DCA /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE93F28B1F3118EC00B23DCA /* GameScene.swift */; };
 		FE93F28E1F311B6E00B23DCA /* SoundsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE93F28D1F311B6E00B23DCA /* SoundsExt.swift */; };
-		FE93F29E1F31425700B23DCA /* Pause100.png in Resources */ = {isa = PBXBuildFile; fileRef = FE93F2991F31425700B23DCA /* Pause100.png */; };
 		FE93F29F1F31425700B23DCA /* PlayActive100.png in Resources */ = {isa = PBXBuildFile; fileRef = FE93F29A1F31425700B23DCA /* PlayActive100.png */; };
 		FE93F2A01F31425700B23DCA /* PlayInactive100.png in Resources */ = {isa = PBXBuildFile; fileRef = FE93F29B1F31425700B23DCA /* PlayInactive100.png */; };
 		FE93F2A11F31425700B23DCA /* Stop100.png in Resources */ = {isa = PBXBuildFile; fileRef = FE93F29C1F31425700B23DCA /* Stop100.png */; };
 		FE93F2A21F31425700B23DCA /* StopInactive100.png in Resources */ = {isa = PBXBuildFile; fileRef = FE93F29D1F31425700B23DCA /* StopInactive100.png */; };
+		FE9C5C7F1F33BB0A009499AE /* school.png in Resources */ = {isa = PBXBuildFile; fileRef = FE9C5C7E1F33BB0A009499AE /* school.png */; };
 		FEA869A61F28FED60090D124 /* ABCFreezTagLS1.png in Resources */ = {isa = PBXBuildFile; fileRef = FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */; };
 		FEC6C3E31F113E44009410BE /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E21F113E44009410BE /* Letter.swift */; };
 		FEC6C3E51F11505B009410BE /* LetterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E41F11505B009410BE /* LetterNode.swift */; };
@@ -158,11 +158,11 @@
 		FE7176D01F2FB09900BE8185 /* SKButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
 		FE93F28B1F3118EC00B23DCA /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		FE93F28D1F311B6E00B23DCA /* SoundsExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundsExt.swift; path = ../SoundsExt.swift; sourceTree = "<group>"; };
-		FE93F2991F31425700B23DCA /* Pause100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Pause100.png; path = Images/Pause100.png; sourceTree = "<group>"; };
 		FE93F29A1F31425700B23DCA /* PlayActive100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayActive100.png; path = Images/PlayActive100.png; sourceTree = "<group>"; };
 		FE93F29B1F31425700B23DCA /* PlayInactive100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayInactive100.png; path = Images/PlayInactive100.png; sourceTree = "<group>"; };
 		FE93F29C1F31425700B23DCA /* Stop100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stop100.png; path = Images/Stop100.png; sourceTree = "<group>"; };
 		FE93F29D1F31425700B23DCA /* StopInactive100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StopInactive100.png; path = Images/StopInactive100.png; sourceTree = "<group>"; };
+		FE9C5C7E1F33BB0A009499AE /* school.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = school.png; path = Images/school.png; sourceTree = "<group>"; };
 		FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ABCFreezTagLS1.png; path = Images.xcassets/LaunchImage.launchimage/ABCFreezTagLS1.png; sourceTree = "<group>"; };
 		FEC6C3E21F113E44009410BE /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
 		FEC6C3E41F11505B009410BE /* LetterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterNode.swift; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 		FE5BFE9A1F2FEE43001AF59E /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				FE93F2991F31425700B23DCA /* Pause100.png */,
+				FE9C5C7E1F33BB0A009499AE /* school.png */,
 				FE93F29A1F31425700B23DCA /* PlayActive100.png */,
 				FE93F29B1F31425700B23DCA /* PlayInactive100.png */,
 				FE93F29C1F31425700B23DCA /* Stop100.png */,
@@ -391,7 +391,6 @@
 				FE36B2EA1F2BB2FC004CB6D8 /* ABC_GROUP_LETTER_S.mp3 in Resources */,
 				FE4F2C851F2AA9980001C336 /* ABC_GROUP_LETTER_D.mp3 in Resources */,
 				FE4F2CA51F2AA9980001C336 /* ABC_YOU_CANT_CATCH_ME_SKY_1.mp3 in Resources */,
-				FE93F29E1F31425700B23DCA /* Pause100.png in Resources */,
 				FE4F2C781F2AA9980001C336 /* ABC_CATCH_EVERYBODY_GRACE_1.mp3 in Resources */,
 				FE36B2DE1F2B8BF1004CB6D8 /* ABC_LETTER_TAP_FX_1.mp3 in Resources */,
 				FE4F2CA61F2AA9980001C336 /* ABC_YOU_CAUGHT_EVERYBODY_GRACE_1.mp3 in Resources */,
@@ -431,6 +430,7 @@
 				FE4F2C8F1F2AA9980001C336 /* ABC_GROUP_LETTER_P.mp3 in Resources */,
 				FE4F2C771F2AA9980001C336 /* ABC_CANT_CATCH_ME_SKY_1.mp3 in Resources */,
 				FE4F2C921F2AA9980001C336 /* ABC_GROUP_LETTER_U.mp3 in Resources */,
+				FE9C5C7F1F33BB0A009499AE /* school.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -182,6 +182,7 @@ extension GameScene {
     
     func loadNodesFrozen() {
         
+
         aNodeFrozen = LetterNode(geometry: aGeoF, frozen: true)
         aNodeFrozen.position = SCNVector3(0, 50, 0)
         frozenArray.append(aNodeFrozen)

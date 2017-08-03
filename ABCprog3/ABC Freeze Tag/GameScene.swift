@@ -10,6 +10,11 @@ import SceneKit
 import Foundation
 
 
+protocol GameSceneDelegate: class{
+    func enableGameViewTap()
+    func disableGameViewTap()
+}
+
 class GameScene: SCNScene {
     
     var aGeo, bGeo, cGeo, dGeo, eGeo, fGeo, gGeo, hGeo, iGeo,
@@ -28,6 +33,8 @@ class GameScene: SCNScene {
     var aNodeFree, bNodeFree, cNodeFree, dNodeFree, eNodeFree, fNodeFree, gNodeFree, hNodeFree, iNodeFree, jNodeFree, kNodeFree, lNodeFree, mNodeFree, nNodeFree, oNodeFree, pNodeFree, qNodeFree, rNodeFree, sNodeFree, tNodeFree, uNodeFree, vNodeFree, wNodeFree, xNodeFree, yNodeFree, zNodeFree: LetterNode!
 
     var letterCount = 26
+    
+    var schoolHouse: SCNNode!
 
     
     var rdySet, go, startScream1, freezeTag, letterTapSound, winMusic: SCNAudioSource!
@@ -42,11 +49,11 @@ class GameScene: SCNScene {
     var frozenArray: [LetterNode] = []
     var freeArray: [LetterNode] = []
 
+    weak var delegate: GameSceneDelegate?
 
     
     override init() {
         super.init()
-        
         
         cameraAndLights()
         environment()
@@ -55,8 +62,7 @@ class GameScene: SCNScene {
         loadNodesFrozen()
         loadNodesFree()
         
-        
-}
+    }
     
 
 //    
@@ -69,6 +75,14 @@ class GameScene: SCNScene {
 //    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func enableGameViewTap() {
+        delegate?.enableGameViewTap()
+    }
+    
+    func disableGameViewTap() {
+        delegate?.disableGameViewTap()
     }
     
     
@@ -97,19 +111,6 @@ class GameScene: SCNScene {
         lightNode.light!.type = .omni
         lightNode.position = SCNVector3(x: 140, y: 100, z: 200)
         self.rootNode.addChildNode(lightNode)
-        
-        //        let directionalLight = SCNNode()
-        //        directionalLight.light = SCNLight()
-        //        directionalLight.light!.type = .directional
-        //        directionalLight.position = SCNVector3(x: 9, y: 10, z: 100)
-        //        scene.rootNode.addChildNode(directionalLight)
-        
-        //        let ambientLightNode = SCNNode()
-        //        ambientLightNode.light = SCNLight()
-        //        ambientLightNode.light!.type = .ambient
-        //        // ambientLightNode.light!.color = UIColor.darkGray
-        //        scene.rootNode.addChildNode(ambientLightNode)
-        
     }
 
     func environment () {
@@ -174,7 +175,7 @@ class GameScene: SCNScene {
         let actionArray = [tapSound, presentLetter, playLetterSound, moveToHome]
         let sequence = SCNAction.sequence(actionArray)
         rootNode.runAction(sequence)
-//        self.runAction(sequence, completionHandler: enableLetterTap)
+        node.runAction(sequence, completionHandler: enableGameViewTap)
 
         frozenNode.runAction(hideFrozenNode)
         
@@ -200,7 +201,7 @@ class GameScene: SCNScene {
         let actionSequence = SCNAction.sequence(sequence)
         
         node.runAction(actionSequence) {
-            //            self.startLabelTap.isEnabled = true
+            self.enableGameViewTap()
         }
     }
     

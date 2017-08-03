@@ -11,31 +11,12 @@ import SceneKit
 import SpriteKit
 import Foundation
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, GameSceneDelegate {
     
-//    let scene = MainScene()
-    
-    
-    
-    
-//    let gameView = UIView()
-    
-//    var overlayScene: OverlayScene!
-    
-//    var startLabel: UILabel!
     var gameView: SCNView!
     var gameScene: GameScene!
-
     var spriteScene: OverlayScene!
-    
-//    var pauseBool: Bool = true
-//    var startTapBool: Bool = true
-    
     var gameViewTap: UITapGestureRecognizer!
-//    var startLabelTap: UITapGestureRecognizer!
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,11 +24,11 @@ class GameViewController: UIViewController {
         gameView = self.view as! SCNView
         gameScene = GameScene()
         gameView.scene = gameScene
-        
+//        
         spriteScene = OverlayScene(size: gameView.bounds.size)
         spriteScene.gameViewController = self
-        
         gameView.overlaySKScene = spriteScene
+        gameScene.delegate = self
         
         
 
@@ -56,16 +37,20 @@ class GameViewController: UIViewController {
         gameView.backgroundColor = UIColor(red: 0.4, green: 0.8, blue: 1.0, alpha: 1.0)
         gameView.autoenablesDefaultLighting = false
 
-        
+//        
         layOut2DOverlay()
 
-        
+//        
         gameViewTap = UITapGestureRecognizer(target: self, action: #selector(handleGameViewTap(_:)))
         gameView.addGestureRecognizer(gameViewTap)
         gameViewTap.isEnabled = false
+        gameViewTap.cancelsTouchesInView = false
+        
+        
+//        spriteScene.isUserInteractionEnabled = false
     
         
-        spriteScene.addObserver(gameView.scene!, forKeyPath: "paused", options: .new, context: nil)
+//        spriteScene.addObserver(gameView.scene!, forKeyPath: "paused", options: .new, context: nil)
 
     }
     
@@ -75,6 +60,17 @@ class GameViewController: UIViewController {
 //            
 //        }
 //    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touches began gameviewcontroller")
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touces ended gameviewcontroller")
+    }
+    
+    
+    
 
     func layOut2DOverlay() {
         
@@ -89,12 +85,18 @@ class GameViewController: UIViewController {
         
     }
     
+    func enableGameViewTap() {
+        gameViewTap.isEnabled = true
+    }
     
+    func disableGameViewTap() {
+        gameViewTap.isEnabled = false
+    }
     
     @objc func handleGameViewTap(_ gestureRecognizer:
         UITapGestureRecognizer) {
         
-        print("handleGameViewTap/n")
+        print("handleGameViewTap\n\n")
         let tappedNode: LetterNode!
         let tapCG = gestureRecognizer.location(in: gameView)
         
@@ -122,7 +124,6 @@ class GameViewController: UIViewController {
    
     func stopGame() {
         
-//        startTapBool = true
         gameViewTap.isEnabled = false
         gameScene.rootNode.enumerateChildNodes { (node, stop) in
         node.removeFromParentNode() }
@@ -135,7 +136,7 @@ class GameViewController: UIViewController {
     }
 }
 
-
+//
 //    func enableLetterTap() {
 //        if letterCount > 0 {
 //            letterTap.isEnabled = true

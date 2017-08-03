@@ -15,6 +15,7 @@ class OverlayScene: SKScene {
     
     var playNode: SKSpriteNode!
     var stopNode: SKSpriteNode!
+    var schoolHouse: SKSpriteNode!
     var playNodeIsActive = true
     var playInactiveTexture: SKTexture!
     var stopInactiveTexture: SKTexture!
@@ -35,6 +36,7 @@ class OverlayScene: SKScene {
         stopActiveTexture = SKTexture(imageNamed: "Stop100.png")
         playInactiveTexture = SKTexture(imageNamed: "PlayInactive100.png")
         stopInactiveTexture = SKTexture(imageNamed: "StopInactive100.png")
+    
         
         
         playNode = SKSpriteNode(texture: playActiveTexture)
@@ -42,6 +44,10 @@ class OverlayScene: SKScene {
         
         self.addChild(playNode)
         self.addChild(stopNode)
+        
+    }
+    
+    func test() {
         
         
     }
@@ -52,7 +58,7 @@ class OverlayScene: SKScene {
     
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touches ended")
+        print("overlay touches ended")
         let touch = touches.first
         let location = touch?.location(in: self)
         
@@ -71,8 +77,15 @@ class OverlayScene: SKScene {
  //             print(playNode.texture)
             }
         }
+            
+        let hitResults = self.view?.hitTest(location!, with: event)
+        hitResults?.next?.touchesEnded(touches, with: event)
+            
+            
+      
         
         if stopNode.contains(location!) {
+            print("stopNode tapped")
             if !playNodeIsActive {
                 playNodeIsActive = true
                 
