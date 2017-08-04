@@ -9,7 +9,6 @@
 import SceneKit
 import Foundation
 
-
 protocol GameSceneDelegate: class{
     func enableGameViewTap()
     func disableGameViewTap()
@@ -21,8 +20,6 @@ class GameScene: SCNScene {
     jGeo, kGeo, lGeo, mGeo, nGeo, oGeo, pGeo, qGeo, rGeo, sGeo,
     tGeo, uGeo, vGeo, wGeo, xGeo, yGeo, zGeo: Letter!
     
-    // have to figure out a way to share these Geos
-    
     var aGeoF, bGeoF, cGeoF, dGeoF, eGeoF, fGeoF, gGeoF, hGeoF, iGeoF,
     jGeoF, kGeoF, lGeoF, mGeoF, nGeoF, oGeoF, pGeoF, qGeoF, rGeoF, sGeoF,
     tGeoF, uGeoF, vGeoF, wGeoF, xGeoF, yGeoF, zGeoF: Letter!
@@ -31,11 +28,15 @@ class GameScene: SCNScene {
     xNodeFrozen, yNodeFrozen, zNodeFrozen: LetterNode!
     
     var aNodeFree, bNodeFree, cNodeFree, dNodeFree, eNodeFree, fNodeFree, gNodeFree, hNodeFree, iNodeFree, jNodeFree, kNodeFree, lNodeFree, mNodeFree, nNodeFree, oNodeFree, pNodeFree, qNodeFree, rNodeFree, sNodeFree, tNodeFree, uNodeFree, vNodeFree, wNodeFree, xNodeFree, yNodeFree, zNodeFree: LetterNode!
-
+    
     var letterCount = 26
     
-    var schoolHouse: SCNNode!
-
+    var schoolGeo: SCNGeometry!
+    var schoolNode: SCNNode!
+    var cameraNode: SCNNode!
+    var floorNode: SCNNode!
+    var particleNode: SCNNode!
+    var particleGeo: SCNGeometry!
     
     var rdySet, go, startScream1, freezeTag, letterTapSound, winMusic: SCNAudioSource!
     var mx70BPM, mx100BPM, mx130BPM, mx160BPM: SCNAudioSource!
@@ -48,31 +49,22 @@ class GameScene: SCNScene {
     
     var frozenArray: [LetterNode] = []
     var freeArray: [LetterNode] = []
-
+    
     weak var delegate: GameSceneDelegate?
-
     
     override init() {
         super.init()
         
-        cameraAndLights()
-        environment()
+        loadCameraAndLights()
+        loadFloor()
+        loadSchool()
         loadGeometry()
         loadSounds()
         loadNodesFrozen()
         loadNodesFree()
-        
+   
     }
     
-
-//    
-//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-//        if keyPath == "paused" {
-//            print("observeValue keypath = pause")
-//            
-//        }
-//    }
-//    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -85,46 +77,19 @@ class GameScene: SCNScene {
         delegate?.disableGameViewTap()
     }
     
-    
-    func degreesToRadians(degrees: Float) -> Float {
-        return degrees * Float.pi / 180
-    }
-    
-    func radiansToDegress(radians: Float) -> Float {
-        return radians * 180 / Float.pi
-    }
-
-    
-    func cameraAndLights () {
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        self.rootNode.addChildNode(cameraNode)
-        cameraNode.camera?.xFov = 80
-        let radians = degreesToRadians(degrees: -16)
-        let eulerVector = SCNVector3Make(radians, 0, 0)
-        cameraNode.eulerAngles = eulerVector
-        cameraNode.position = SCNVector3(x: 140, y: 20, z: 190)
-        cameraNode.camera?.zFar = 200
-        
-        let lightNode = SCNNode()
-        lightNode.light = SCNLight()
-        lightNode.light!.type = .omni
-        lightNode.position = SCNVector3(x: 140, y: 100, z: 200)
-        self.rootNode.addChildNode(lightNode)
-    }
-
-    func environment () {
-        let floor = SCNFloor()
-        let grass1 = SCNMaterial()
-        grass1.diffuse.contents = UIImage(named: "grass2")
-        grass1.diffuse.wrapS = .repeat
-        grass1.diffuse.wrapT = .repeat
-        floor.reflectivity = 0
-        floor.firstMaterial = grass1
-        let floorNode = SCNNode(geometry: floor)
-        let floorPhysics = SCNPhysicsBody.static()
-        floorNode.physicsBody = floorPhysics
-        self.rootNode.addChildNode(floorNode)
+    func winParticle() {
+        if let winParticleSystem = SCNParticleSystem(named: "winParticle.scnp", inDirectory: nil)  {
+            
+            particleGeo = SCNSphere(radius: 1)
+            particleGeo.firstMaterial?.diffuse.contents = UIColor.clear
+            
+            particleNode = SCNNode(geometry: particleGeo)
+            particleNode.position = SCNVector3(x: 140, y: 10, z: 170)
+            particleNode.addParticleSystem(winParticleSystem)
+            self.rootNode.addChildNode(particleNode)
+        } else {
+            print("particle load fail")
+        }
     }
     
     func randomMissSound() {
@@ -158,7 +123,6 @@ class GameScene: SCNScene {
     }
     
     func nodeCaughtAnimation(node: LetterNode) {
-        
         letterCount -= 1
         print(letterCount)
         
@@ -174,21 +138,25 @@ class GameScene: SCNScene {
         let hideFrozenNode = SCNAction.fadeOpacity(to: 0, duration: 3.0)
         let actionArray = [tapSound, presentLetter, playLetterSound, moveToHome]
         let sequence = SCNAction.sequence(actionArray)
-        rootNode.runAction(sequence)
-        node.runAction(sequence, completionHandler: enableGameViewTap)
-
-        frozenNode.runAction(hideFrozenNode)
+        node.runAction(sequence) { 
+            
+            if self.letterCount != 0 {
+                self.enableGameViewTap()
+            } else{
+                self.disableGameViewTap()
+                self.winSequence()
+            }
         
-        if letterCount == 0 {
-            //            letterTap.isEnabled = false
-            //            startLabelTap.isEnabled = false
-            winSequence()
         }
+        
+        frozenNode.runAction(hideFrozenNode)
     }
     
     func winSequence() {
         let node = self.rootNode
         node.removeAllAudioPlayers()
+        
+        winParticle()
         
         let yea1Sound = SCNAction.playAudio(yae1, waitForCompletion: false)
         let yea2Sound = SCNAction.playAudio(yae2, waitForCompletion: true)
@@ -196,13 +164,11 @@ class GameScene: SCNScene {
         let youCaughtEverybodySound = SCNAction.playAudio(youCaughtEverybody, waitForCompletion: true)
         let greatJobSound = SCNAction.playAudio(greatjob, waitForCompletion: false)
         
-        let sequence = [yea1Sound, yea2Sound, music, youCaughtEverybodySound, greatJobSound]
-        
+        let sequence = [yea1Sound, yea2Sound, youCaughtEverybodySound, music, greatJobSound]
         let actionSequence = SCNAction.sequence(sequence)
         
-        node.runAction(actionSequence) {
-            self.enableGameViewTap()
-        }
+        node.runAction(actionSequence)
+    
     }
     
     func startPlayAudio() -> SCNAction {
@@ -274,16 +240,14 @@ class GameScene: SCNScene {
     }
     
     func gameSceneStart () {
-        
         allRunWild()
+        schoolNode.isHidden = true
         self.rootNode.addAudioPlayer(SCNAudioPlayer(source: kidPlayGround1))
         self.rootNode.addAudioPlayer(mx70BPMPlayer)
         self.makeFrozenNodesVisible()
-
     }
     
     func allRunWild() {
-        
         self.runWild(self.aNodeFree)
         self.runWild(self.bNodeFree)
         self.runWild(self.cNodeFree)

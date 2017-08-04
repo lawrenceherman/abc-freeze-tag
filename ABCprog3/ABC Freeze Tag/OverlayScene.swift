@@ -8,47 +8,30 @@
 
 import SpriteKit
 
-
-
-
 class OverlayScene: SKScene {
     
     var playNode: SKSpriteNode!
     var stopNode: SKSpriteNode!
-    var schoolHouse: SKSpriteNode!
     var playNodeIsActive = true
     var playInactiveTexture: SKTexture!
     var stopInactiveTexture: SKTexture!
     var playActiveTexture: SKTexture!
     var stopActiveTexture: SKTexture!
-    
-    
     var gameViewController: GameViewController!
-    
-    
     
     override init(size: CGSize) {
         super.init(size: size)
-        
-        
         
         playActiveTexture = SKTexture(imageNamed: "PlayActive100.png")
         stopActiveTexture = SKTexture(imageNamed: "Stop100.png")
         playInactiveTexture = SKTexture(imageNamed: "PlayInactive100.png")
         stopInactiveTexture = SKTexture(imageNamed: "StopInactive100.png")
     
-        
-        
         playNode = SKSpriteNode(texture: playActiveTexture)
         stopNode = SKSpriteNode(texture: stopInactiveTexture)
-        
+
         self.addChild(playNode)
         self.addChild(stopNode)
-        
-    }
-    
-    func test() {
-        
         
     }
     
@@ -56,34 +39,25 @@ class OverlayScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("overlay touches ended")
         let touch = touches.first
         let location = touch?.location(in: self)
         
         if playNode.contains(location!) {
-            print("playNodetapped")
             if playNodeIsActive {
                 playNodeIsActive = false
-                
                 
                 gameViewController.startGame()
                 
                 playNode.texture = playInactiveTexture
                 stopNode.texture = stopActiveTexture
                 gameViewController?.gameView.overlaySKScene = self
-                
- //             print(playNode.texture)
             }
         }
             
         let hitResults = self.view?.hitTest(location!, with: event)
         hitResults?.next?.touchesEnded(touches, with: event)
             
-            
-      
-        
         if stopNode.contains(location!) {
             print("stopNode tapped")
             if !playNodeIsActive {
@@ -99,4 +73,3 @@ class OverlayScene: SKScene {
         }
     }
 }
-

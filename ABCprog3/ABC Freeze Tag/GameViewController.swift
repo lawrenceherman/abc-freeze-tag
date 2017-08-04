@@ -24,57 +24,26 @@ class GameViewController: UIViewController, GameSceneDelegate {
         gameView = self.view as! SCNView
         gameScene = GameScene()
         gameView.scene = gameScene
-//        
+        
         spriteScene = OverlayScene(size: gameView.bounds.size)
         spriteScene.gameViewController = self
         gameView.overlaySKScene = spriteScene
-        gameScene.delegate = self
-        
-        
 
+        gameScene.delegate = self
         gameView.allowsCameraControl = false
         gameView.showsStatistics = false
         gameView.backgroundColor = UIColor(red: 0.4, green: 0.8, blue: 1.0, alpha: 1.0)
         gameView.autoenablesDefaultLighting = false
 
-//        
         layOut2DOverlay()
 
-//        
         gameViewTap = UITapGestureRecognizer(target: self, action: #selector(handleGameViewTap(_:)))
         gameView.addGestureRecognizer(gameViewTap)
         gameViewTap.isEnabled = false
         gameViewTap.cancelsTouchesInView = false
-        
-        
-//        spriteScene.isUserInteractionEnabled = false
-    
-        
-//        spriteScene.addObserver(gameView.scene!, forKeyPath: "paused", options: .new, context: nil)
-
     }
     
-//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-//        if keyPath == "test" {
-//            print("gameview observeValue keypath = test")
-//            
-//        }
-//    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touches began gameviewcontroller")
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touces ended gameviewcontroller")
-    }
-    
-    
-    
-
     func layOut2DOverlay() {
-        
-        
         let playNodeX = Int(spriteScene.frame.width * 0.9)
         let playNodeY = Int(spriteScene.frame.height * 0.8)
         spriteScene.playNode.position = CGPoint(x: playNodeX, y: playNodeY)
@@ -82,7 +51,6 @@ class GameViewController: UIViewController, GameSceneDelegate {
         let stopNodeX = Int(spriteScene.frame.width * 0.1)
         let stopNodeY = Int(spriteScene.frame.height * 0.8)
         spriteScene.stopNode.position = CGPoint(x: stopNodeX, y: stopNodeY)
-        
     }
     
     func enableGameViewTap() {
@@ -115,7 +83,6 @@ class GameViewController: UIViewController, GameSceneDelegate {
     }
     
     func startGame() {
-        
         gameScene.rootNode.runAction(gameScene.startPlayAudio(), completionHandler: {
             self.gameScene.gameSceneStart()
             self.gameViewTap.isEnabled = true
@@ -123,7 +90,6 @@ class GameViewController: UIViewController, GameSceneDelegate {
     }
    
     func stopGame() {
-        
         gameViewTap.isEnabled = false
         gameScene.rootNode.enumerateChildNodes { (node, stop) in
         node.removeFromParentNode() }
@@ -136,10 +102,5 @@ class GameViewController: UIViewController, GameSceneDelegate {
     }
 }
 
-//
-//    func enableLetterTap() {
-//        if letterCount > 0 {
-//            letterTap.isEnabled = true
-//        }
-//    }
+
 

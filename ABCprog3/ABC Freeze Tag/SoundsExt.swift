@@ -8,7 +8,6 @@
 
 import SceneKit
 
-
 extension GameScene {
     
     func loadSounds() {
@@ -177,6 +176,4 @@ extension GameScene {
         zSound = SCNAudioSource(named: "ABC_GROUP_LETTER_Z.mp3")
         zSound.load()
     }
-    
-    
 }

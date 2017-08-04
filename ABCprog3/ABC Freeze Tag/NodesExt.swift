@@ -12,7 +12,6 @@ import AVFoundation
 extension GameScene {
     
     func randomStartingPosition() -> SCNVector3 {
-        
         let x = Float(arc4random_uniform(250))
         let y = Float(-2)
         let z = Float(arc4random_uniform(175))
@@ -315,7 +314,6 @@ extension GameScene {
     }
     
     func makeFrozenNodesVisible() {
-        
         aNodeFrozen.isHidden = false
         bNodeFrozen.isHidden = false
         cNodeFrozen.isHidden = false
