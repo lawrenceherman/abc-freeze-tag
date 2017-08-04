@@ -28,15 +28,15 @@ class GameViewController: UIViewController, GameSceneDelegate {
         spriteScene = OverlayScene(size: gameView.bounds.size)
         spriteScene.gameViewController = self
         gameView.overlaySKScene = spriteScene
-
+        
         gameScene.delegate = self
         gameView.allowsCameraControl = false
         gameView.showsStatistics = false
         gameView.backgroundColor = UIColor(red: 0.4, green: 0.8, blue: 1.0, alpha: 1.0)
         gameView.autoenablesDefaultLighting = false
-
+        
         layOut2DOverlay()
-
+        
         gameViewTap = UITapGestureRecognizer(target: self, action: #selector(handleGameViewTap(_:)))
         gameView.addGestureRecognizer(gameViewTap)
         gameViewTap.isEnabled = false
@@ -64,7 +64,6 @@ class GameViewController: UIViewController, GameSceneDelegate {
     @objc func handleGameViewTap(_ gestureRecognizer:
         UITapGestureRecognizer) {
         
-        print("handleGameViewTap\n\n")
         let tappedNode: LetterNode!
         let tapCG = gestureRecognizer.location(in: gameView)
         
@@ -88,11 +87,11 @@ class GameViewController: UIViewController, GameSceneDelegate {
             self.gameViewTap.isEnabled = true
         })
     }
-   
+    
     func stopGame() {
         gameViewTap.isEnabled = false
         gameScene.rootNode.enumerateChildNodes { (node, stop) in
-        node.removeFromParentNode() }
+            node.removeFromParentNode() }
         gameScene.rootNode.removeAllAudioPlayers()
         gameScene.frozenArray = []
         gameScene.freeArray = []

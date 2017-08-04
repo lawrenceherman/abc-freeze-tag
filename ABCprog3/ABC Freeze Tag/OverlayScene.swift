@@ -26,10 +26,10 @@ class OverlayScene: SKScene {
         stopActiveTexture = SKTexture(imageNamed: "Stop100.png")
         playInactiveTexture = SKTexture(imageNamed: "PlayInactive100.png")
         stopInactiveTexture = SKTexture(imageNamed: "StopInactive100.png")
-    
+        
         playNode = SKSpriteNode(texture: playActiveTexture)
         stopNode = SKSpriteNode(texture: stopInactiveTexture)
-
+        
         self.addChild(playNode)
         self.addChild(stopNode)
         
@@ -54,18 +54,15 @@ class OverlayScene: SKScene {
                 gameViewController?.gameView.overlaySKScene = self
             }
         }
-            
+        
         let hitResults = self.view?.hitTest(location!, with: event)
         hitResults?.next?.touchesEnded(touches, with: event)
-            
+        
         if stopNode.contains(location!) {
             print("stopNode tapped")
             if !playNodeIsActive {
                 playNodeIsActive = true
-                
-                
                 gameViewController.stopGame()
-                
                 playNode.texture = playActiveTexture
                 stopNode.texture = stopInactiveTexture
                 gameViewController?.gameView.overlaySKScene = self

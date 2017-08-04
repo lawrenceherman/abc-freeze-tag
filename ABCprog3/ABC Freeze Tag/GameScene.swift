@@ -118,13 +118,12 @@ class GameScene: SCNScene {
             node.removeAudioPlayer(mx130BPMPlayer)
             node.addAudioPlayer(mx160BPMPlayer)
         default:
-            print("reserved")
+            print("mx switch default")
         }
     }
     
     func nodeCaughtAnimation(node: LetterNode) {
         letterCount -= 1
-        print(letterCount)
         
         switchMX()
         
@@ -139,14 +138,12 @@ class GameScene: SCNScene {
         let actionArray = [tapSound, presentLetter, playLetterSound, moveToHome]
         let sequence = SCNAction.sequence(actionArray)
         node.runAction(sequence) { 
-            
             if self.letterCount != 0 {
                 self.enableGameViewTap()
             } else{
                 self.disableGameViewTap()
                 self.winSequence()
             }
-        
         }
         
         frozenNode.runAction(hideFrozenNode)
@@ -168,12 +165,10 @@ class GameScene: SCNScene {
         let actionSequence = SCNAction.sequence(sequence)
         
         node.runAction(actionSequence)
-    
     }
     
     func startPlayAudio() -> SCNAction {
         return SCNAction.sequence([SCNAction.playAudio(rdySet, waitForCompletion: true), SCNAction.playAudio(startScream1, waitForCompletion: false),SCNAction.playAudio(freezeTag, waitForCompletion: false)])
-        
     }
     
     func runWild(_ node: LetterNode) {

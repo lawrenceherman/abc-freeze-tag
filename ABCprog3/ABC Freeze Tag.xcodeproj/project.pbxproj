@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FE1025891F25186400BD5C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1025881F25186400BD5C63 /* AppDelegate.swift */; };
+		FE17CA8F1F34143A00690D9C /* winParticle.scnp in Resources */ = {isa = PBXBuildFile; fileRef = FE17CA8E1F34143A00690D9C /* winParticle.scnp */; };
 		FE2034B61F292A7B009E800C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE2034B51F292A7B009E800C /* Launch Screen.storyboard */; };
 		FE36B2DA1F2B8BE2004CB6D8 /* ABC_GO_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE36B2D91F2B8BE2004CB6D8 /* ABC_GO_1.mp3 */; };
 		FE36B2DE1F2B8BF1004CB6D8 /* ABC_LETTER_TAP_FX_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE36B2DB1F2B8BF1004CB6D8 /* ABC_LETTER_TAP_FX_1.mp3 */; };
@@ -80,7 +81,6 @@
 		FE93F2A11F31425700B23DCA /* Stop100.png in Resources */ = {isa = PBXBuildFile; fileRef = FE93F29C1F31425700B23DCA /* Stop100.png */; };
 		FE93F2A21F31425700B23DCA /* StopInactive100.png in Resources */ = {isa = PBXBuildFile; fileRef = FE93F29D1F31425700B23DCA /* StopInactive100.png */; };
 		FE9C5C7F1F33BB0A009499AE /* school.png in Resources */ = {isa = PBXBuildFile; fileRef = FE9C5C7E1F33BB0A009499AE /* school.png */; };
-		FE9FDDAF1F33EA3900550C9D /* winParticle.scnp in Resources */ = {isa = PBXBuildFile; fileRef = FE9FDDAE1F33EA3900550C9D /* winParticle.scnp */; };
 		FE9FDDC31F33EC9000550C9D /* bokeh.png in Resources */ = {isa = PBXBuildFile; fileRef = FE9FDDC21F33EC9000550C9D /* bokeh.png */; };
 		FEA869A61F28FED60090D124 /* ABCFreezTagLS1.png in Resources */ = {isa = PBXBuildFile; fileRef = FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */; };
 		FEC6C3E31F113E44009410BE /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E21F113E44009410BE /* Letter.swift */; };
@@ -89,6 +89,7 @@
 
 /* Begin PBXFileReference section */
 		FE1025881F25186400BD5C63 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FE17CA8E1F34143A00690D9C /* winParticle.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; name = winParticle.scnp; path = Particle/winParticle.scnp; sourceTree = "<group>"; };
 		FE2034B51F292A7B009E800C /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FE36B2D91F2B8BE2004CB6D8 /* ABC_GO_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ABC_GO_1.mp3; sourceTree = "<group>"; };
 		FE36B2DB1F2B8BF1004CB6D8 /* ABC_LETTER_TAP_FX_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ABC_LETTER_TAP_FX_1.mp3; sourceTree = "<group>"; };
@@ -163,7 +164,6 @@
 		FE93F29C1F31425700B23DCA /* Stop100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stop100.png; path = Images/Stop100.png; sourceTree = "<group>"; };
 		FE93F29D1F31425700B23DCA /* StopInactive100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StopInactive100.png; path = Images/StopInactive100.png; sourceTree = "<group>"; };
 		FE9C5C7E1F33BB0A009499AE /* school.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = school.png; path = Images/school.png; sourceTree = "<group>"; };
-		FE9FDDAE1F33EA3900550C9D /* winParticle.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = winParticle.scnp; sourceTree = "<group>"; };
 		FE9FDDC21F33EC9000550C9D /* bokeh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bokeh.png; path = "Assets.xcassets/Particle Sprite Atlas.spriteatlas/bokeh.imageset/bokeh.png"; sourceTree = "<group>"; };
 		FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ABCFreezTagLS1.png; path = Images.xcassets/LaunchImage.launchimage/ABCFreezTagLS1.png; sourceTree = "<group>"; };
 		FEC6C3E21F113E44009410BE /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 		FE4E57991F01868300C78154 /* ABCFreezeTag */ = {
 			isa = PBXGroup;
 			children = (
-				FE9FDD9F1F33E1E200550C9D /* Particles */,
+				FE9FDD9F1F33E1E200550C9D /* Particle */,
 				FE5BFE9A1F2FEE43001AF59E /* Images */,
 				FE4F2C361F2A835A0001C336 /* Assets.xcassets */,
 				FE1025881F25186400BD5C63 /* AppDelegate.swift */,
@@ -235,13 +235,13 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		FE9FDD9F1F33E1E200550C9D /* Particles */ = {
+		FE9FDD9F1F33E1E200550C9D /* Particle */ = {
 			isa = PBXGroup;
 			children = (
+				FE17CA8E1F34143A00690D9C /* winParticle.scnp */,
 				FE9FDDC21F33EC9000550C9D /* bokeh.png */,
-				FE9FDDAE1F33EA3900550C9D /* winParticle.scnp */,
 			);
-			name = Particles;
+			name = Particle;
 			sourceTree = "<group>";
 		};
 		FEB7B58D1F229A3800124B2E /* Sounds */ = {
@@ -378,7 +378,6 @@
 				FE36B2E91F2BB2FC004CB6D8 /* ABC_GROUP_LETTER_R.mp3 in Resources */,
 				FE4F2C8A1F2AA9980001C336 /* ABC_GROUP_LETTER_I.mp3 in Resources */,
 				FE36B2E71F2BB2FC004CB6D8 /* ABC_GROUP_LETTER_L.mp3 in Resources */,
-				FE9FDDAF1F33EA3900550C9D /* winParticle.scnp in Resources */,
 				FE4F2C7D1F2AA9980001C336 /* ABC_FREEZE_TAG_GROUP_1.mp3 in Resources */,
 				FE4F2C931F2AA9980001C336 /* ABC_GROUP_LETTER_V.mp3 in Resources */,
 				FE4F2C901F2AA9980001C336 /* ABC_GROUP_LETTER_Q.mp3 in Resources */,
@@ -434,6 +433,7 @@
 				FE4F2C8B1F2AA9980001C336 /* ABC_GROUP_LETTER_J.mp3 in Resources */,
 				FE4F2C951F2AA9980001C336 /* ABC_GROUP_LETTER_X.mp3 in Resources */,
 				FE4F2C8F1F2AA9980001C336 /* ABC_GROUP_LETTER_P.mp3 in Resources */,
+				FE17CA8F1F34143A00690D9C /* winParticle.scnp in Resources */,
 				FE4F2C771F2AA9980001C336 /* ABC_CANT_CATCH_ME_SKY_1.mp3 in Resources */,
 				FE4F2C921F2AA9980001C336 /* ABC_GROUP_LETTER_U.mp3 in Resources */,
 				FE9C5C7F1F33BB0A009499AE /* school.png in Resources */,
