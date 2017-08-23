@@ -8,10 +8,6 @@
 
 import SpriteKit
 
-//protocol SKSceneDelegate: class{
-//    func startGame()
-//    func stopGame()
-//}
 protocol OverlaySceneDelegate: class {
     func startGame()
     func stopGame()
@@ -42,9 +38,6 @@ class OverlayScene: SKScene {
         
         self.addChild(playNode)
         self.addChild(stopNode)
-        
-        print("next responder in overlay \(next)")
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -82,19 +75,12 @@ class OverlayScene: SKScene {
         }
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        print(touches.description)
-        
-        let touch = touches.first
-//        print(touch)
-        let location = touch?.location(in: self)
-        let hitResults = self.view?.hitTest(location!, with: event)
-        hitResults?.next?.touchesMoved(touches, with: event)
-    
-    
-    }
-
-
+//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        let touch = touches.first
+//        let location = touch?.location(in: self)
+//        let hitResults = self.view?.hitTest(location!, with: event)
+//        hitResults?.next?.touchesMoved(touches, with: event)
+//    }
 }
 
 
