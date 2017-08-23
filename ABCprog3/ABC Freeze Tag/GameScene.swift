@@ -9,10 +9,10 @@
 import SceneKit
 import Foundation
 
-protocol GameSceneDelegate: class{
-    func enableGameViewTap()
-    func disableGameViewTap()
-}
+//protocol GameSceneDelegate: class{
+//    func enableGameViewTap()
+//    func disableGameViewTap()
+//}
 
 class GameScene: SCNScene {
     
@@ -50,7 +50,7 @@ class GameScene: SCNScene {
     var frozenArray: [LetterNode] = []
     var freeArray: [LetterNode] = []
     
-    weak var delegate: GameSceneDelegate?
+//    weak var delegate: GameSceneDelegate?
     
     override init() {
         super.init()
@@ -69,13 +69,13 @@ class GameScene: SCNScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func enableGameViewTap() {
-        delegate?.enableGameViewTap()
-    }
-    
-    func disableGameViewTap() {
-        delegate?.disableGameViewTap()
-    }
+//    func enableGameViewTap() {
+//        delegate?.enableGameViewTap()
+//    }
+//
+//    func disableGameViewTap() {
+//        delegate?.disableGameViewTap()
+//    }
     
     func winParticle() {
         if let winParticleSystem = SCNParticleSystem(named: "winParticle.scnp", inDirectory: nil)  {
@@ -139,9 +139,9 @@ class GameScene: SCNScene {
         let sequence = SCNAction.sequence(actionArray)
         node.runAction(sequence) { 
             if self.letterCount != 0 {
-                self.enableGameViewTap()
+//                self.enableGameViewTap()
             } else{
-                self.disableGameViewTap()
+//                self.disableGameViewTap()
                 self.winSequence()
             }
         }
@@ -169,9 +169,13 @@ class GameScene: SCNScene {
     
     func startPlayAudio() -> SCNAction {
         return SCNAction.sequence([SCNAction.playAudio(rdySet, waitForCompletion: true), SCNAction.playAudio(startScream1, waitForCompletion: false),SCNAction.playAudio(freezeTag, waitForCompletion: false)])
+    
+    
     }
     
     func runWild(_ node: LetterNode) {
+        
+        print("runwild")
         let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 10, duration: 0.15)
         let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -10.0, duration: 0.15)
         let runRight = SCNAction.moveBy(x: 10.00, y: 0, z: 0, duration: 0.15)
@@ -179,26 +183,33 @@ class GameScene: SCNScene {
         
         if node.frozen == false  {
             
+            print("hello")
             let x = arc4random_uniform(2)
-            
             if x == 0 {
+                print("x == 0")
                 if node.position.x > 220 {
+                    print("x > 220")
                     node.runAction(runLeft, completionHandler: {
                         self.runWild(node)
                     })
                 } else if node.position.x < 40 {
+                    print("x < 40")
                     node.runAction(runRight, completionHandler: {
                         self.runWild(node)
                     })
                 } else {
                     let i = arc4random_uniform(2)
                     if i == 0 {
+                        print("i == 0")
                         node.runAction(runLeft, completionHandler: {
                             self.runWild(node)
+                            print("x0 i0 comp")
+                            
                         })
                     }
                     
                     if i == 1 {
+                        print("i == 1")
                         node.runAction(runRight, completionHandler: {
                             self.runWild(node)
                         })
@@ -207,11 +218,14 @@ class GameScene: SCNScene {
             }
             
             if x == 1 {
+                print("x == 1")
                 if node.position.z < 80 {
+                    print(" z < 80")
                     node.runAction(runForward, completionHandler: {
                         self.runWild(node)
                     })
                 } else if node.position.z > 155 {
+                    print("z > 155")
                     node.runAction(runBackward, completionHandler: {
                         self.runWild(node)
                     })
@@ -219,12 +233,15 @@ class GameScene: SCNScene {
                     let i = arc4random_uniform(2)
                     
                     if i == 0 {
+                        print("i == 0")
                         node.runAction(runForward, completionHandler: {
+                            print("x1 i0 comp")
                             self.runWild(node)
                         })
                     }
                     
                     if i == 1 {
+                        print("i == 1")
                         node.runAction(runBackward, completionHandler: {
                             self.runWild(node)
                         })
@@ -235,6 +252,7 @@ class GameScene: SCNScene {
     }
     
     func gameSceneStart () {
+        print("gamescenestart")
         allRunWild()
         schoolNode.isHidden = true
         self.rootNode.addAudioPlayer(SCNAudioPlayer(source: kidPlayGround1))
@@ -243,6 +261,7 @@ class GameScene: SCNScene {
     }
     
     func allRunWild() {
+        print("all run wild")
         self.runWild(self.aNodeFree)
         self.runWild(self.bNodeFree)
         self.runWild(self.cNodeFree)

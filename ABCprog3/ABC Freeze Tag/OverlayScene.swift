@@ -8,6 +8,15 @@
 
 import SpriteKit
 
+//protocol SKSceneDelegate: class{
+//    func startGame()
+//    func stopGame()
+//}
+protocol OverlaySceneDelegate: class {
+    func startGame()
+    func stopGame()
+}
+
 class OverlayScene: SKScene {
     
     var playNode: SKSpriteNode!
@@ -17,7 +26,8 @@ class OverlayScene: SKScene {
     var stopInactiveTexture: SKTexture!
     var playActiveTexture: SKTexture!
     var stopActiveTexture: SKTexture!
-    var gameViewController: GameViewController!
+    weak var overlayDelegate: OverlaySceneDelegate?
+    
     
     override init(size: CGSize) {
         super.init(size: size)
@@ -33,40 +43,58 @@ class OverlayScene: SKScene {
         self.addChild(playNode)
         self.addChild(stopNode)
         
+        print("next responder in overlay \(next)")
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         let location = touch?.location(in: self)
         
-        if playNode.contains(location!) {
-            if playNodeIsActive {
-                playNodeIsActive = false
-                
-                gameViewController.startGame()
-                
-                playNode.texture = playInactiveTexture
-                stopNode.texture = stopActiveTexture
-                gameViewController?.gameView.overlaySKScene = self
+        if playNode.contains(location!) || stopNode.contains(location!){
+            if playNode.contains(location!) {
+                print("playNode tapped /n/n")
+                if playNodeIsActive {
+                    print("inside playNode is Active")
+                    playNodeIsActive = false
+                    playNode.texture = playInactiveTexture
+                    stopNode.texture = stopActiveTexture
+                    overlayDelegate?.startGame()
+                }
             }
-        }
-        
-        let hitResults = self.view?.hitTest(location!, with: event)
-        hitResults?.next?.touchesEnded(touches, with: event)
-        
-        if stopNode.contains(location!) {
-            print("stopNode tapped")
-            if !playNodeIsActive {
-                playNodeIsActive = true
-                gameViewController.stopGame()
-                playNode.texture = playActiveTexture
-                stopNode.texture = stopInactiveTexture
-                gameViewController?.gameView.overlaySKScene = self
+            
+            if stopNode.contains(location!) {
+                print("stopNode tapped")
+                if !playNodeIsActive {
+                    playNodeIsActive = true
+                    playNode.texture = playActiveTexture
+                    stopNode.texture = stopInactiveTexture
+                    overlayDelegate?.stopGame()
+                }
             }
+        } else {
+            let hitResults = self.view?.hitTest(location!, with: event)
+            hitResults?.next?.touchesBegan(touches, with: event)
         }
     }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        print(touches.description)
+        
+        let touch = touches.first
+//        print(touch)
+        let location = touch?.location(in: self)
+        let hitResults = self.view?.hitTest(location!, with: event)
+        hitResults?.next?.touchesMoved(touches, with: event)
+    
+    
+    }
+
+
 }
+
+

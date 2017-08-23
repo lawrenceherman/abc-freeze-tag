@@ -23,8 +23,9 @@ extension GameScene {
         cameraNode.camera = SCNCamera()
         self.rootNode.addChildNode(cameraNode)
         cameraNode.camera?.xFov = 80
-        let radians = degreesToRadians(degrees: -16)
-        let eulerVector = SCNVector3Make(radians, 0, 0)
+        let pitchRadians = degreesToRadians(degrees: -16)
+//        let yawRadians = degreesToRadians(degrees: 20)
+        let eulerVector = SCNVector3Make(pitchRadians, 0, 0)
         cameraNode.eulerAngles = eulerVector
         cameraNode.position = SCNVector3(x: 140, y: 20, z: 190)
         cameraNode.camera?.zFar = 200
