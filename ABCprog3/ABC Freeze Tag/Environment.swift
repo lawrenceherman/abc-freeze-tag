@@ -27,7 +27,7 @@ extension GameScene {
         let eulerVector = SCNVector3Make(pitchRadians, 0, 0)
         cameraNode.eulerAngles = eulerVector
         cameraNode.position = SCNVector3(x: 140, y: 20, z: 190)
-        cameraNode.camera?.zFar = 200
+        cameraNode.camera?.zFar = 250
         
         let lightNode = SCNNode()
         lightNode.light = SCNLight()

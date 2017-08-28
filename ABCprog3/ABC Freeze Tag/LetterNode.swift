@@ -15,6 +15,7 @@ class LetterNode: SCNNode {
     var string: String!
     var corNode: LetterNode?
     var letterSound: SCNAudioSource?
+    var letterWidth: Float!
     
     init(geometry: Letter, frozen: Bool) {
         
@@ -22,6 +23,8 @@ class LetterNode: SCNNode {
         self.string = geometry.string as! String
         
         super.init()
+     
+
         self.geometry = geometry
         
         if frozen == true {
@@ -44,6 +47,11 @@ class LetterNode: SCNNode {
                 self.geometry?.firstMaterial?.diffuse.contents = UIColor.red
             }
         }
+        
+        self.letterWidth = self.boundingBox.max.x - self.boundingBox.min.x
+        self.pivot.m41 += (letterWidth / 1.9)
+
+    
     }
     
     convenience init(geometry: Letter, frozen: Bool, audioSource: SCNAudioSource) {

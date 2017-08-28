@@ -18,6 +18,7 @@ class OverlayScene: SKScene {
     var playNode: SKSpriteNode!
     var stopNode: SKSpriteNode!
     var playNodeIsActive = true
+    var testInt = 5
     var playInactiveTexture: SKTexture!
     var stopInactiveTexture: SKTexture!
     var playActiveTexture: SKTexture!
@@ -75,12 +76,12 @@ class OverlayScene: SKScene {
         }
     }
     
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        let touch = touches.first
-//        let location = touch?.location(in: self)
-//        let hitResults = self.view?.hitTest(location!, with: event)
-//        hitResults?.next?.touchesMoved(touches, with: event)
-//    }
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first
+        let location = touch?.location(in: self)
+        let hitResults = self.view?.hitTest(location!, with: event)
+        hitResults?.next?.touchesMoved(touches, with: event)
+    }
 }
 
 

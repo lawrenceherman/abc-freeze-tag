@@ -30,6 +30,8 @@ class GameViewController: UIViewController, OverlaySceneDelegate, GameSceneDeleg
         gameView.overlaySKScene = spriteScene
         spriteScene.overlayDelegate = self
         
+    
+        
         gameView.allowsCameraControl = false
         gameView.isPlaying = true
         gameView.showsStatistics = false
@@ -37,6 +39,21 @@ class GameViewController: UIViewController, OverlaySceneDelegate, GameSceneDeleg
         gameView.autoenablesDefaultLighting = false
     
         layOut2DOverlay()
+        
+//        let minCorner = SCNVector3()
+//        let maxCorner = SCNVector3()
+        
+ 
+
+        
+//        print("pivot \(gameScene.aNodeTest.pivot)\n\n")
+//        print("transform \(gameScene.aNodeTest.transform)\n\n")
+//        print("orientation \(gameScene.aNodeTest.orientation)\n\n")
+//    
+//        SCNVector3(x: -0.0263671875, y: 4.0, z: -1.0)
+//        SCNVector3(x: 12.0322266, y: 16.8847656, z: 1.0)
+    
+    
     }
     
     func layOut2DOverlay() {
@@ -64,7 +81,6 @@ class GameViewController: UIViewController, OverlaySceneDelegate, GameSceneDeleg
                 if tappedNode.frozenPosition != nil && tappedNode.frozen == false {
                     tappedNode.frozen = true
                     sceneEnabled = false
-                    //                gameViewTap.isEnabled = false
                     gameScene.nodeCaughtAnimation(node: tappedNode)
                 }
                 
@@ -99,15 +115,21 @@ class GameViewController: UIViewController, OverlaySceneDelegate, GameSceneDeleg
         viewDidLoad()
     }
     
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        let previousValue = touches.first!.previousLocation(in: self.view)
-//        let currentValue = touches.first!.location(in: self.view)
-//        let difference = Float(currentValue.x) - Float(previousValue.x)
-//        var eulerVector = gameScene.cameraNode.eulerAngles
-//        eulerVector.y = eulerVector.y + (difference/9 )
-//        gameScene.cameraNode.eulerAngles = eulerVector
-//    }
-
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if sceneEnabled == true {
+            let previousValue = touches.first!.previousLocation(in: self.view)
+            let currentValue = touches.first!.location(in: self.view)
+            let difference = Float(currentValue.x) - Float(previousValue.x)
+            var eulerVector = gameScene.cameraNode.eulerAngles
+            eulerVector.y = eulerVector.y + (difference/100)
+            gameScene.cameraNode.eulerAngles = eulerVector
+        
+            
+            
+//            print(gameScene.cameraNode.eulerAngles.y)
+        }
+    }
 }
 
 

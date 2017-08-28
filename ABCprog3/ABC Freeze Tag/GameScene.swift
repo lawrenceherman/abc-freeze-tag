@@ -112,6 +112,10 @@ class GameScene: SCNScene {
         }
     }
     
+    
+    
+    
+    
     func nodeCaughtAnimation(node: LetterNode) {
         letterCount -= 1
         
@@ -120,13 +124,49 @@ class GameScene: SCNScene {
         let j = freeArray.index(of: node)!
         let frozenNode = frozenArray[j]
         
+        
         let tapSound = SCNAction.playAudio(letterTapSound, waitForCompletion: false)
-        let presentLetter = SCNAction.move(to: SCNVector3(134, 5, 176), duration: 0.5)
+        
+        // need to calculate new present letter value base on
+        // camera euler
+        
+//        let tempEuler = cameraNode.eulerAngles
+        let radOffset = abs(degreesToRadians(degrees: 90))
+        
+        
+//        print(radOffset)
+//
+       var a = cameraNode.eulerAngles.y
+        a += radOffset
+        
+//        while a > 2 * Float.pi {
+//            a -= 2 * Float.pi
+//        }
+//
+//        print(a)
+        
+        
+        
+        let x = 140 + (14 * cos(a))
+        let z = -190 + (14 * sin(a))
+        
+        let presentLetter = SCNAction.move(to: SCNVector3(x, 5, -z), duration: 0.5)
+        
+//        let presentLetter = SCNAction.move(to: SCNVector3(140, 5, 176), duration: 0.5)
         let playLetterSound = SCNAction.playAudio(node.letterSound!, waitForCompletion: true)
+        
+        
+        
         let moveToHome = SCNAction.move(to: node.frozenPosition!, duration: 1.0)
         let hideFrozenNode = SCNAction.fadeOpacity(to: 0, duration: 3.0)
-        let actionArray = [tapSound, presentLetter, playLetterSound, moveToHome]
-        let sequence = SCNAction.sequence(actionArray)
+        let actionArray1 = [tapSound, presentLetter]
+        let actionArray2 = [playLetterSound, moveToHome]
+        let sequence = SCNAction.sequence(actionArray1)
+        let sequence2 = SCNAction.sequence(actionArray2)
+        
+
+
+    
         
         node.runAction(sequence) {
             if self.letterCount != 0 {
@@ -136,6 +176,19 @@ class GameScene: SCNScene {
                 self.winSequence()
             }
         }
+        
+        var tempAngle = atan2f(-z - 190, x - 140)
+        print(tempAngle)
+        tempAngle += radOffset
+        node.eulerAngles.y = tempAngle
+        
+        
+        
+        //        print(node.eulerAngles.y)
+        
+        node.runAction(sequence2)
+       
+        node.runAction(SCNAction.rotateTo(x: 0, y: 0, z: 0, duration: 0.1))
         frozenNode.runAction(hideFrozenNode)
     }
     
@@ -167,8 +220,22 @@ class GameScene: SCNScene {
         let runRight = SCNAction.moveBy(x: 10.00, y: 0, z: 0, duration: 0.15)
         let runLeft = SCNAction.moveBy(x: -10.00, y: 0, z: 0, duration: 0.15)
         
+        let yLeft = degreesToRadians(degrees: 90)
+        let yRight = degreesToRadians(degrees: -90)
+        
+        let turnLeft = SCNAction.rotateBy(x: 0, y: CGFloat(yLeft), z: 0, duration: 0.15)
+        let turnRight = SCNAction.rotateBy(x: 0, y: CGFloat(yRight), z: 0, duration: 0.15)
+        
+        let x = arc4random_uniform(2)
+        let j = arc4random_uniform(4)
+        let i = arc4random_uniform(2)
+        
+        
+
+        
+        
+        
         if node.frozen == false  {
-            let x = arc4random_uniform(2)
             if x == 0 {
                 if node.position.x > 220 {
                     node.runAction(runLeft, completionHandler: {
@@ -179,14 +246,15 @@ class GameScene: SCNScene {
                         self.runWild(node)
                     })
                 } else {
-                    let i = arc4random_uniform(2)
                     if i == 0 {
                         node.runAction(runLeft, completionHandler: {
+                            if j == 1 {node.runAction(turnLeft)}
                             self.runWild(node)
                         })
                     }
                     if i == 1 {
                         node.runAction(runRight, completionHandler: {
+                            if j == 1 {node.runAction(turnRight)}
                             self.runWild(node)
                         })
                     }
@@ -198,20 +266,22 @@ class GameScene: SCNScene {
                     node.runAction(runForward, completionHandler: {
                         self.runWild(node)
                     })
-                } else if node.position.z > 155 {
+                } else if node.position.z > 250 {
                     node.runAction(runBackward, completionHandler: {
                         self.runWild(node)
                     })
                 } else {
-                    let i = arc4random_uniform(2)
+//                    let i = arc4random_uniform(2)
                     
                     if i == 0 {
                         node.runAction(runForward, completionHandler: {
+                            if j == 1 {node.runAction(turnLeft)}
                             self.runWild(node)
                         })
                     }
                     if i == 1 {
                         node.runAction(runBackward, completionHandler: {
+                            if j == 1 {node.runAction(turnRight)}
                             self.runWild(node)
                         })
                     }
@@ -219,6 +289,8 @@ class GameScene: SCNScene {
             }
         }
     }
+    
+    
     
     func gameSceneStart () {
         allRunWild()
