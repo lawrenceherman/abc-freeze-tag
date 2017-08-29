@@ -74,6 +74,10 @@ class OverlayScene: SKScene {
             let hitResults = self.view?.hitTest(location!, with: event)
             hitResults?.next?.touchesBegan(touches, with: event)
         }
+    
+    
+    
+    
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {

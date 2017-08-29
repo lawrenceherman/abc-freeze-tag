@@ -116,6 +116,7 @@ class GameScene: SCNScene {
     
     
     
+    
     func nodeCaughtAnimation(node: LetterNode) {
         letterCount -= 1
         
@@ -123,52 +124,58 @@ class GameScene: SCNScene {
         
         let j = freeArray.index(of: node)!
         let frozenNode = frozenArray[j]
-        
-        
-        let tapSound = SCNAction.playAudio(letterTapSound, waitForCompletion: false)
-        
-        // need to calculate new present letter value base on
-        // camera euler
-        
-//        let tempEuler = cameraNode.eulerAngles
         let radOffset = abs(degreesToRadians(degrees: 90))
+
+
+//        print("before action \(currentEuler)")
+
+
         
-        
-//        print(radOffset)
-//
-       var a = cameraNode.eulerAngles.y
+        var a = cameraNode.eulerAngles.y
         a += radOffset
-        
-//        while a > 2 * Float.pi {
-//            a -= 2 * Float.pi
-//        }
-//
-//        print(a)
-        
-        
         
         let x = 140 + (14 * cos(a))
         let z = -190 + (14 * sin(a))
         
+        node.removeAllActions()
+        
+        var cameraNodeEuler = cameraNode.eulerAngles.y
+        
+        while cameraNodeEuler > 2 * Float.pi {
+            cameraNodeEuler -= (2 * Float.pi)
+        }
+        while cameraNodeEuler < -(2 * Float.pi) {
+            cameraNodeEuler += (2 * Float.pi)
+        }
+        if cameraNodeEuler < 0 {
+            cameraNodeEuler = (2 * Float.pi) - abs(cameraNodeEuler)
+        }
+        print(cameraNodeEuler)
+        var newLetterEuler: Float = 0.0
+        
+        if cameraNodeEuler > 0 && cameraNodeEuler < Float.pi {
+            newLetterEuler = cameraNodeEuler + Float.pi
+        }
+        if cameraNodeEuler > Float.pi && cameraNodeEuler < (2 * Float.pi) {
+            newLetterEuler = cameraNodeEuler - Float.pi
+        }
+        print(newLetterEuler)
+        newLetterEuler += Float.pi
+        
+        node.eulerAngles.y = newLetterEuler
+//        node.runAction(SCNAction.rotateTo(x: 0, y: 0, z: 0, duration: 0.1))
+
+        
+        let tapSound = SCNAction.playAudio(letterTapSound, waitForCompletion: false)
         let presentLetter = SCNAction.move(to: SCNVector3(x, 5, -z), duration: 0.5)
-        
-//        let presentLetter = SCNAction.move(to: SCNVector3(140, 5, 176), duration: 0.5)
         let playLetterSound = SCNAction.playAudio(node.letterSound!, waitForCompletion: true)
-        
-        
-        
         let moveToHome = SCNAction.move(to: node.frozenPosition!, duration: 1.0)
         let hideFrozenNode = SCNAction.fadeOpacity(to: 0, duration: 3.0)
-        let actionArray1 = [tapSound, presentLetter]
-        let actionArray2 = [playLetterSound, moveToHome]
-        let sequence = SCNAction.sequence(actionArray1)
-        let sequence2 = SCNAction.sequence(actionArray2)
-        
-
-
-    
+        let actionArray = [tapSound, presentLetter, playLetterSound, moveToHome]
+        let sequence = SCNAction.sequence(actionArray)
         
         node.runAction(sequence) {
+            node.eulerAngles.y = 0
             if self.letterCount != 0 {
                 self.delegate?.enableScene()
             } else{
@@ -177,20 +184,33 @@ class GameScene: SCNScene {
             }
         }
         
-        var tempAngle = atan2f(-z - 190, x - 140)
-        print(tempAngle)
-        tempAngle += radOffset
-        node.eulerAngles.y = tempAngle
+//        print(radOffset)
+//        var currentEuler = (node.eulerAngles.y)
+
+        
+//        print("node after action \(currentEuler)")
+
         
         
         
-        //        print(node.eulerAngles.y)
+//
+//        tempAngle =  -(tempAngle)
+//        print("temp angle \(tempAngle)")
+
+//        node.eulerAngles.y = tempAngle
         
-        node.runAction(sequence2)
+        
+        //        var tempAngle = atan2f(-z - 190, x - 140)
+
+        
        
-        node.runAction(SCNAction.rotateTo(x: 0, y: 0, z: 0, duration: 0.1))
+//        node.runAction(SCNAction.rotateTo(x: 0, y: 0, z: 0, duration: 0.1))
         frozenNode.runAction(hideFrozenNode)
     }
+    
+    
+    
+    
     
     func winSequence() {
         let node = self.rootNode
@@ -254,7 +274,7 @@ class GameScene: SCNScene {
                     }
                     if i == 1 {
                         node.runAction(runRight, completionHandler: {
-                            if j == 1 {node.runAction(turnRight)}
+//                            if j == 1 {node.runAction(turnRight)}
                             self.runWild(node)
                         })
                     }
@@ -275,7 +295,7 @@ class GameScene: SCNScene {
                     
                     if i == 0 {
                         node.runAction(runForward, completionHandler: {
-                            if j == 1 {node.runAction(turnLeft)}
+//                            if j == 1 {node.runAction(turnLeft)}
                             self.runWild(node)
                         })
                     }

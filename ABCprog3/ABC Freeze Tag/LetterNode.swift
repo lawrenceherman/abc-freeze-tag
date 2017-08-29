@@ -23,15 +23,16 @@ class LetterNode: SCNNode {
         self.string = geometry.string as! String
         
         super.init()
-     
-
         self.geometry = geometry
+        
+        self.letterWidth = self.boundingBox.max.x - self.boundingBox.min.x
+        self.pivot.m41 += (self.letterWidth / 1.9)
+        
         
         if frozen == true {
             self.geometry?.firstMaterial?.diffuse.contents = UIColor.white
             self.isHidden = true
-            
-        } else {
+            } else {
             switch string {
             case "F", "D", "K", "P", "T", "Y":
                 self.geometry?.firstMaterial?.diffuse.contents = UIColor.red
@@ -48,10 +49,8 @@ class LetterNode: SCNNode {
             }
         }
         
-        self.letterWidth = self.boundingBox.max.x - self.boundingBox.min.x
-        self.pivot.m41 += (letterWidth / 1.9)
 
-    
+
     }
     
     convenience init(geometry: Letter, frozen: Bool, audioSource: SCNAudioSource) {
