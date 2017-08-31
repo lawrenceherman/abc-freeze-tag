@@ -31,7 +31,7 @@ class LetterNode: SCNNode {
         
         if frozen == true {
             self.geometry?.firstMaterial?.diffuse.contents = UIColor.white
-            self.isHidden = true
+//            self.isHidden = true
             } else {
             switch string {
             case "F", "D", "K", "P", "T", "Y":

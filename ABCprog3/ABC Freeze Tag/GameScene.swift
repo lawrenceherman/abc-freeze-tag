@@ -33,6 +33,8 @@ class GameScene: SCNScene {
     
     var schoolGeo: SCNGeometry!
     var schoolNode: SCNNode!
+    var playgroundGeo: SCNGeometry!
+    var playgroundNode: SCNNode!
     var cameraNode: SCNNode!
     var floorNode: SCNNode!
     var particleNode: SCNNode!
@@ -112,12 +114,10 @@ class GameScene: SCNScene {
         }
     }
     
-    
-    
-    
-    
+    //TODO: Break down functions
     
     func nodeCaughtAnimation(node: LetterNode) {
+        node.removeAllActions()
         letterCount -= 1
         
         switchMX()
@@ -126,21 +126,14 @@ class GameScene: SCNScene {
         let frozenNode = frozenArray[j]
         let radOffset = abs(degreesToRadians(degrees: 90))
 
-
-//        print("before action \(currentEuler)")
-
-
-        
         var a = cameraNode.eulerAngles.y
         a += radOffset
-        
         let x = 140 + (14 * cos(a))
         let z = -190 + (14 * sin(a))
         
-        node.removeAllActions()
-        
         var cameraNodeEuler = cameraNode.eulerAngles.y
-        
+        var newLetterEuler: Float = 0.0
+
         while cameraNodeEuler > 2 * Float.pi {
             cameraNodeEuler -= (2 * Float.pi)
         }
@@ -150,8 +143,6 @@ class GameScene: SCNScene {
         if cameraNodeEuler < 0 {
             cameraNodeEuler = (2 * Float.pi) - abs(cameraNodeEuler)
         }
-        print(cameraNodeEuler)
-        var newLetterEuler: Float = 0.0
         
         if cameraNodeEuler > 0 && cameraNodeEuler < Float.pi {
             newLetterEuler = cameraNodeEuler + Float.pi
@@ -159,13 +150,9 @@ class GameScene: SCNScene {
         if cameraNodeEuler > Float.pi && cameraNodeEuler < (2 * Float.pi) {
             newLetterEuler = cameraNodeEuler - Float.pi
         }
-        print(newLetterEuler)
         newLetterEuler += Float.pi
-        
         node.eulerAngles.y = newLetterEuler
-//        node.runAction(SCNAction.rotateTo(x: 0, y: 0, z: 0, duration: 0.1))
 
-        
         let tapSound = SCNAction.playAudio(letterTapSound, waitForCompletion: false)
         let presentLetter = SCNAction.move(to: SCNVector3(x, 5, -z), duration: 0.5)
         let playLetterSound = SCNAction.playAudio(node.letterSound!, waitForCompletion: true)
@@ -184,33 +171,8 @@ class GameScene: SCNScene {
             }
         }
         
-//        print(radOffset)
-//        var currentEuler = (node.eulerAngles.y)
-
-        
-//        print("node after action \(currentEuler)")
-
-        
-        
-        
-//
-//        tempAngle =  -(tempAngle)
-//        print("temp angle \(tempAngle)")
-
-//        node.eulerAngles.y = tempAngle
-        
-        
-        //        var tempAngle = atan2f(-z - 190, x - 140)
-
-        
-       
-//        node.runAction(SCNAction.rotateTo(x: 0, y: 0, z: 0, duration: 0.1))
         frozenNode.runAction(hideFrozenNode)
     }
-    
-    
-    
-    
     
     func winSequence() {
         let node = self.rootNode
@@ -250,18 +212,13 @@ class GameScene: SCNScene {
         let j = arc4random_uniform(4)
         let i = arc4random_uniform(2)
         
-        
-
-        
-        
-        
         if node.frozen == false  {
             if x == 0 {
-                if node.position.x > 220 {
+                if node.position.x > 260 {
                     node.runAction(runLeft, completionHandler: {
                         self.runWild(node)
                     })
-                } else if node.position.x < 40 {
+                } else if node.position.x < 0 {
                     node.runAction(runRight, completionHandler: {
                         self.runWild(node)
                     })
@@ -274,7 +231,6 @@ class GameScene: SCNScene {
                     }
                     if i == 1 {
                         node.runAction(runRight, completionHandler: {
-//                            if j == 1 {node.runAction(turnRight)}
                             self.runWild(node)
                         })
                     }
@@ -282,20 +238,17 @@ class GameScene: SCNScene {
             }
             
             if x == 1 {
-                if node.position.z < 80 {
+                if node.position.z < 40 {
                     node.runAction(runForward, completionHandler: {
                         self.runWild(node)
                     })
-                } else if node.position.z > 250 {
+                } else if node.position.z > 290 {
                     node.runAction(runBackward, completionHandler: {
                         self.runWild(node)
                     })
                 } else {
-//                    let i = arc4random_uniform(2)
-                    
                     if i == 0 {
                         node.runAction(runForward, completionHandler: {
-//                            if j == 1 {node.runAction(turnLeft)}
                             self.runWild(node)
                         })
                     }
@@ -310,14 +263,12 @@ class GameScene: SCNScene {
         }
     }
     
-    
-    
     func gameSceneStart () {
         allRunWild()
-        schoolNode.isHidden = true
+//        schoolNode.isHidden = true
         self.rootNode.addAudioPlayer(SCNAudioPlayer(source: kidPlayGround1))
         self.rootNode.addAudioPlayer(mx70BPMPlayer)
-        self.makeFrozenNodesVisible()
+//        self.makeFrozenNodesVisible()
     }
     
     func allRunWild() {

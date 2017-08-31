@@ -57,6 +57,9 @@ extension GameScene {
         schoolGeo.firstMaterial = schoolImage
         schoolNode = SCNNode(geometry: schoolGeo)
         self.rootNode.addChildNode(schoolNode)
-        schoolNode.position = SCNVector3Make(150, 32, 0)
+//        schoolNode.position = SCNVector3Make(150, 32, 0)
+        schoolNode.position = SCNVector3Make(-30, 32, 190)
+        schoolNode.eulerAngles.y = degreesToRadians(degrees: 90)
+
     }
 }
