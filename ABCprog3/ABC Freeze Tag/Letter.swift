@@ -14,7 +14,7 @@ class Letter: SCNText {
         super.init()
         self.string = letter
         self.extrusionDepth = 2.0
-        self.font = UIFont.init(name: "Arial", size: 18.0)
+        self.font = UIFont.init(name: "MarkerFelt-Thin", size: 18.0)
         self.flatness = 0
     }
     

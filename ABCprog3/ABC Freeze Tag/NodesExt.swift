@@ -216,7 +216,7 @@ extension GameScene {
         self.rootNode.addChildNode(gNodeFrozen)
         
         hNodeFrozen = LetterNode(geometry: hGeoF, frozen: true)
-        hNodeFrozen.position = SCNVector3(124, 50, 0)
+        hNodeFrozen.position = SCNVector3(125, 50, 0)
         frozenArray.append(hNodeFrozen)
         self.rootNode.addChildNode(hNodeFrozen)
         
@@ -236,7 +236,7 @@ extension GameScene {
         self.rootNode.addChildNode(kNodeFrozen)
         
         lNodeFrozen = LetterNode(geometry: lGeoF, frozen: true)
-        lNodeFrozen.position = SCNVector3(192, 50, 0)
+        lNodeFrozen.position = SCNVector3(191, 50, 0)
         frozenArray.append(lNodeFrozen)
         self.rootNode.addChildNode(lNodeFrozen)
         
@@ -246,42 +246,42 @@ extension GameScene {
         self.rootNode.addChildNode(mNodeFrozen)
         
         nNodeFrozen = LetterNode(geometry: nGeoF, frozen: true)
-        nNodeFrozen.position = SCNVector3(226, 50, 0)
+        nNodeFrozen.position = SCNVector3(228, 50, 0)
         frozenArray.append(nNodeFrozen)
         self.rootNode.addChildNode(nNodeFrozen)
         
         oNodeFrozen = LetterNode(geometry: oGeoF, frozen: true)
-        oNodeFrozen.position = SCNVector3(243, 50, 0)
+        oNodeFrozen.position = SCNVector3(244, 50, 0)
         frozenArray.append(oNodeFrozen)
         self.rootNode.addChildNode(oNodeFrozen)
         
         pNodeFrozen = LetterNode(geometry: pGeoF, frozen: true)
-        pNodeFrozen.position = SCNVector3(260, 50, 0)
+        pNodeFrozen.position = SCNVector3(262, 50, 0)
         frozenArray.append(pNodeFrozen)
         self.rootNode.addChildNode(pNodeFrozen)
         
         qNodeFrozen = LetterNode(geometry: qGeoF, frozen: true)
-        qNodeFrozen.position = SCNVector3(45, 20, 0)
+        qNodeFrozen.position = SCNVector3(47 , 20, 0)
         frozenArray.append(qNodeFrozen)
         self.rootNode.addChildNode(qNodeFrozen)
         
         rNodeFrozen = LetterNode(geometry: rGeoF, frozen: true)
-        rNodeFrozen.position = SCNVector3(65, 20, 0)
+        rNodeFrozen.position = SCNVector3(69, 20, 0)
         frozenArray.append(rNodeFrozen)
         self.rootNode.addChildNode(rNodeFrozen)
         
         sNodeFrozen = LetterNode(geometry: sGeoF, frozen: true)
-        sNodeFrozen.position = SCNVector3(85, 20, 0)
+        sNodeFrozen.position = SCNVector3(88, 20, 0)
         frozenArray.append(sNodeFrozen)
         self.rootNode.addChildNode(sNodeFrozen)
         
         tNodeFrozen = LetterNode(geometry: tGeoF, frozen: true)
-        tNodeFrozen.position = SCNVector3(105, 20, 0)
+        tNodeFrozen.position = SCNVector3(107, 20, 0)
         frozenArray.append(tNodeFrozen)
         self.rootNode.addChildNode(tNodeFrozen)
         
         uNodeFrozen = LetterNode(geometry: uGeoF, frozen: true)
-        uNodeFrozen.position = SCNVector3(125, 20, 0)
+        uNodeFrozen.position = SCNVector3(126, 20, 0)
         frozenArray.append(uNodeFrozen)
         self.rootNode.addChildNode(uNodeFrozen)
         

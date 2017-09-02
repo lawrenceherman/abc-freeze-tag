@@ -32,8 +32,23 @@ extension GameScene {
         let lightNode = SCNNode()
         lightNode.light = SCNLight()
         lightNode.light!.type = .omni
-        lightNode.position = SCNVector3(x: 140, y: 100, z: 200)
+    
+        lightNode.position = SCNVector3(x: 140, y: 100, z: 190)
         self.rootNode.addChildNode(lightNode)
+        
+        let sunLightNode = SCNNode()
+        sunLightNode.light = SCNLight()
+        sunLightNode.light?.type = .directional
+        self.rootNode.addChildNode(sunLightNode)
+        
+        
+//        let lightNode2 = SCNNode()
+//        lightNode2.light = SCNLight()
+//        lightNode2.light?.type = .ambient
+//        lightNode2.light?.intensity = 200
+//        self.rootNode.addChildNode(lightNode2)
+        
+    
     }
     
     func loadFloor () {
@@ -60,6 +75,41 @@ extension GameScene {
 //        schoolNode.position = SCNVector3Make(150, 32, 0)
         schoolNode.position = SCNVector3Make(-30, 32, 190)
         schoolNode.eulerAngles.y = degreesToRadians(degrees: 90)
-
     }
+    
+    func loadPlayground() {
+        let playgroundImage = SCNMaterial()
+        playgroundImage.diffuse.contents = UIImage(named: "playground.png")
+        playgroundGeo = SCNPlane(width: 120, height: 70)
+        playgroundGeo.firstMaterial = playgroundImage
+        playgroundNode = SCNNode(geometry: playgroundGeo)
+        self.rootNode.addChildNode((playgroundNode))
+        playgroundNode.position = SCNVector3(300, 35, 190)
+        playgroundNode.eulerAngles.y = degreesToRadians(degrees: -90)
+    }
+    
+    func loadSun() {
+        let sunImage = SCNMaterial()
+        sunImage.diffuse.contents = UIImage(named: "singleSun1.png")
+        sunGeo = SCNPlane(width: 75, height: 75)
+        sunGeo.firstMaterial = sunImage
+        sunNode = SCNNode(geometry: sunGeo)
+        self.rootNode.addChildNode(sunNode)
+        sunNode.position = SCNVector3(35, 50, 340)
+        sunNode.eulerAngles.y = degreesToRadians(degrees: 130)
+    }
+    
+    func loadTree() {
+        let treeImage = SCNMaterial()
+        treeImage.diffuse.contents = UIImage(named: "singleTree1.png")
+        treeGeo = SCNPlane(width: 50, height: 50)
+        treeGeo.firstMaterial = treeImage
+        treeNode = SCNNode(geometry: treeGeo)
+        self.rootNode.addChildNode(treeNode)
+        treeNode.position = SCNVector3(180, 32, 290)
+        treeNode.eulerAngles.y = degreesToRadians(degrees: -180)
+    }
+
+
+
 }

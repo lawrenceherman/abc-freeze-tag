@@ -35,6 +35,10 @@ class GameScene: SCNScene {
     var schoolNode: SCNNode!
     var playgroundGeo: SCNGeometry!
     var playgroundNode: SCNNode!
+    var sunGeo: SCNGeometry!
+    var sunNode: SCNNode!
+    var treeGeo: SCNGeometry!
+    var treeNode: SCNNode!
     var cameraNode: SCNNode!
     var floorNode: SCNNode!
     var particleNode: SCNNode!
@@ -60,6 +64,9 @@ class GameScene: SCNScene {
         loadCameraAndLights()
         loadFloor()
         loadSchool()
+        loadPlayground()
+        loadSun()
+        loadTree()
         loadGeometry()
         loadSounds()
         loadNodesFrozen()
@@ -75,9 +82,9 @@ class GameScene: SCNScene {
             
             particleGeo = SCNSphere(radius: 1)
             particleGeo.firstMaterial?.diffuse.contents = UIColor.clear
-            
             particleNode = SCNNode(geometry: particleGeo)
-            particleNode.position = SCNVector3(x: 140, y: 10, z: 170)
+//            cameraNode.position = SCNVector3(x: 140, y: 20, z: 190)
+            particleNode.position = SCNVector3(x: 140, y: 10, z: 190)
             particleNode.addParticleSystem(winParticleSystem)
             self.rootNode.addChildNode(particleNode)
         } else {
@@ -158,15 +165,20 @@ class GameScene: SCNScene {
         let playLetterSound = SCNAction.playAudio(node.letterSound!, waitForCompletion: true)
         let moveToHome = SCNAction.move(to: node.frozenPosition!, duration: 1.0)
         let hideFrozenNode = SCNAction.fadeOpacity(to: 0, duration: 3.0)
-        let actionArray = [tapSound, presentLetter, playLetterSound, moveToHome]
+        
+        let actionArray = [tapSound, presentLetter, playLetterSound]
+        
         let sequence = SCNAction.sequence(actionArray)
+        
         
         node.runAction(sequence) {
             node.eulerAngles.y = 0
             if self.letterCount != 0 {
                 self.delegate?.enableScene()
+                node.runAction(moveToHome)
             } else{
-                self.delegate?.disableScene()
+//                self.delegate?.disableScene()
+                node.runAction(moveToHome)
                 self.winSequence()
             }
         }

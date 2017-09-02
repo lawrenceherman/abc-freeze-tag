@@ -82,6 +82,9 @@
 		FE93F2A21F31425700B23DCA /* StopInactive100.png in Resources */ = {isa = PBXBuildFile; fileRef = FE93F29D1F31425700B23DCA /* StopInactive100.png */; };
 		FE9C5C7F1F33BB0A009499AE /* school.png in Resources */ = {isa = PBXBuildFile; fileRef = FE9C5C7E1F33BB0A009499AE /* school.png */; };
 		FE9FDDC31F33EC9000550C9D /* bokeh.png in Resources */ = {isa = PBXBuildFile; fileRef = FE9FDDC21F33EC9000550C9D /* bokeh.png */; };
+		FEA30F791F5B21B500B4B75A /* playground.png in Resources */ = {isa = PBXBuildFile; fileRef = FEA30F781F5B21B500B4B75A /* playground.png */; };
+		FEA30F7C1F5B325E00B4B75A /* singleTree1.png in Resources */ = {isa = PBXBuildFile; fileRef = FEA30F7A1F5B325E00B4B75A /* singleTree1.png */; };
+		FEA30F7D1F5B325E00B4B75A /* singleSun1.png in Resources */ = {isa = PBXBuildFile; fileRef = FEA30F7B1F5B325E00B4B75A /* singleSun1.png */; };
 		FEA869A61F28FED60090D124 /* ABCFreezTagLS1.png in Resources */ = {isa = PBXBuildFile; fileRef = FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */; };
 		FEC6C3E31F113E44009410BE /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E21F113E44009410BE /* Letter.swift */; };
 		FEC6C3E51F11505B009410BE /* LetterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E41F11505B009410BE /* LetterNode.swift */; };
@@ -165,6 +168,9 @@
 		FE93F29D1F31425700B23DCA /* StopInactive100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StopInactive100.png; path = Images/StopInactive100.png; sourceTree = "<group>"; };
 		FE9C5C7E1F33BB0A009499AE /* school.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = school.png; path = Images/school.png; sourceTree = "<group>"; };
 		FE9FDDC21F33EC9000550C9D /* bokeh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bokeh.png; path = "Assets.xcassets/Particle Sprite Atlas.spriteatlas/bokeh.imageset/bokeh.png"; sourceTree = "<group>"; };
+		FEA30F781F5B21B500B4B75A /* playground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playground.png; path = Images/playground.png; sourceTree = "<group>"; };
+		FEA30F7A1F5B325E00B4B75A /* singleTree1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = singleTree1.png; path = Images/singleTree1.png; sourceTree = "<group>"; };
+		FEA30F7B1F5B325E00B4B75A /* singleSun1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = singleSun1.png; path = Images/singleSun1.png; sourceTree = "<group>"; };
 		FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ABCFreezTagLS1.png; path = Images.xcassets/LaunchImage.launchimage/ABCFreezTagLS1.png; sourceTree = "<group>"; };
 		FEC6C3E21F113E44009410BE /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
 		FEC6C3E41F11505B009410BE /* LetterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterNode.swift; sourceTree = "<group>"; };
@@ -225,6 +231,9 @@
 		FE5BFE9A1F2FEE43001AF59E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				FEA30F7B1F5B325E00B4B75A /* singleSun1.png */,
+				FEA30F7A1F5B325E00B4B75A /* singleTree1.png */,
+				FEA30F781F5B21B500B4B75A /* playground.png */,
 				FE9C5C7E1F33BB0A009499AE /* school.png */,
 				FE93F29A1F31425700B23DCA /* PlayActive100.png */,
 				FE93F29B1F31425700B23DCA /* PlayInactive100.png */,
@@ -379,6 +388,7 @@
 				FE4F2C8A1F2AA9980001C336 /* ABC_GROUP_LETTER_I.mp3 in Resources */,
 				FE36B2E71F2BB2FC004CB6D8 /* ABC_GROUP_LETTER_L.mp3 in Resources */,
 				FE4F2C7D1F2AA9980001C336 /* ABC_FREEZE_TAG_GROUP_1.mp3 in Resources */,
+				FEA30F7D1F5B325E00B4B75A /* singleSun1.png in Resources */,
 				FE4F2C931F2AA9980001C336 /* ABC_GROUP_LETTER_V.mp3 in Resources */,
 				FE4F2C901F2AA9980001C336 /* ABC_GROUP_LETTER_Q.mp3 in Resources */,
 				FE4F2C8D1F2AA9980001C336 /* ABC_GROUP_LETTER_N.mp3 in Resources */,
@@ -386,6 +396,7 @@
 				FE4F2C9A1F2AA9980001C336 /* ABC_LOOK_OUT_SKY_1.mp3 in Resources */,
 				FE4F2C911F2AA9980001C336 /* ABC_GROUP_LETTER_T.mp3 in Resources */,
 				FE4F2C371F2A835A0001C336 /* Assets.xcassets in Resources */,
+				FEA30F7C1F5B325E00B4B75A /* singleTree1.png in Resources */,
 				FE4F2C811F2AA9980001C336 /* ABC_FT_4_160.mp3 in Resources */,
 				FE4F2C971F2AA9980001C336 /* ABC_GROUP_LETTER_Z.mp3 in Resources */,
 				FE4F2C831F2AA9980001C336 /* ABC_GROUP_LETTER_A.mp3 in Resources */,
@@ -419,6 +430,7 @@
 				FE4F2C861F2AA9980001C336 /* ABC_GROUP_LETTER_E.mp3 in Resources */,
 				FE4F2CB01F2AA9980001C336 /* KID_GIRL_GIGGLE_6.mp3 in Resources */,
 				FE4F2C871F2AA9980001C336 /* ABC_GROUP_LETTER_F.mp3 in Resources */,
+				FEA30F791F5B21B500B4B75A /* playground.png in Resources */,
 				FE4F2CB11F2AA9980001C336 /* KIDS_PLAYGROUND_1.mp3 in Resources */,
 				FE4F2C821F2AA9980001C336 /* ABC_GREAT_JOB_SKY_1.mp3 in Resources */,
 				FE93F2A21F31425700B23DCA /* StopInactive100.png in Resources */,
