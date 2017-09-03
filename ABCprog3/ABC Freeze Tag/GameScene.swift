@@ -83,7 +83,6 @@ class GameScene: SCNScene {
             particleGeo = SCNSphere(radius: 1)
             particleGeo.firstMaterial?.diffuse.contents = UIColor.clear
             particleNode = SCNNode(geometry: particleGeo)
-//            cameraNode.position = SCNVector3(x: 140, y: 20, z: 190)
             particleNode.position = SCNVector3(x: 140, y: 10, z: 190)
             particleNode.addParticleSystem(winParticleSystem)
             self.rootNode.addChildNode(particleNode)
@@ -129,33 +128,37 @@ class GameScene: SCNScene {
         
         switchMX()
         
+        print(cameraNode.eulerAngles.y.debugDescription)
+        
         let j = freeArray.index(of: node)!
         let frozenNode = frozenArray[j]
         let radOffset = abs(degreesToRadians(degrees: 90))
 
-        var a = cameraNode.eulerAngles.y
-        a += radOffset
+        var cameraNodeEulerY = cameraNode.eulerAngles.y
+        let a = radOffset + cameraNodeEulerY
         let x = 140 + (14 * cos(a))
         let z = -190 + (14 * sin(a))
         
-        var cameraNodeEuler = cameraNode.eulerAngles.y
         var newLetterEuler: Float = 0.0
 
-        while cameraNodeEuler > 2 * Float.pi {
-            cameraNodeEuler -= (2 * Float.pi)
+        while cameraNodeEulerY > 2 * Float.pi {
+            cameraNodeEulerY -= (2 * Float.pi)
+            print("greater thatn circ")
         }
-        while cameraNodeEuler < -(2 * Float.pi) {
-            cameraNodeEuler += (2 * Float.pi)
-        }
-        if cameraNodeEuler < 0 {
-            cameraNodeEuler = (2 * Float.pi) - abs(cameraNodeEuler)
+        while cameraNodeEulerY < -(2 * Float.pi) {
+            cameraNodeEulerY += (2 * Float.pi)
+            print("less than circ")
         }
         
-        if cameraNodeEuler > 0 && cameraNodeEuler < Float.pi {
-            newLetterEuler = cameraNodeEuler + Float.pi
+        if cameraNodeEulerY < 0 {
+            cameraNodeEulerY = (2 * Float.pi) - abs(cameraNodeEulerY)
         }
-        if cameraNodeEuler > Float.pi && cameraNodeEuler < (2 * Float.pi) {
-            newLetterEuler = cameraNodeEuler - Float.pi
+        
+        if cameraNodeEulerY >= 0 && cameraNodeEulerY < Float.pi {
+            newLetterEuler = cameraNodeEulerY + Float.pi
+        }
+        if cameraNodeEulerY > Float.pi && cameraNodeEulerY < (2 * Float.pi) {
+            newLetterEuler = cameraNodeEulerY - Float.pi
         }
         newLetterEuler += Float.pi
         node.eulerAngles.y = newLetterEuler
@@ -167,9 +170,7 @@ class GameScene: SCNScene {
         let hideFrozenNode = SCNAction.fadeOpacity(to: 0, duration: 3.0)
         
         let actionArray = [tapSound, presentLetter, playLetterSound]
-        
         let sequence = SCNAction.sequence(actionArray)
-        
         
         node.runAction(sequence) {
             node.eulerAngles.y = 0
@@ -177,7 +178,6 @@ class GameScene: SCNScene {
                 self.delegate?.enableScene()
                 node.runAction(moveToHome)
             } else{
-//                self.delegate?.disableScene()
                 node.runAction(moveToHome)
                 self.winSequence()
             }
@@ -277,10 +277,8 @@ class GameScene: SCNScene {
     
     func gameSceneStart () {
         allRunWild()
-//        schoolNode.isHidden = true
         self.rootNode.addAudioPlayer(SCNAudioPlayer(source: kidPlayGround1))
         self.rootNode.addAudioPlayer(mx70BPMPlayer)
-//        self.makeFrozenNodesVisible()
     }
     
     func allRunWild() {

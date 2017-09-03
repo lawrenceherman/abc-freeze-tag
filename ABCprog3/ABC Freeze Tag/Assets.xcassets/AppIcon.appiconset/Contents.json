@@ -21,8 +21,9 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
       "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "ABCFreezeTagAppIconSpotlight.png",
       "scale" : "1x"
     },
     {
@@ -52,25 +53,27 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
       "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "ABCFreezeTagAppIconipad.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "ABCFreezeTagAppIconIpadReg@2x.png",
+      "filename" : "ABCFreezeTagAppIconipad@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "ABCFreezeTagAppIconIpadPro@2x.png",
+      "filename" : "ABCFreezeTagAppIconipadPro@2x.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "ios-marketing",
       "size" : "1024x1024",
+      "idiom" : "ios-marketing",
+      "filename" : "ABCFreezeTagAppIconStore.png",
       "scale" : "1x"
     }
   ],

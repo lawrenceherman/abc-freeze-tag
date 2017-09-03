@@ -32,8 +32,7 @@ extension GameScene {
         let lightNode = SCNNode()
         lightNode.light = SCNLight()
         lightNode.light!.type = .omni
-    
-        lightNode.position = SCNVector3(x: 140, y: 100, z: 190)
+        lightNode.position = SCNVector3(x: 140, y: 50, z: 190)
         self.rootNode.addChildNode(lightNode)
         
         let sunLightNode = SCNNode()
@@ -72,7 +71,6 @@ extension GameScene {
         schoolGeo.firstMaterial = schoolImage
         schoolNode = SCNNode(geometry: schoolGeo)
         self.rootNode.addChildNode(schoolNode)
-//        schoolNode.position = SCNVector3Make(150, 32, 0)
         schoolNode.position = SCNVector3Make(-30, 32, 190)
         schoolNode.eulerAngles.y = degreesToRadians(degrees: 90)
     }
@@ -109,7 +107,4 @@ extension GameScene {
         treeNode.position = SCNVector3(180, 32, 290)
         treeNode.eulerAngles.y = degreesToRadians(degrees: -180)
     }
-
-
-
 }
