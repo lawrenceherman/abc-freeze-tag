@@ -277,6 +277,8 @@ class GameScene: SCNScene {
     
     func gameSceneStart () {
         allRunWild()
+        
+    
         self.rootNode.addAudioPlayer(SCNAudioPlayer(source: kidPlayGround1))
         self.rootNode.addAudioPlayer(mx70BPMPlayer)
     }

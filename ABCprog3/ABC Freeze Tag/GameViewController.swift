@@ -11,6 +11,8 @@ import SceneKit
 import SpriteKit
 import Foundation
 
+// create extensions for delegate functions.
+
 class GameViewController: UIViewController, OverlaySceneDelegate, GameSceneDelegate {
     
     var gameView: SCNView!
