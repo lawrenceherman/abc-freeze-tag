@@ -9,83 +9,60 @@
 import SpriteKit
 
 protocol OverlaySceneDelegate: class {
-    func startGame()
-    func stopGame()
+  func backButtonPressed()
 }
 
 class OverlayScene: SKScene {
+  
+  var backNode: SKSpriteNode!
+  weak var overlayDelegate: OverlaySceneDelegate?
+  
+  override init(size: CGSize) {
+    super.init(size: size)
     
-    var playNode: SKSpriteNode!
-    var stopNode: SKSpriteNode!
-    var playNodeIsActive = true
-    var testInt = 5
-    var playInactiveTexture: SKTexture!
-    var stopInactiveTexture: SKTexture!
-    var playActiveTexture: SKTexture!
-    var stopActiveTexture: SKTexture!
-    weak var overlayDelegate: OverlaySceneDelegate?
+    let backTexture = SKTexture(imageNamed: "BackButton")
     
-    
-    override init(size: CGSize) {
-        super.init(size: size)
-        
-        playActiveTexture = SKTexture(imageNamed: "PlayActive100.png")
-        stopActiveTexture = SKTexture(imageNamed: "Stop100.png")
-        playInactiveTexture = SKTexture(imageNamed: "PlayInactive100.png")
-        stopInactiveTexture = SKTexture(imageNamed: "StopInactive100.png")
-        
-        playNode = SKSpriteNode(texture: playActiveTexture)
-        stopNode = SKSpriteNode(texture: stopInactiveTexture)
-        
-        self.addChild(playNode)
-        self.addChild(stopNode)
+    if UIDevice.current.userInterfaceIdiom == .phone {
+      backNode = SKSpriteNode(texture: backTexture, size: CGSize(width: 50, height: 50))
+    } else {
+      backNode = SKSpriteNode(texture: backTexture, size: CGSize(width: 100, height: 100))
     }
+    self.addChild(backNode)
+    layOut()
+  }
+  
+  func layOut() {
+    let backNodeX = frame.width * 0.08
+    let backNodeY = frame.height * 0.8
+    backNode.position = CGPoint(x: backNodeX, y: backNodeY)
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  // If touch is on backbutton returns to load screen.  Else passes
+  // touch to SceneView
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    let touch = touches.first
+    let location = touch?.location(in: self)
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    if backNode.contains(location!) {
+      overlayDelegate?.backButtonPressed()
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first
-        let location = touch?.location(in: self)
-        
-        if playNode.contains(location!) || stopNode.contains(location!){
-            if playNode.contains(location!) {
-                print("playNode tapped /n/n")
-                if playNodeIsActive {
-                    print("inside playNode is Active")
-                    playNodeIsActive = false
-                    playNode.texture = playInactiveTexture
-                    stopNode.texture = stopActiveTexture
-                    overlayDelegate?.startGame()
-                }
-            }
-            
-            if stopNode.contains(location!) {
-                print("stopNode tapped")
-                if !playNodeIsActive {
-                    playNodeIsActive = true
-                    playNode.texture = playActiveTexture
-                    stopNode.texture = stopInactiveTexture
-                    overlayDelegate?.stopGame()
-                }
-            }
-        } else {
-            let hitResults = self.view?.hitTest(location!, with: event)
-            hitResults?.next?.touchesBegan(touches, with: event)
-        }
-    
-    
-    
-    
+    else {
+      let hitResults = self.view?.hitTest(location!, with: event)
+      hitResults?.next?.touchesBegan(touches, with: event)
     }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first
-        let location = touch?.location(in: self)
-        let hitResults = self.view?.hitTest(location!, with: event)
-        hitResults?.next?.touchesMoved(touches, with: event)
-    }
+  }
+  
+  //Passes touchesMoved to gameView
+  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    let touch = touches.first
+    let location = touch?.location(in: self)
+    let hitResults = self.view?.hitTest(location!, with: event)
+    hitResults?.next?.touchesMoved(touches, with: event)
+  }
 }
 
 

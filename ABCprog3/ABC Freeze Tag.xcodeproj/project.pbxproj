@@ -206,23 +206,23 @@
 		FE4E57991F01868300C78154 /* ABCFreezeTag */ = {
 			isa = PBXGroup;
 			children = (
-				FE9FDD9F1F33E1E200550C9D /* Particle */,
-				FE5BFE9A1F2FEE43001AF59E /* Images */,
-				FE4F2C361F2A835A0001C336 /* Assets.xcassets */,
 				FE1025881F25186400BD5C63 /* AppDelegate.swift */,
-				FEB7B58D1F229A3800124B2E /* Sounds */,
 				FE4E579E1F01868300C78154 /* GameViewController.swift */,
-				FE93F28D1F311B6E00B23DCA /* SoundsExt.swift */,
+				FE93F28B1F3118EC00B23DCA /* GameScene.swift */,
+				FE6C35B51F311502008A0121 /* OverlayScene.swift */,
 				FE4E57A01F01868300C78154 /* Main.storyboard */,
-				FE4E57A81F01868300C78154 /* Info.plist */,
 				FEC6C3E21F113E44009410BE /* Letter.swift */,
 				FEC6C3E41F11505B009410BE /* LetterNode.swift */,
 				FE529FF81F1428A0005E3EF3 /* Environment.swift */,
 				FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */,
 				FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */,
 				FE2034B51F292A7B009E800C /* Launch Screen.storyboard */,
-				FE6C35B51F311502008A0121 /* OverlayScene.swift */,
-				FE93F28B1F3118EC00B23DCA /* GameScene.swift */,
+				FE93F28D1F311B6E00B23DCA /* SoundsExt.swift */,
+				FE4E57A81F01868300C78154 /* Info.plist */,
+				FE4F2C361F2A835A0001C336 /* Assets.xcassets */,
+				FEB7B58D1F229A3800124B2E /* Sounds */,
+				FE5BFE9A1F2FEE43001AF59E /* Images */,
+				FE9FDD9F1F33E1E200550C9D /* Particle */,
 			);
 			name = ABCFreezeTag;
 			path = "ABC Freeze Tag";

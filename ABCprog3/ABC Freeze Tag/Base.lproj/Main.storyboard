@@ -33,7 +33,7 @@
         <!--View Controller-->
         <scene sceneID="BaY-xC-fHy">
             <objects>
-                <viewController id="A1N-xL-ktG" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Menu" id="A1N-xL-ktG" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Q7c-SX-pz6"/>
                         <viewControllerLayoutGuide type="bottom" id="1LB-t9-Tv1"/>
@@ -113,7 +113,7 @@
                                 </constraints>
                                 <state key="normal" backgroundImage="Play2-200"/>
                                 <connections>
-                                    <segue destination="BV1-FR-VrT" kind="show" id="PSb-1n-DGI"/>
+                                    <segue destination="BV1-FR-VrT" kind="presentation" modalTransitionStyle="crossDissolve" id="PSb-1n-DGI"/>
                                 </connections>
                             </button>
                         </subviews>

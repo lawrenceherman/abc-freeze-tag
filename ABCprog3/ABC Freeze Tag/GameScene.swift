@@ -30,17 +30,7 @@ class GameScene: SCNScene {
     var aNodeFree, bNodeFree, cNodeFree, dNodeFree, eNodeFree, fNodeFree, gNodeFree, hNodeFree, iNodeFree, jNodeFree, kNodeFree, lNodeFree, mNodeFree, nNodeFree, oNodeFree, pNodeFree, qNodeFree, rNodeFree, sNodeFree, tNodeFree, uNodeFree, vNodeFree, wNodeFree, xNodeFree, yNodeFree, zNodeFree: LetterNode!
     
     var letterCount = 26
-    
-    var schoolGeo: SCNGeometry!
-    var schoolNode: SCNNode!
-    var playgroundGeo: SCNGeometry!
-    var playgroundNode: SCNNode!
-    var sunGeo: SCNGeometry!
-    var sunNode: SCNNode!
-    var treeGeo: SCNGeometry!
-    var treeNode: SCNNode!
     var cameraNode: SCNNode!
-    var floorNode: SCNNode!
     var particleNode: SCNNode!
     var particleGeo: SCNGeometry!
     
@@ -62,11 +52,7 @@ class GameScene: SCNScene {
         super.init()
         
         loadCameraAndLights()
-        loadFloor()
-        loadSchool()
-        loadPlayground()
-        loadSun()
-        loadTree()
+        loadEnvironment()
         loadGeometry()
         loadSounds()
         loadNodesFrozen()
@@ -76,21 +62,22 @@ class GameScene: SCNScene {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+  
+    // Win animation particles
     func winParticle() {
         if let winParticleSystem = SCNParticleSystem(named: "winParticle.scnp", inDirectory: nil)  {
             
             particleGeo = SCNSphere(radius: 1)
             particleGeo.firstMaterial?.diffuse.contents = UIColor.clear
             particleNode = SCNNode(geometry: particleGeo)
-            particleNode.position = SCNVector3(x: 140, y: 10, z: 190)
+            particleNode.position = SCNVector3(x: 140, y: 20, z: 190)
             particleNode.addParticleSystem(winParticleSystem)
             self.rootNode.addChildNode(particleNode)
         } else {
             print("particle load fail")
         }
     }
-    
+  
     func randomMissSound() {
         let i = arc4random_uniform(10)
         let missArray = [toSlow, giggle1, giggle2, overHere, cantCatchMe]
@@ -101,7 +88,8 @@ class GameScene: SCNScene {
             node.addAudioPlayer(SCNAudioPlayer(source: missArray[j]!))
         }
     }
-    
+  
+    //Switches music as more letters caught
     func switchMX() {
         let node = self.rootNode
         
@@ -207,7 +195,8 @@ class GameScene: SCNScene {
     func startPlayAudio() -> SCNAction {
         return SCNAction.sequence([SCNAction.playAudio(rdySet, waitForCompletion: true), SCNAction.playAudio(startScream1, waitForCompletion: false),SCNAction.playAudio(freezeTag, waitForCompletion: false)])
     }
-    
+  
+    //Defines random running and turning of letters.
     func runWild(_ node: LetterNode) {
         let runForward = SCNAction.moveBy(x: 0.0, y: 0.0, z: 10, duration: 0.15)
         let runBackward = SCNAction.moveBy(x: 0.0, y: 0.0, z: -10.0, duration: 0.15)
@@ -277,8 +266,6 @@ class GameScene: SCNScene {
     
     func gameSceneStart () {
         allRunWild()
-        
-    
         self.rootNode.addAudioPlayer(SCNAudioPlayer(source: kidPlayGround1))
         self.rootNode.addAudioPlayer(mx70BPMPlayer)
     }
