@@ -174,6 +174,7 @@
 		FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ABCFreezTagLS1.png; path = Images.xcassets/LaunchImage.launchimage/ABCFreezTagLS1.png; sourceTree = "<group>"; };
 		FEC6C3E21F113E44009410BE /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
 		FEC6C3E41F11505B009410BE /* LetterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterNode.swift; sourceTree = "<group>"; };
+		FEC9300E23650DA50035AB2B /* FreezeTag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FreezeTag.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,7 +191,8 @@
 		FE4E578E1F01868300C78154 = {
 			isa = PBXGroup;
 			children = (
-				FE4E57991F01868300C78154 /* ABCFreezeTag */,
+				FEC9300E23650DA50035AB2B /* FreezeTag.entitlements */,
+				FE4E57991F01868300C78154 /* FreezeTag */,
 				FE4E57981F01868300C78154 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -203,7 +205,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FE4E57991F01868300C78154 /* ABCFreezeTag */ = {
+		FE4E57991F01868300C78154 /* FreezeTag */ = {
 			isa = PBXGroup;
 			children = (
 				FE1025881F25186400BD5C63 /* AppDelegate.swift */,
@@ -224,7 +226,7 @@
 				FE5BFE9A1F2FEE43001AF59E /* Images */,
 				FE9FDD9F1F33E1E200550C9D /* Particle */,
 			);
-			name = ABCFreezeTag;
+			name = FreezeTag;
 			path = "ABC Freeze Tag";
 			sourceTree = "<group>";
 		};
@@ -355,11 +357,12 @@
 					};
 				};
 			};
-			buildConfigurationList = FE4E57921F01868300C78154 /* Build configuration list for PBXProject "ABC Freeze Tag" */;
+			buildConfigurationList = FE4E57921F01868300C78154 /* Build configuration list for PBXProject "FreezeTag" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -533,7 +536,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -584,7 +587,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -597,15 +600,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ABC Freeze Tag.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = GB3732J7W2;
 				INFOPLIST_FILE = "$(SRCROOT)/ABC Freeze Tag/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LawrenceHerman.ABCFreezeTag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -616,16 +622,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ABC Freeze Tag.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = GB3732J7W2;
 				INFOPLIST_FILE = "$(SRCROOT)/ABC Freeze Tag/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LawrenceHerman.ABCFreezeTag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -635,7 +644,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FE4E57921F01868300C78154 /* Build configuration list for PBXProject "ABC Freeze Tag" */ = {
+		FE4E57921F01868300C78154 /* Build configuration list for PBXProject "FreezeTag" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FE4E57A91F01868300C78154 /* Debug */,
