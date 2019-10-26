@@ -1,117 +1,121 @@
 //
 //  GameViewController.swift
-//  ABCprog3
+//  FreezeTag
 //
-//  Created by Lawrence Herman on 6/26/17.
-//  Copyright © 2017 Lawrence Herman. All rights reserved.
+//  Created by Lawrence Herman on 10/26/19.
+//  Copyright © 2019 Lawrence Herman. All rights reserved.
 //
 
+import UIKit
 import QuartzCore
 import SceneKit
-import SpriteKit
-import Foundation
 
 class GameViewController: UIViewController {
-  
-  var gameView: SCNView!
-  var gameScene: GameScene!
-  var spriteScene: OverlayScene!
-  var sceneEnabled: Bool = false
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    loadGameView()
-    loadGameScene()
-    loadSKOverlay()
-    
-    gameScene.rootNode.runAction(gameScene.startPlayAudio(), completionHandler: {
-      self.gameScene.gameSceneStart()
-      self.sceneEnabled = true
-    })
-  }
-  
-  func loadGameView() {
-    gameView = self.view as! SCNView
-    gameView.isPlaying = true
-    gameView.backgroundColor = UIColor(red: 0.4, green: 0.8, blue: 1.0, alpha: 1.0)
-    gameView.autoenablesDefaultLighting = false
-  }
-  
-  func loadGameScene() {
-    gameScene = GameScene()
-    gameView.scene = gameScene
-    gameScene.delegate = self
-  }
-  
-  func loadSKOverlay() {
-    spriteScene = OverlayScene(size: gameView.bounds.size)
-    gameView.overlaySKScene = spriteScene
-    spriteScene.overlayDelegate = self
-  }
-  
-  //Determine if touch is Letter or Miss
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    let touch = touches.first
-    let location = touch?.location(in: gameView)
-    let tappedNode: LetterNode!
-    
-    let hitResults = gameView.hitTest(location!, options: [SCNHitTestOption.boundingBoxOnly: true, SCNHitTestOption.clipToZRange: true])
-    
-    if sceneEnabled == true {
-      if hitResults.first?.node is LetterNode
-      {
-        tappedNode = (hitResults.first?.node as! LetterNode)
-        if tappedNode.frozenPosition != nil && tappedNode.frozen == false {
-          tappedNode.frozen = true
-          sceneEnabled = false
-          gameScene.nodeCaughtAnimation(node: tappedNode)
-        }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-      } else { gameScene.randomMissSound() }
+        // create a new scene
+        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        
+        // create and add a camera to the scene
+        let cameraNode = SCNNode()
+        cameraNode.camera = SCNCamera()
+        scene.rootNode.addChildNode(cameraNode)
+        
+        // place the camera
+        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
+        
+        // create and add a light to the scene
+        let lightNode = SCNNode()
+        lightNode.light = SCNLight()
+        lightNode.light!.type = .omni
+        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
+        scene.rootNode.addChildNode(lightNode)
+        
+        // create and add an ambient light to the scene
+        let ambientLightNode = SCNNode()
+        ambientLightNode.light = SCNLight()
+        ambientLightNode.light!.type = .ambient
+        ambientLightNode.light!.color = UIColor.darkGray
+        scene.rootNode.addChildNode(ambientLightNode)
+        
+        // retrieve the ship node
+        let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
+        
+        // animate the 3d object
+        ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
+        
+        // retrieve the SCNView
+        let scnView = self.view as! SCNView
+        
+        // set the scene to the view
+        scnView.scene = scene
+        
+        // allows the user to manipulate the camera
+        scnView.allowsCameraControl = true
+        
+        // show statistics such as fps and timing information
+        scnView.showsStatistics = true
+        
+        // configure the view
+        scnView.backgroundColor = UIColor.black
+        
+        // add a tap gesture recognizer
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        scnView.addGestureRecognizer(tapGesture)
     }
-  }
-  
-  //Provides camera rotation
-  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    if sceneEnabled == true {
-      let previousValue = touches.first!.previousLocation(in: self.view)
-      let currentValue = touches.first!.location(in: self.view)
-      let difference = Float(currentValue.x) - Float(previousValue.x)
-      var eulerVector = gameScene.cameraNode.eulerAngles
-      eulerVector.y = eulerVector.y + (difference/100)
-      gameScene.cameraNode.eulerAngles = eulerVector
-    }
-  }
-}
-
-// Overlay protocol function
-extension GameViewController: OverlaySceneDelegate {
-  
-  func backButtonPressed() {
-    gameScene.rootNode.enumerateChildNodes { (node, stop) in
-      node.removeFromParentNode() }
-    gameScene.rootNode.removeAllAudioPlayers()
-    gameScene = nil
-    gameView.overlaySKScene = nil
     
-    if let menuViewController = storyboard?.instantiateInitialViewController() {
-      present(menuViewController, animated: false, completion: nil)
-      
+    @objc
+    func handleTap(_ gestureRecognize: UIGestureRecognizer) {
+        // retrieve the SCNView
+        let scnView = self.view as! SCNView
+        
+        // check what nodes are tapped
+        let p = gestureRecognize.location(in: scnView)
+        let hitResults = scnView.hitTest(p, options: [:])
+        // check that we clicked on at least one object
+        if hitResults.count > 0 {
+            // retrieved the first clicked object
+            let result = hitResults[0]
+            
+            // get its material
+            let material = result.node.geometry!.firstMaterial!
+            
+            // highlight it
+            SCNTransaction.begin()
+            SCNTransaction.animationDuration = 0.5
+            
+            // on completion - unhighlight
+            SCNTransaction.completionBlock = {
+                SCNTransaction.begin()
+                SCNTransaction.animationDuration = 0.5
+                
+                material.emission.contents = UIColor.black
+                
+                SCNTransaction.commit()
+            }
+            
+            material.emission.contents = UIColor.red
+            
+            SCNTransaction.commit()
+        }
     }
-  }
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return .allButUpsideDown
+        } else {
+            return .all
+        }
+    }
+
 }
-
-// Scene protocol function
-extension GameViewController: GameSceneDelegate {
-  func enableScene() {
-    sceneEnabled = true
-  }
-  
-  func disableScene() {
-    sceneEnabled = false
-  }
-}
-
-
-
