@@ -7,19 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FE9A6AC423651182000260FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9A6AC323651182000260FD /* AppDelegate.swift */; };
-		FE9A6AC623651182000260FD /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = FE9A6AC523651182000260FD /* art.scnassets */; };
-		FE9A6AC823651182000260FD /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9A6AC723651182000260FD /* GameViewController.swift */; };
-		FE9A6ACB23651182000260FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE9A6AC923651182000260FD /* Main.storyboard */; };
-		FE9A6ACD23651183000260FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE9A6ACC23651183000260FD /* Assets.xcassets */; };
-		FE9A6AD023651183000260FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE9A6ACE23651183000260FD /* LaunchScreen.storyboard */; };
 		FE9A6AF123651211000260FD /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE93F28B1F3118EC00B23DCA /* GameScene.swift */; };
+		FE9A6AF223651540000260FD /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E21F113E44009410BE /* Letter.swift */; };
+		FE9A6AF323651544000260FD /* OverlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6C35B51F311502008A0121 /* OverlayScene.swift */; };
+		FE9A6AF423651549000260FD /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4E579E1F01868300C78154 /* GameViewController.swift */; };
+		FE9A6AF52365154D000260FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1025881F25186400BD5C63 /* AppDelegate.swift */; };
+		FE9A6AF623651552000260FD /* GeometryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */; };
+		FE9A6AF72365155D000260FD /* LetterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC6C3E41F11505B009410BE /* LetterNode.swift */; };
+		FE9A6AF82365155F000260FD /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FF81F1428A0005E3EF3 /* Environment.swift */; };
+		FE9A6AF923651564000260FD /* NodesExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */; };
+		FE9A6AFA23651579000260FD /* SoundsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE93F28D1F311B6E00B23DCA /* SoundsExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FE1025881F25186400BD5C63 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = FreezeTag/AppDelegate.swift; sourceTree = "<group>"; };
+		FE1025881F25186400BD5C63 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE17CA8E1F34143A00690D9C /* winParticle.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; name = winParticle.scnp; path = Particle/winParticle.scnp; sourceTree = "<group>"; };
-		FE2034B51F292A7B009E800C /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "FreezeTag/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		FE2034B51F292A7B009E800C /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FE36B2D91F2B8BE2004CB6D8 /* ABC_GO_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ABC_GO_1.mp3; sourceTree = "<group>"; };
 		FE36B2DB1F2B8BF1004CB6D8 /* ABC_LETTER_TAP_FX_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ABC_LETTER_TAP_FX_1.mp3; sourceTree = "<group>"; };
 		FE36B2DC1F2B8BF1004CB6D8 /* ABC_READY_SET_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ABC_READY_SET_1.mp3; sourceTree = "<group>"; };
@@ -29,10 +32,10 @@
 		FE36B2E31F2BB2FC004CB6D8 /* ABC_GROUP_LETTER_M.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ABC_GROUP_LETTER_M.mp3; sourceTree = "<group>"; };
 		FE36B2E41F2BB2FC004CB6D8 /* ABC_GROUP_LETTER_R.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ABC_GROUP_LETTER_R.mp3; sourceTree = "<group>"; };
 		FE36B2E51F2BB2FC004CB6D8 /* ABC_GROUP_LETTER_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ABC_GROUP_LETTER_S.mp3; sourceTree = "<group>"; };
-		FE4E579E1F01868300C78154 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = FreezeTag/GameViewController.swift; sourceTree = "<group>"; };
+		FE4E579E1F01868300C78154 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		FE4E57A11F01868300C78154 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FE4E57A81F01868300C78154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FE4F2C361F2A835A0001C336 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = FreezeTag/Assets.xcassets; sourceTree = "<group>"; };
+		FE4F2C361F2A835A0001C336 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE4F2C3A1F2AA9980001C336 /* ABC_CANT_CATCH_ME_SKY_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ABC_CANT_CATCH_ME_SKY_1.mp3; sourceTree = "<group>"; };
 		FE4F2C3B1F2AA9980001C336 /* ABC_CATCH_EVERYBODY_GRACE_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ABC_CATCH_EVERYBODY_GRACE_1.mp3; sourceTree = "<group>"; };
 		FE4F2C401F2AA9980001C336 /* ABC_FREEZE_TAG_GROUP_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ABC_FREEZE_TAG_GROUP_1.mp3; sourceTree = "<group>"; };
@@ -81,36 +84,25 @@
 		FE4F2C721F2AA9980001C336 /* KID_GIRL_GIGGLE_5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = KID_GIRL_GIGGLE_5.mp3; sourceTree = "<group>"; };
 		FE4F2C731F2AA9980001C336 /* KID_GIRL_GIGGLE_6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = KID_GIRL_GIGGLE_6.mp3; sourceTree = "<group>"; };
 		FE4F2C741F2AA9980001C336 /* KIDS_PLAYGROUND_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = KIDS_PLAYGROUND_1.mp3; sourceTree = "<group>"; };
-		FE529FF81F1428A0005E3EF3 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Environment.swift; path = FreezeTag/Environment.swift; sourceTree = "<group>"; };
-		FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GeometryExt.swift; path = FreezeTag/GeometryExt.swift; sourceTree = "<group>"; };
-		FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NodesExt.swift; path = FreezeTag/NodesExt.swift; sourceTree = "<group>"; };
-		FE6C35B51F311502008A0121 /* OverlayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OverlayScene.swift; path = FreezeTag/OverlayScene.swift; sourceTree = "<group>"; };
-		FE93F28B1F3118EC00B23DCA /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = FreezeTag/GameScene.swift; sourceTree = "<group>"; };
-		FE93F28D1F311B6E00B23DCA /* SoundsExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundsExt.swift; path = FreezeTag/SoundsExt.swift; sourceTree = "<group>"; };
+		FE529FF81F1428A0005E3EF3 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		FE529FFA1F142AEF005E3EF3 /* GeometryExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryExt.swift; sourceTree = "<group>"; };
+		FE529FFC1F142D5F005E3EF3 /* NodesExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodesExt.swift; sourceTree = "<group>"; };
+		FE6C35B51F311502008A0121 /* OverlayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayScene.swift; sourceTree = "<group>"; };
+		FE93F28B1F3118EC00B23DCA /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		FE93F28D1F311B6E00B23DCA /* SoundsExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundsExt.swift; sourceTree = "<group>"; };
 		FE93F29A1F31425700B23DCA /* PlayActive100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayActive100.png; path = Images/PlayActive100.png; sourceTree = "<group>"; };
 		FE93F29B1F31425700B23DCA /* PlayInactive100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PlayInactive100.png; path = Images/PlayInactive100.png; sourceTree = "<group>"; };
 		FE93F29C1F31425700B23DCA /* Stop100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stop100.png; path = Images/Stop100.png; sourceTree = "<group>"; };
 		FE93F29D1F31425700B23DCA /* StopInactive100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StopInactive100.png; path = Images/StopInactive100.png; sourceTree = "<group>"; };
 		FE9A6AC123651182000260FD /* FreezeTag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreezeTag.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE9A6AC323651182000260FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FE9A6AC523651182000260FD /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		FE9A6AC723651182000260FD /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		FE9A6ACA23651182000260FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FE9A6ACC23651183000260FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FE9A6ACF23651183000260FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		FE9A6AD123651183000260FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FE9A6ADA23651183000260FD /* FreezeTagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreezeTagTests.swift; sourceTree = "<group>"; };
-		FE9A6ADC23651183000260FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FE9A6AE523651183000260FD /* FreezeTagUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreezeTagUITests.swift; sourceTree = "<group>"; };
-		FE9A6AE723651183000260FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE9C5C7E1F33BB0A009499AE /* school.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = school.png; path = Images/school.png; sourceTree = "<group>"; };
 		FE9FDDC21F33EC9000550C9D /* bokeh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bokeh.png; path = "Assets.xcassets/Particle Sprite Atlas.spriteatlas/bokeh.imageset/bokeh.png"; sourceTree = "<group>"; };
 		FEA30F781F5B21B500B4B75A /* playground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playground.png; path = Images/playground.png; sourceTree = "<group>"; };
 		FEA30F7A1F5B325E00B4B75A /* singleTree1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = singleTree1.png; path = Images/singleTree1.png; sourceTree = "<group>"; };
 		FEA30F7B1F5B325E00B4B75A /* singleSun1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = singleSun1.png; path = Images/singleSun1.png; sourceTree = "<group>"; };
 		FEA869A51F28FED60090D124 /* ABCFreezTagLS1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ABCFreezTagLS1.png; path = Images.xcassets/LaunchImage.launchimage/ABCFreezTagLS1.png; sourceTree = "<group>"; };
-		FEC6C3E21F113E44009410BE /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Letter.swift; path = FreezeTag/Letter.swift; sourceTree = "<group>"; };
-		FEC6C3E41F11505B009410BE /* LetterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LetterNode.swift; path = FreezeTag/LetterNode.swift; sourceTree = "<group>"; };
+		FEC6C3E21F113E44009410BE /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
+		FEC6C3E41F11505B009410BE /* LetterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterNode.swift; sourceTree = "<group>"; };
 		FEC9300E23650DA50035AB2B /* FreezeTag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FreezeTag.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,9 +122,6 @@
 			children = (
 				FEC9300E23650DA50035AB2B /* FreezeTag.entitlements */,
 				FE4E57991F01868300C78154 /* FreezeTag */,
-				FE9A6AC223651182000260FD /* FreezeTag */,
-				FE9A6AD923651183000260FD /* FreezeTagTests */,
-				FE9A6AE423651183000260FD /* FreezeTagUITests */,
 				FE4E57981F01868300C78154 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -166,8 +155,7 @@
 				FE5BFE9A1F2FEE43001AF59E /* Images */,
 				FE9FDD9F1F33E1E200550C9D /* Particle */,
 			);
-			name = FreezeTag;
-			path = "ABC Freeze Tag";
+			path = FreezeTag;
 			sourceTree = "<group>";
 		};
 		FE5BFE9A1F2FEE43001AF59E /* Images */ = {
@@ -185,38 +173,6 @@
 			);
 			name = Images;
 			path = FreezeTag/Images;
-			sourceTree = "<group>";
-		};
-		FE9A6AC223651182000260FD /* FreezeTag */ = {
-			isa = PBXGroup;
-			children = (
-				FE9A6AC323651182000260FD /* AppDelegate.swift */,
-				FE9A6AC523651182000260FD /* art.scnassets */,
-				FE9A6AC723651182000260FD /* GameViewController.swift */,
-				FE9A6AC923651182000260FD /* Main.storyboard */,
-				FE9A6ACC23651183000260FD /* Assets.xcassets */,
-				FE9A6ACE23651183000260FD /* LaunchScreen.storyboard */,
-				FE9A6AD123651183000260FD /* Info.plist */,
-			);
-			path = FreezeTag;
-			sourceTree = "<group>";
-		};
-		FE9A6AD923651183000260FD /* FreezeTagTests */ = {
-			isa = PBXGroup;
-			children = (
-				FE9A6ADA23651183000260FD /* FreezeTagTests.swift */,
-				FE9A6ADC23651183000260FD /* Info.plist */,
-			);
-			path = FreezeTagTests;
-			sourceTree = "<group>";
-		};
-		FE9A6AE423651183000260FD /* FreezeTagUITests */ = {
-			isa = PBXGroup;
-			children = (
-				FE9A6AE523651183000260FD /* FreezeTagUITests.swift */,
-				FE9A6AE723651183000260FD /* Info.plist */,
-			);
-			path = FreezeTagUITests;
 			sourceTree = "<group>";
 		};
 		FE9FDD9F1F33E1E200550C9D /* Particle */ = {
@@ -290,8 +246,7 @@
 				FE4F2C731F2AA9980001C336 /* KID_GIRL_GIGGLE_6.mp3 */,
 				FE4F2C741F2AA9980001C336 /* KIDS_PLAYGROUND_1.mp3 */,
 			);
-			name = Sounds;
-			path = FreezeTag/Sounds;
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,10 +309,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE9A6AC623651182000260FD /* art.scnassets in Resources */,
-				FE9A6AD023651183000260FD /* LaunchScreen.storyboard in Resources */,
-				FE9A6ACD23651183000260FD /* Assets.xcassets in Resources */,
-				FE9A6ACB23651182000260FD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,9 +319,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE9A6AF72365155D000260FD /* LetterNode.swift in Sources */,
+				FE9A6AF82365155F000260FD /* Environment.swift in Sources */,
+				FE9A6AF423651549000260FD /* GameViewController.swift in Sources */,
+				FE9A6AFA23651579000260FD /* SoundsExt.swift in Sources */,
+				FE9A6AF623651552000260FD /* GeometryExt.swift in Sources */,
+				FE9A6AF923651564000260FD /* NodesExt.swift in Sources */,
 				FE9A6AF123651211000260FD /* GameScene.swift in Sources */,
-				FE9A6AC823651182000260FD /* GameViewController.swift in Sources */,
-				FE9A6AC423651182000260FD /* AppDelegate.swift in Sources */,
+				FE9A6AF223651540000260FD /* Letter.swift in Sources */,
+				FE9A6AF52365154D000260FD /* AppDelegate.swift in Sources */,
+				FE9A6AF323651544000260FD /* OverlayScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,22 +341,6 @@
 				FE4E57A11F01868300C78154 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		FE9A6AC923651182000260FD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FE9A6ACA23651182000260FD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		FE9A6ACE23651183000260FD /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FE9A6ACF23651183000260FD /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
